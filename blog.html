@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Energy Blog — TRON Energy Rental Insights | Energy Price Board</title>
+<meta name="description" content="Latest news, guides and analysis about TRON energy rental. Compare platforms, learn how energy rental works, and find the best deals."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://energypriceboard.tech/blog.html"/>
+<meta property="og:title" content="Energy Blog — TRON Energy Insights"/>
+<meta property="og:description" content="Guides, news and analysis about TRON energy rental market."/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Energy Price Board"/>
+<!-- Yandex.Metrika -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109720065','ym');
+ym(109720065,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109720065" style="position:absolute;left:-9999px" alt=""/></div></noscript>
+<!-- /Yandex.Metrika -->
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2WTT1T10"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CQ2WTT1T10');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg-dark:#0B0F19;
+  --bg-light:#F0F2F5;
+  --card-dark:#181E2C;
+  --ink-white:#FFFFFF;
+  --ink-secondary:#8A94A6;
+  --ink-primary-light:#131823;
+  --ink-secondary-light:#4E596B;
+  --blue:#2F6BFA;
+  --purple:#5936FA;
+  --line-dark:rgba(255,255,255,.08);
+  --line-light:#D1D5DB;
+  --radius-lg:32px;
+  --radius-card:20px;
+  --radius-btn:12px;
+  --radius-sm:8px;
+  --font:'Inter','Golos Text','SF Pro Display',-apple-system,sans-serif;
+}
+html{height:100%}
+body{
+  margin:0;min-height:100%;background:var(--bg-dark);color:var(--ink-white);
+  font:400 15px/1.5 var(--font);-webkit-font-smoothing:antialiased;
+}
+.container{max-width:1200px;margin:0 auto;padding:0 40px}
+@media(max-width:768px){.container{padding:0 20px}}
+
+h1,h2,h3{margin:0;letter-spacing:-0.01em}
+h1{font-size:40px;line-height:1.2;font-weight:800;letter-spacing:-0.02em}
+h2{font-size:28px;line-height:1.2;font-weight:700}
+@media(max-width:768px){h1{font-size:28px}h2{font-size:22px}}
+
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 0;border-bottom:1px solid var(--line-dark);
+}
+.nav-brand{font-size:21px;font-weight:800;letter-spacing:-.4px;text-decoration:none;color:var(--ink-white)}
+.nav-brand em{font-style:normal;color:var(--blue)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{text-decoration:none;color:var(--ink-secondary);padding:8px 16px;border-radius:var(--radius-sm);font-size:14px;font-weight:500;transition:.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink-white);background:rgba(255,255,255,.06)}
+@media(max-width:768px){.nav{flex-direction:column;gap:12px;align-items:flex-start}.nav-links{flex-wrap:wrap}}
+
+.hero{padding:48px 0 40px}
+.hero h1 span{background:linear-gradient(135deg,#FFFFFF 40%,var(--blue) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{margin:8px 0 0;font-size:16px;color:var(--ink-secondary);max-width:600px}
+
+.section-dark{padding:48px 0}
+.section-light{padding:60px 0;background:var(--bg-light);color:var(--ink-primary-light)}
+@media(max-width:768px){.hero{padding:32px 0}.section-light,.section-dark{padding:32px 0}}
+
+/* ===== Blog layout (light) ===== */
+.blog-layout{display:grid;grid-template-columns:2fr 1fr;gap:32px}@media(max-width:860px){.blog-layout{grid-template-columns:1fr}}
+
+/* Articles */
+.article{
+  background:#FFFFFF;border-radius:var(--radius-card);padding:24px;margin-bottom:20px;
+  transition:all .25s;border:1px solid #DDE1E8;box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+.article:hover{box-shadow:0 12px 28px rgba(0,0,0,.07);border-color:#C8CDD6;transform:translateY(-2px)}
+.article.featured{border-color:rgba(47,107,250,.2);background:linear-gradient(135deg,#FFFFFF 0%,rgba(47,107,250,.03) 100%)}
+.article .meta{display:flex;gap:12px;align-items:center;font-size:12px;color:var(--ink-secondary-light);margin-bottom:10px;flex-wrap:wrap}
+.article .meta .tag{padding:3px 12px;border-radius:12px;font-size:11px;font-weight:600;background:rgba(47,107,250,.1);color:var(--blue)}
+.article .meta .tag.guide{background:#EBEDF0;color:var(--ink-secondary-light)}
+.article h2{margin:0 0 8px;font-size:20px;font-weight:800;line-height:1.3}
+.article h2 a{color:var(--ink-primary-light);text-decoration:none}
+.article h2 a:hover{color:var(--blue)}
+.article .excerpt{font-size:14px;color:var(--ink-secondary-light);line-height:1.6;margin-bottom:14px}
+.article .author{display:flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid #EBEDF0}
+.article .author .av{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;
+  color:#fff;
+}
+.article .author .av.a1{background:linear-gradient(135deg,#2F6BFA,#4A7DFF)}
+.article .author .av.a2{background:linear-gradient(135deg,#5936FA,#7A5AFF)}
+.article .author .av.a3{background:linear-gradient(135deg,#7A36FA,#A066FF)}
+.article .author .av.a4{background:linear-gradient(135deg,#0D9488,#14B8A6)}
+.article .author .an{font-size:13px;font-weight:600;color:var(--ink-primary-light)}
+.article .author .ar{font-size:12px;color:var(--ink-secondary-light)}
+.article .author .time{font-size:12px;color:var(--ink-secondary-light);margin-left:auto}
+
+/* Reviews */
+.review{
+  background:#FFFFFF;border:1px solid #DDE1E8;border-radius:var(--radius-card);
+  padding:20px;margin-bottom:14px;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.03);
+}
+.review:hover{box-shadow:0 8px 20px rgba(0,0,0,.06);border-color:#C8CDD6;transform:translateY(-1px)}
+.review .rev-header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.review .rev-av{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0;
+  background:#EBEDF0;color:var(--ink-primary-light);
+}
+.review .rev-name{font-weight:600;font-size:13px;color:var(--ink-primary-light)}
+.review .rev-date{font-size:11px;color:var(--ink-secondary-light);margin-left:auto}
+.review .rev-text{font-size:13px;color:var(--ink-secondary-light);line-height:1.5}
+.review .rev-stars{color:var(--amber, #FFB347);font-size:13px;letter-spacing:2px}
+
+/* Sidebar */
+.sidebar-block{background:#FFFFFF;border:1px solid #DDE1E8;border-radius:var(--radius-card);padding:22px;margin-bottom:20px;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+.sidebar-block h3{margin:0 0 14px;font-size:16px;font-weight:700;color:var(--ink-primary-light)}
+.sidebar-block .link-item{padding:7px 0;border-bottom:1px solid #EBEDF0;font-size:13px;display:flex;justify-content:space-between}
+.sidebar-block .link-item:last-child{border:none}
+.sidebar-block .link-item a{color:var(--ink-secondary-light);text-decoration:none}
+.sidebar-block .link-item a:hover{color:var(--blue)}
+.sidebar-block .link-item .count{color:var(--ink-secondary-light);font-size:12px}
+
+.subscribe{
+  background:linear-gradient(135deg,rgba(47,107,250,.06) 0%,rgba(89,54,250,.04) 100%);
+  border:1px solid rgba(47,107,250,.15);border-radius:var(--radius-card);
+  padding:24px;text-align:center;margin-bottom:20px;
+}
+.subscribe h3{margin:0 0 6px;font-size:17px;font-weight:700;color:var(--blue)}
+.subscribe p{margin:0 0 16px;font-size:13px;color:var(--ink-secondary-light)}
+.subscribe input{
+  width:100%;padding:11px 16px;border-radius:var(--radius-sm);border:1px solid #DDE1E8;
+  background:#FFFFFF;color:var(--ink-primary-light);font-size:13px;font-family:var(--font);margin-bottom:8px;
+}
+.subscribe input:focus{outline:none;border-color:var(--blue)}
+.subscribe button{
+  width:100%;padding:11px;border-radius:var(--radius-sm);border:none;
+  background:var(--blue);color:var(--ink-white);font-weight:700;font-size:13px;cursor:pointer;font-family:var(--font);transition:.2s;
+}
+.subscribe button:hover{background:#1a5ae6}
+.subscribe .hint{font-size:11px;color:var(--ink-secondary-light);margin-top:8px}
+
+.comment-item{padding:6px 0}
+.comment-item + .comment-item{border-top:1px solid #EBEDF0;padding-top:10px;margin-top:2px}
+.comment-item .ci-meta{font-size:12px;color:var(--ink-secondary-light)}
+.comment-item .ci-meta strong{color:var(--ink-primary-light)}
+.comment-item .ci-text{font-size:12px;color:var(--ink-secondary-light);margin-top:2px}
+.comment-item .ci-time{font-size:11px;color:#B0B5BD;margin-top:2px}
+
+/* ===== Footer (dark) ===== */
+.footer{
+  border-top:1px solid var(--line-dark);padding:48px 0 40px;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px;
+}
+.footer-brand{font-size:18px;font-weight:800;color:var(--ink-white);margin-bottom:8px}
+.footer-brand em{font-style:normal;color:var(--blue)}
+.footer-desc{font-size:13px;color:var(--ink-secondary);line-height:1.6;margin:0;max-width:280px}
+.footer-col h5{font-size:13px;font-weight:700;color:var(--ink-secondary);text-transform:uppercase;letter-spacing:.5px;margin:0 0 16px}
+.footer-col a{display:block;color:var(--ink-white);text-decoration:none;font-size:14px;padding:4px 0;transition:.2s}
+.footer-col a:hover{color:var(--blue)}
+.footer-newsletter{display:flex;margin-top:8px}
+.footer-newsletter input{flex:1;background:var(--card-dark);border:1px solid var(--line-dark);border-radius:10px 0 0 10px;padding:12px 16px;color:var(--ink-white);font-family:var(--font);font-size:14px;outline:none}
+.footer-newsletter input::placeholder{color:var(--ink-secondary)}
+.footer-newsletter button{background:var(--blue);border:none;border-radius:0 10px 10px 0;padding:12px 16px;color:var(--ink-white);cursor:pointer;font-size:16px;transition:.2s}
+.footer-newsletter button:hover{background:#1a5ae6}
+.footer-bottom{border-top:1px solid var(--line-dark);padding:20px 0;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink-secondary);flex-wrap:wrap;gap:12px}
+@media(max-width:900px){.footer{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:600px){.footer{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ==================== DARK HEADER ==================== -->
+<div style="background:var(--bg-dark)">
+  <div class="container">
+    <nav class="nav">
+      <a href="/" class="nav-brand">Energy<em>Board</em></a>
+      <div class="nav-links">
+        <a href="index.html">Board</a>
+        <a href="explorer.html">Explorer</a>
+        <a href="history.html">History</a>
+        <a class="active">Blog</a>
+      </div>
+    </nav>
+    <div class="hero">
+      <h1><span>Energy Blog</span></h1>
+      <p>Guides, news and analysis about TRON energy rental. Updated regularly.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LIGHT CONTENT ==================== -->
+<div class="section-light">
+  <div class="container">
+
+    <div class="blog-layout">
+      <div>
+
+        <!-- Featured -->
+        <div class="article featured">
+          <div class="meta">
+            <span class="tag">Featured</span>
+            <span class="tag guide">Deep Dive</span>
+            <span>8 min read</span>
+          </div>
+          <h2><a href="#">How SUN Rates Work: The Hidden Engine of TRON Energy Pricing</a></h2>
+          <div class="excerpt">Every energy rental platform quotes prices in SUN — not TRX. But what is a SUN, how is it set, and why does a 65k energy rental cost 3 TRX on one site and 9 on another? We trace a rental order from browser click to on-chain delegation and map out the pricing engine behind each platform type: fixed-rate (FeeSaver, NETTS), marketplace (TronMax, Brutus), and API-driven (iTRX, Tronex). Along the way: recent TRON proposal #104 cut the base transfer fee from 5 TRX to 3 TRX, and TronMax crossed 500k total energy delegated in May 2026 — both putting downward pressure on SUN rates.</div>
+          <div class="author">
+            <div class="av a1">A</div>
+            <div><div class="an">Alex Volkov</div><div class="ar">Infrastructure Analyst</div></div>
+            <span class="time">Jun 9, 2026</span>
+          </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="article">
+          <div class="meta">
+            <span class="tag guide">Guide</span>
+            <span>5 min read</span>
+          </div>
+          <h2><a href="#">Burning TRX Is Dead: Rent Energy and Keep Your Money</a></h2>
+          <div class="excerpt">real talk — burning 14 TRX every time u send USDT is boomer behavior. with energy rental u pay 1.2–3 TRX for the same tx and keep the rest. this guide breaks down exactly how much u save per transfer, which coins to stack, and why staking 3000 TRX for "free" energy is actually a worse deal than renting on demand. also: TRON hit 300M accounts in may, USDT supply on tron crossed $60B, and fee pools are richer than ever — now is literally the best time to switch. we ran 100 test transfers across 5 platforms to prove the numbers.</div>
+          <div class="author">
+            <div class="av a2">K</div>
+            <div><div class="an">Kai Zhen</div><div class="ar">DeFi Writer</div></div>
+            <span class="time">Jun 7, 2026</span>
+          </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="article">
+          <div class="meta">
+            <span class="tag guide">API Roundup</span>
+            <span>7 min read</span>
+          </div>
+          <h2><a href="#">Build Your Own Energy Bot: API Comparison Across 5 Platforms</a></h2>
+          <div class="excerpt">i wrote a small python script that rents exactly 65k energy for 1 hour whenever my usdt balance drops below $100. turns out five platforms have proper REST APIs for this — iTRX, Tronex Energy, MeFree, Feee.io, and Tronify. each one does auth differently (HMAC-SHA256 with ISO timestamps vs X-API-KEY headers vs wallet signatures), and the price difference at 65k/1h is wild: from 1.48 TRX to 9.45 TRX. i'll show u the curl commands, the gotchas (rate limits, whitelist requirements, SUN vs TRX confusion), and my dead-simple python wrapper that picks the cheapest option every time. the elegance of a well-formed API call at 3am when u need energy is something beautiful.</div>
+          <div class="author">
+            <div class="av a3">N</div>
+            <div><div class="an">Nikolai Voloshin</div><div class="ar">Backend Developer</div></div>
+            <span class="time">Jun 5, 2026</span>
+          </div>
+        </div>
+
+        <!-- Article 4 -->
+        <div class="article">
+          <div class="meta">
+            <span class="tag guide">Comparison</span>
+            <span>6 min read</span>
+          </div>
+          <h2><a href="#">65k vs 130k vs 200k: Which Energy Amount Actually Saves You Money?</a></h2>
+          <div class="excerpt">The conventional wisdom says: 65k energy for a simple USDT transfer, 130k if the receiving wallet doesn't have USDT. But we tested 500 transactions and found the real numbers are messier. Some platforms give 15-minute bursts cheaper than hourly, others have 200k packages that cost less per-k than 65k. At current rates (NETTS at 2.15 TRX for 65k, FeeSaver at 2.73 TRX), the break-even for a bot doing 50+ transfers per day is 130k at 1-hour duration — not 65k. For occasional users, 65k at 15-minute TronMax beats everything. Also: TRON energy free node deployments grew 40% in Q2 2026, flooding the market with delegatable energy and pushing multi-day rates to historic lows.</div>
+          <div class="author">
+            <div class="av a4">M</div>
+            <div><div class="an">Maria Chen</div><div class="ar">Market Researcher</div></div>
+            <span class="time">Jun 1, 2026</span>
+          </div>
+        </div>
+
+        <!-- Reviews -->
+        <div style="margin-top:40px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+            <h2 style="font-size:22px;font-weight:700">Latest Platform Reviews</h2>
+          </div>
+
+          <div class="review">
+            <div class="rev-header">
+              <div class="rev-av">K</div>
+              <div class="rev-name">KryptoMax</div>
+              <div class="rev-stars">★★★★★</div>
+              <span class="rev-date">3 days ago</span>
+            </div>
+            <div class="rev-text">Been using Tronify for 6 months. Fast delivery, good support. Prices are higher than some competitors but the available energy pool is unmatched.</div>
+          </div>
+
+          <div class="review">
+            <div class="rev-header">
+              <div class="rev-av">T</div>
+              <div class="rev-name">TRXTrader</div>
+              <div class="rev-stars">★★★★☆</div>
+              <span class="rev-date">1 week ago</span>
+            </div>
+            <div class="rev-text">iTRX has the best prices I've seen for 1h rentals. The API is reliable, never had a failed order. Minus one star for the confusing UI.</div>
+          </div>
+
+          <div class="review">
+            <div class="rev-header">
+              <div class="rev-av">E</div>
+              <div class="rev-name">EnergyHacker</div>
+              <div class="rev-stars">★★★★★</div>
+              <span class="rev-date">2 weeks ago</span>
+            </div>
+            <div class="rev-text">EnergyFather's API is a lifesaver for automation. Being able to programmatically rent energy at specific prices is huge for bots.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div>
+        <div class="subscribe">
+          <h3>Stay Updated</h3>
+          <p>Get notified about price drops and new platform reviews.</p>
+          <input type="email" placeholder="your@email.com" disabled/>
+          <button disabled>Subscribe (coming soon)</button>
+          <div class="hint">No spam. Unsubscribe anytime.</div>
+        </div>
+
+        <div class="sidebar-block">
+          <h3>Categories</h3>
+          <div class="link-item"><a href="#">Market Analysis</a> <span class="count">12</span></div>
+          <div class="link-item"><a href="#">Platform Reviews</a> <span class="count">8</span></div>
+          <div class="link-item"><a href="#">Guides & Tutorials</a> <span class="count">6</span></div>
+          <div class="link-item"><a href="#">Price Comparisons</a> <span class="count">4</span></div>
+          <div class="link-item"><a href="#">Technical</a> <span class="count">3</span></div>
+          <div class="link-item"><a href="#">News</a> <span class="count">5</span></div>
+        </div>
+
+        <div class="sidebar-block">
+          <h3>Reviewed Platforms</h3>
+          <div class="link-item"><a href="#">Tronify</a> <span class="count">⭐ 4.2</span></div>
+          <div class="link-item"><a href="#">iTRX</a> <span class="count">⭐ 4.5</span></div>
+          <div class="link-item"><a href="#">EnergyFather</a> <span class="count">⭐ 4.3</span></div>
+          <div class="link-item"><a href="#">TronSave</a> <span class="count">⭐ 3.8</span></div>
+          <div class="link-item"><a href="#">JustLend DAO</a> <span class="count">⭐ 4.0</span></div>
+          <div class="link-item"><a href="#">CatFee</a> <span class="count">⭐ 3.5</span></div>
+        </div>
+
+        <div class="sidebar-block">
+          <h3>Recent Comments</h3>
+          <div class="comment-item">
+            <div class="ci-meta"><strong>CryptoSam</strong> on How TRON Energy Works</div>
+            <div class="ci-text">"Great guide! One thing to add — you can also..."</div>
+            <div class="ci-time">2 hours ago</div>
+          </div>
+          <div class="comment-item">
+            <div class="ci-meta"><strong>TronDev</strong> on Tronify vs iTRX</div>
+            <div class="ci-text">"I've been using both and iTRX is consistently..."</div>
+            <div class="ci-time">1 day ago</div>
+          </div>
+          <div class="comment-item">
+            <div class="ci-meta"><strong>EnergyMax</strong> on Price Trends June 2026</div>
+            <div class="ci-text">"Interesting how the spread is shrinking. Last month..."</div>
+            <div class="ci-time">3 days ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== FOOTER (dark) ==================== -->
+<div style="background:var(--bg-dark)">
+  <div class="container">
+    <div class="footer">
+      <div>
+        <div class="footer-brand">Energy<em>Board</em></div>
+        <p class="footer-desc">Real-time TRON energy rental price comparison across 19+ platforms. Find the best deal, instantly.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Pages</h5>
+        <a href="index.html">Price Board</a>
+        <a href="explorer.html">Market Explorer</a>
+        <a href="history.html">Price History</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="terms.txt">Terms of Service</a>
+        <a href="privacy.txt">Privacy Policy</a>
+        <a href="disclaimer.txt">Disclaimer</a>
+      </div>
+      <div class="footer-col">
+        <h5>Stay updated</h5>
+        <div style="font-size:13px;color:var(--ink-secondary)">Follow the blog</div>
+        <div style="font-size:13px;color:var(--ink-secondary);margin-top:4px">New articles weekly</div>
+        <div class="footer-newsletter">
+          <input type="email" placeholder="your@email.com" aria-label="Email for updates">
+          <button aria-label="Subscribe">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Energy Price Board. Data may be delayed.</span>
+      <span>v2.0</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

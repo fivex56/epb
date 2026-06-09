@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Price History — TRON Energy Rental Trends | Energy Price Board</title>
+<meta name="description" content="Historical TRON energy rental prices — heatmap, rankings, charts, and market insights across 19+ platforms."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://energypriceboard.tech/history.html"/>
+<meta property="og:title" content="Price History — Energy Price Board"/>
+<meta property="og:description" content="Historical TRON energy rental prices with heatmap, rankings, and trend charts."/>
+<meta property="og:url" content="https://energypriceboard.tech/history.html"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!-- Yandex.Metrika -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109720065','ym');
+ym(109720065,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109720065" style="position:absolute;left:-9999px" alt=""/></div></noscript>
+<!-- /Yandex.Metrika -->
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2WTT1T10"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CQ2WTT1T10');</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="sandbox/data/demo_data.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg-dark:#0B0F19;
+  --bg-light:#F0F2F5;
+  --card-dark:#181E2C;
+  --ink-white:#FFFFFF;
+  --ink-secondary:#8A94A6;
+  --ink-primary-light:#131823;
+  --ink-secondary-light:#4E596B;
+  --blue:#2F6BFA;
+  --purple:#5936FA;
+  --violet:#7A36FA;
+  --green:#7CEE7C;
+  --amber:#FFB347;
+  --line-dark:rgba(255,255,255,.08);
+  --line-light:#D1D5DB;
+  --radius-lg:32px;
+  --radius-card:20px;
+  --radius-btn:12px;
+  --radius-sm:8px;
+  --font:'Inter','Golos Text','SF Pro Display',-apple-system,sans-serif;
+}
+html{height:100%}
+body{
+  margin:0;min-height:100%;background:var(--bg-dark);color:var(--ink-white);
+  font:400 15px/1.5 var(--font);-webkit-font-smoothing:antialiased;
+}
+.container{max-width:1360px;margin:0 auto;padding:0 40px}
+@media(max-width:768px){.container{padding:0 20px}}
+
+h1,h2,h3{margin:0;letter-spacing:-0.01em}
+h1{font-size:40px;line-height:1.2;font-weight:800;letter-spacing:-0.02em}
+h2{font-size:28px;line-height:1.2;font-weight:700}
+@media(max-width:768px){h1{font-size:28px}h2{font-size:22px}}
+
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 0;border-bottom:1px solid var(--line-dark);
+}
+.nav-brand{font-size:21px;font-weight:800;letter-spacing:-.4px;text-decoration:none;color:var(--ink-white)}
+.nav-brand em{font-style:normal;color:var(--blue)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{text-decoration:none;color:var(--ink-secondary);padding:8px 16px;border-radius:var(--radius-sm);font-size:14px;font-weight:500;transition:.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink-white);background:rgba(255,255,255,.06)}
+@media(max-width:768px){.nav{flex-direction:column;gap:12px;align-items:flex-start}.nav-links{flex-wrap:wrap}}
+
+.hero{padding:48px 0 40px}
+.hero h1 span{background:linear-gradient(135deg,#FFFFFF 40%,var(--blue) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{margin:8px 0 0;font-size:16px;color:var(--ink-secondary);max-width:600px}
+
+.section-dark{padding:48px 0}
+.section-light{padding:60px 0;background:var(--bg-light);color:var(--ink-primary-light)}
+@media(max-width:768px){.hero{padding:32px 0}.section-light,.section-dark{padding:32px 0}}
+
+/* ===== Stats cards (light) ===== */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.stat-card{
+  background:#FFFFFF;border-radius:var(--radius-card);padding:22px 20px;position:relative;overflow:hidden;
+  border:1px solid #DDE1E8;box-shadow:0 2px 6px rgba(0,0,0,.04);transition:.2s;
+}
+.stat-card:hover{box-shadow:0 8px 20px rgba(0,0,0,.06);transform:translateY(-1px)}
+.stat-card .label{font-size:11px;font-weight:700;color:var(--ink-secondary-light);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.stat-card .value{font-size:28px;font-weight:800;letter-spacing:-.3px;color:var(--ink-primary-light)}
+.stat-card .sub{font-size:12px;color:var(--ink-secondary-light);margin-top:2px}
+.stat-card .icon{position:absolute;right:16px;top:16px;font-size:20px;opacity:.3}
+.stat-card .stat-accent{height:2px;margin:-22px -20px 14px;border-radius:var(--radius-card) var(--radius-card) 0 0}
+.stat-card .stat-accent.green{background:linear-gradient(90deg,var(--green),transparent)}
+.stat-card .stat-accent.blue{background:linear-gradient(90deg,var(--blue),transparent)}
+.stat-card .stat-accent.amber{background:linear-gradient(90deg,var(--amber),transparent)}
+.stat-card .stat-accent.purple{background:linear-gradient(90deg,var(--purple),transparent)}
+@media(max-width:768px){.stats{grid-template-columns:repeat(2,1fr)}.stat-card .value{font-size:22px}}
+@media(max-width:480px){.stats{grid-template-columns:1fr}}
+
+/* ===== Section headers ===== */
+.section{margin-bottom:24px}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.section-header h2{margin:0;font-size:22px;font-weight:700;display:flex;align-items:center;gap:8px}
+.section-header .hint{font-size:13px;color:var(--ink-secondary-light);font-weight:400}
+
+.tabs{display:flex;gap:6px;background:#EBEDF0;padding:4px;border-radius:var(--radius-sm)}
+.tab{padding:6px 16px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;color:var(--ink-secondary-light);transition:.12s;border:none;background:transparent;font-family:var(--font)}
+.tab:hover{color:var(--ink-primary-light)}
+.tab.active{color:var(--blue);background:#FFFFFF;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+
+/* ===== Heatmap (light) ===== */
+.heatmap-wrap{
+  overflow-x:auto;border-radius:var(--radius-card);
+  background:#FFFFFF;border:1px solid #DDE1E8;box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+.heatmap{min-width:640px;width:100%;border-collapse:collapse;font-size:13px}
+.heatmap th{
+  padding:10px 14px;text-align:center;color:var(--ink-secondary-light);font-weight:700;font-size:11px;
+  text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #E5E8ED;
+  position:sticky;top:0;background:#FFFFFF;z-index:2;
+}
+.heatmap th:first-child{text-align:left;min-width:140px}
+.heatmap td{padding:8px 6px;text-align:center;border-bottom:1px solid #EBEDF0;transition:.1s;font-variant-numeric:tabular-nums}
+.heatmap td.label{text-align:left;padding:8px 14px;font-weight:600;font-size:13px;color:var(--ink-primary-light)}
+.heatmap tr:hover td{background:rgba(0,0,0,.015)}
+.cell-price{border-radius:4px;font-weight:600;font-size:12px;padding:5px 6px;display:inline-block;min-width:52px}
+.cell-price.na{color:#B0B5BD;font-weight:400;font-size:11px;background:transparent}
+.cell-price.price-neutral{background:rgba(148,163,184,.12);color:var(--ink-primary-light)}
+.cell-price.price-down{background:rgba(220,38,38,.12);color:#dc2626}
+.cell-price.price-up{background:rgba(34,197,94,.12);color:#16a34a}
+.cell-delta{font-size:9px;display:block;line-height:1;margin-top:1px}
+
+/* ===== Rankings (light) ===== */
+.rank-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+@media(max-width:768px){.rank-layout{grid-template-columns:1fr}}
+.rank-card{
+  background:#FFFFFF;border:1px solid #DDE1E8;border-radius:var(--radius-card);
+  padding:20px;box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+.rank-card h3{margin:0 0 14px;font-size:17px;font-weight:700;display:flex;align-items:center;gap:6px}
+.rank-item{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #EBEDF0}
+.rank-item:last-child{border:none}
+.rank-pos{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+.rank-pos.gold{background:rgba(255,179,71,.2);color:var(--amber)}
+.rank-pos.silver{background:#EBEDF0;color:#888}
+.rank-pos.bronze{background:rgba(205,127,50,.15);color:#CD7F32}
+.rank-name{flex:1;margin:0 12px;font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-price{font-weight:800;font-size:14px;font-variant-numeric:tabular-nums;color:var(--ink-primary-light)}
+
+.chart-container{
+  background:#FFFFFF;border:1px solid #DDE1E8;border-radius:var(--radius-card);
+  padding:20px;position:relative;box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+.chart-container canvas{width:100%!important;max-height:320px}
+
+/* ===== Platform mini grid (light) ===== */
+.platform-mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:12px}
+.platform-mini{
+  background:#FFFFFF;border:1px solid #DDE1E8;border-radius:var(--radius-sm);
+  padding:14px;text-align:center;transition:.2s;cursor:default;box-shadow:0 1px 3px rgba(0,0,0,.03);
+}
+.platform-mini:hover{box-shadow:0 8px 20px rgba(0,0,0,.06);border-color:#C8CDD6;transform:translateY(-1px)}
+.platform-mini .pm-name{font-weight:700;font-size:13px;margin-bottom:2px;color:var(--ink-primary-light)}
+.platform-mini .pm-price{font-size:20px;font-weight:800;color:var(--blue)}
+.platform-mini .pm-sub{font-size:11px;color:var(--ink-secondary-light)}
+.platform-mini .pm-na{font-size:13px;color:#B0B5BD}
+
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.controls select{
+  background:#FFFFFF;border:1px solid #DDE1E8;border-radius:var(--radius-sm);
+  color:var(--ink-primary-light);padding:8px 12px;font-size:13px;font-weight:500;cursor:pointer;
+  font-family:var(--font);
+}
+.controls select:focus{outline:none;border-color:var(--blue)}
+
+/* ===== Insights (light) ===== */
+.insights{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.insight-card{
+  background:#FFFFFF;border:1px solid #DDE1E8;border-radius:var(--radius-card);
+  padding:18px 20px;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.03);
+}
+.insight-card:hover{box-shadow:0 8px 20px rgba(0,0,0,.06);transform:translateY(-1px)}
+.insight-card .ic-icon{font-size:20px;margin-bottom:6px}
+.insight-card .ic-title{font-weight:700;font-size:15px;margin-bottom:2px;color:var(--ink-primary-light)}
+.insight-card .ic-text{font-size:13px;color:var(--ink-secondary-light);line-height:1.5}
+
+/* ===== Tooltip ===== */
+.tooltip{
+  position:fixed;background:#FFFFFF;border:1px solid #DDE1E8;
+  border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;
+  box-shadow:0 8px 32px rgba(0,0,0,.12);pointer-events:none;z-index:100;
+  opacity:0;transition:opacity .12s;
+}
+.tooltip.show{opacity:1}
+.tooltip .tt-price{font-size:18px;font-weight:800;color:var(--ink-primary-light)}
+
+/* ===== Footer (dark) ===== */
+.footer{
+  border-top:1px solid var(--line-dark);padding:48px 0 40px;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px;
+}
+.footer-brand{font-size:18px;font-weight:800;color:var(--ink-white);margin-bottom:8px}
+.footer-brand em{font-style:normal;color:var(--blue)}
+.footer-desc{font-size:13px;color:var(--ink-secondary);line-height:1.6;margin:0;max-width:280px}
+.footer-col h5{font-size:13px;font-weight:700;color:var(--ink-secondary);text-transform:uppercase;letter-spacing:.5px;margin:0 0 16px}
+.footer-col a{display:block;color:var(--ink-white);text-decoration:none;font-size:14px;padding:4px 0;transition:.2s}
+.footer-col a:hover{color:var(--blue)}
+.footer-newsletter{display:flex;margin-top:8px}
+.footer-newsletter input{flex:1;background:var(--card-dark);border:1px solid var(--line-dark);border-radius:10px 0 0 10px;padding:12px 16px;color:var(--ink-white);font-family:var(--font);font-size:14px;outline:none}
+.footer-newsletter input::placeholder{color:var(--ink-secondary)}
+.footer-newsletter button{background:var(--blue);border:none;border-radius:0 10px 10px 0;padding:12px 16px;color:var(--ink-white);cursor:pointer;font-size:16px;transition:.2s}
+.footer-newsletter button:hover{background:#1a5ae6}
+.footer-bottom{border-top:1px solid var(--line-dark);padding:20px 0;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink-secondary);flex-wrap:wrap;gap:12px}
+@media(max-width:900px){.footer{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:600px){.footer{grid-template-columns:1fr}}
+
+.status{margin-top:28px;padding-top:16px;border-top:1px solid #EBEDF0;display:flex;gap:20px;flex-wrap:wrap;color:var(--ink-secondary-light);font-size:12px}
+.status a{color:var(--ink-secondary-light);text-decoration:none}
+.status a:hover{color:var(--ink-primary-light)}
+</style>
+</head>
+<body>
+<div class="tooltip" id="tooltip"></div>
+
+<!-- ==================== DARK HEADER ==================== -->
+<div style="background:var(--bg-dark)">
+  <div class="container">
+    <nav class="nav">
+      <a href="/" class="nav-brand">Energy<em>Board</em></a>
+      <div class="nav-links">
+        <a href="index.html">Board</a>
+        <a class="active">History</a>
+        <a href="explorer.html">Explorer</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </nav>
+    <div class="hero">
+      <h1><span>Price History</span></h1>
+      <p>TRON energy rental — historical trends, heatmap, rankings, and market analysis.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LIGHT CONTENT ==================== -->
+<div class="section-light">
+  <div class="container">
+
+    <div class="stats" id="statsRow">
+      <div class="stat-card"><div class="stat-accent green"></div><div class="icon">&#9732;</div><div class="label">Cheapest 65k/1h</div><div class="value" id="statCheapest">—</div><div class="sub" id="statCheapestSub"></div></div>
+      <div class="stat-card"><div class="stat-accent blue"></div><div class="icon">&#9776;</div><div class="label">Market Avg 65k/1h</div><div class="value" id="statAvg">—</div><div class="sub" id="statAvgSub"></div></div>
+      <div class="stat-card"><div class="stat-accent amber"></div><div class="icon">&#8597;</div><div class="label">Price Spread</div><div class="value" id="statSpread">—</div><div class="sub" id="statSpreadSub"></div></div>
+      <div class="stat-card"><div class="stat-accent purple"></div><div class="icon">&#9679;</div><div class="label">Live Coverage</div><div class="value" id="statCoverage">—</div><div class="sub" id="statCoverageSub"></div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" style="justify-content:center;gap:16px;flex-wrap:wrap">
+        <h2>Price Heatmap</h2>
+      </div>
+      <div style="display:flex;justify-content:center;margin-bottom:18px">
+        <div class="tabs" id="hmTabs">
+          <button class="tab active" data-vol="65k">65k energy</button>
+          <button class="tab" data-vol="130k">130k energy</button>
+        </div>
+      </div>
+      <div class="heatmap-wrap">
+        <table class="heatmap" id="heatmap"><tbody id="hmBody"></tbody></table>
+      </div>
+    </div>
+
+    <div class="rank-layout">
+      <div class="rank-card">
+        <h3>Cheapest platforms</h3>
+        <div class="controls" style="margin-bottom:10px">
+          <select id="rankTerm">
+            <option value="15m">15 min</option><option value="1h" selected>1 hour</option>
+            <option value="1d">1 day</option><option value="3d">3 days</option><option value="10d">10 days</option>
+          </select>
+          <select id="rankVol">
+            <option value="65k">65k energy</option><option value="130k">130k energy</option>
+          </select>
+        </div>
+        <div id="rankList"></div>
+      </div>
+      <div class="chart-container">
+        <h3 style="margin:0 0 10px;font-size:16px;font-weight:700">Price vs Term</h3>
+        <div style="font-size:12px;color:var(--ink-secondary-light);margin-bottom:12px">How price scales with rental duration</div>
+        <canvas id="curveChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Historical Analytics -->
+    <div class="section" id="analyticsSection">
+      <div class="section-header"><h2>Historical Analytics <span class="hint">tracking market dynamics</span></h2></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="chart-container" style="padding:16px">
+          <h3 style="margin:0 0 8px;font-size:15px;font-weight:700">Market Median & Spread</h3>
+          <div style="font-size:11px;color:var(--ink-secondary-light);margin-bottom:8px">All platforms • 65k/1h • last 7 days</div>
+          <canvas id="medianChart" style="max-height:240px"></canvas>
+        </div>
+        <div class="chart-container" style="padding:16px">
+          <h3 style="margin:0 0 8px;font-size:15px;font-weight:700">Price Distribution Per Day</h3>
+          <div style="font-size:11px;color:var(--ink-secondary-light);margin-bottom:8px">Box: Q1–Q3, whiskers: min–max, line: median</div>
+          <canvas id="boxChart" style="max-height:240px"></canvas>
+        </div>
+      </div>
+      <div class="insights" id="analyticsInsights" style="margin-bottom:24px"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <h2>All Platforms — 65k/1h <span class="hint">sorted by price</span></h2>
+      </div>
+      <div class="platform-mini-grid" id="platformGrid"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header"><h2>Market Insights</h2></div>
+      <div class="insights" id="insights"></div>
+    </div>
+
+    <div class="status">
+      <div id="dUpdated">—</div>
+      <div id="dSources">—</div>
+      <div id="dDataAge">—</div>
+      <span><a href="terms.txt">Terms</a> · <a href="privacy.txt">Privacy</a> · <a href="disclaimer.txt">Disclaimer</a></span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== FOOTER (dark) ==================== -->
+<div style="background:var(--bg-dark)">
+  <div class="container">
+    <div class="footer">
+      <div>
+        <div class="footer-brand">Energy<em>Board</em></div>
+        <p class="footer-desc">Real-time TRON energy rental price comparison across 19+ platforms. Find the best deal, instantly.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Pages</h5>
+        <a href="index.html">Price Board</a>
+        <a href="explorer.html">Market Explorer</a>
+        <a href="history.html">Price History</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="terms.txt">Terms of Service</a>
+        <a href="privacy.txt">Privacy Policy</a>
+        <a href="disclaimer.txt">Disclaimer</a>
+      </div>
+      <div class="footer-col">
+        <h5>Stay updated</h5>
+        <div style="font-size:13px;color:var(--ink-secondary)">Track market trends</div>
+        <div style="font-size:13px;color:var(--ink-secondary);margin-top:4px">19+ platforms monitored</div>
+        <div class="footer-newsletter">
+          <input type="email" placeholder="your@email.com" aria-label="Email for updates">
+          <button aria-label="Subscribe">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Energy Price Board. Data may be delayed.</span>
+      <span>v2.0</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const CHART_OK = typeof Chart !== 'undefined';
+  let data = null, curveChart = null;
+  const TERMS = ['15m','1h','1d','3d','10d'];
+  const $ = id => document.getElementById(id);
+
+  // --- Price change tracking ---
+  var PREV_KEY = 'epb_history_prev';
+  var prevData = null;
+  try { prevData = JSON.parse(localStorage.getItem(PREV_KEY)); } catch(e) { prevData = null; }
+
+  function fmt(n) {
+    if (n === null || n === undefined || n === 'N/A') return '—';
+    if (typeof n === 'number') return n.toFixed(2);
+    return n;
+  }
+
+  function renderStats() {
+    const platforms = data.platforms || [];
+    const vals = platforms.map(p => p['65k_1h_price']).filter(v => typeof v === 'number' && v >= 0);
+    const total = platforms.length;
+    const filled = vals.length;
+    if (vals.length === 0) return;
+    const min = Math.min(...vals), max = Math.max(...vals), avg = vals.reduce((a,b) => a+b, 0) / vals.length;
+    const bestPlatform = platforms.find(p => p['65k_1h_price'] === min);
+    $('statCheapest').textContent = min.toFixed(4) + ' TRX';
+    $('statCheapestSub').textContent = bestPlatform ? bestPlatform.platform_name + ' · 65k/1h' : '';
+    $('statAvg').textContent = avg.toFixed(4) + ' TRX';
+    $('statAvgSub').textContent = 'from ' + filled + ' platforms';
+    $('statSpread').textContent = (max - min).toFixed(4) + ' TRX';
+    $('statSpreadSub').textContent = avg > 0 ? ((max-min)/avg*100).toFixed(0) + '% of avg' : '';
+    $('statCoverage').textContent = filled + '/' + total;
+    $('statCoverageSub').textContent = Math.round(filled/total*100) + '% live';
+  }
+
+  function fmtPct(pct) {
+    if (Math.abs(pct) >= 10) return Math.round(pct) + '%';
+    if (Math.abs(pct) >= 1) return pct.toFixed(1) + '%';
+    return pct.toFixed(2) + '%';
+  }
+
+  function renderHeatmap(volKey) {
+    var platforms = data.platforms || [];
+    var scored = platforms.map(function(p) {
+      var prices = TERMS.map(function(t) { var v = p[volKey+'_'+t+'_price']; return (typeof v==='number'&&v>=0)?v:null; });
+      var valid = prices.filter(function(v){return v!==null;});
+      var avg = valid.length>0 ? valid.reduce(function(a,b){return a+b;},0)/valid.length : Infinity;
+      return {platform:p, prices: prices, avg: avg, validCount: valid.length};
+    });
+    scored.sort(function(a,b){if(b.validCount!==a.validCount)return b.validCount-a.validCount;return a.avg-b.avg;});
+
+    // Build lookup for previous data
+    var prevMap = {};
+    if (prevData && prevData.platforms) {
+      prevData.platforms.forEach(function(op) { prevMap[op.platform_id] = op; });
+    }
+    var now24h = Date.now() - 86400000;
+
+    var $body = $('hmBody');
+    var h = '<tr><th>Platform</th>';
+    TERMS.forEach(function(t) { h += '<th>'+t+'</th>'; });
+    h += '</tr>';
+    $body.innerHTML = h;
+
+    scored.forEach(function(s) {
+      var p = s.platform;
+      var pid = p.platform_id;
+      var name = p.platform_name || pid || '?';
+      var ref = p.referral_url || '';
+      var hasRef = p.has_referral && ref;
+      var op = prevMap[pid] || null;
+      var hasOld = op && op.ts && (new Date(op.ts).getTime() < now24h);
+
+      var html = '<tr>';
+      if (hasRef) {
+        html += '<td class="label"><a href="'+ref+'" target="_blank" rel="nofollow noopener" style="color:var(--blue);text-decoration:none;font-weight:600">'+name+'</a></td>';
+      } else {
+        html += '<td class="label">'+name+'</td>';
+      }
+      s.prices.forEach(function(price, colIdx) {
+        if (price === null) {
+          html += '<td><span class="cell-price na">—</span></td>';
+        } else {
+          var cls = 'price-neutral';
+          var badge = '';
+          if (hasOld) {
+            var term = TERMS[colIdx];
+            var oldKey = volKey+'_'+term+'_price';
+            var oldPrice = op[oldKey];
+            if (typeof oldPrice==='number' && oldPrice>0 && oldPrice!==price) {
+              var pct = ((price - oldPrice) / oldPrice * 100);
+              if (price < oldPrice) {
+                cls = 'price-down';
+                badge = '<span class="cell-delta" style="color:#dc2626">▼ '+fmtPct(Math.abs(pct))+' OFF</span>';
+              } else {
+                cls = 'price-up';
+                badge = '<span class="cell-delta" style="color:#16a34a">▲ +'+fmtPct(pct)+'</span>';
+              }
+            }
+          }
+          html += '<td><span class="cell-price '+cls+'" data-price="'+price+'">'+fmt(price)+badge+'</span></td>';
+        }
+      });
+      html += '</tr>';
+      $body.insertAdjacentHTML('beforeend', html);
+    });
+  }
+
+  function renderRankings() {
+    var term = $('rankTerm').value, vol = $('rankVol').value;
+    var key = vol+'_'+term+'_price';
+    var withPrice = data.platforms.map(function(p){ return {name:p.platform_name||p.platform_id, price:p[key], ref:p.referral_url||'', hasRef:p.has_referral&&p.referral_url}; })
+      .filter(function(p){return typeof p.price==='number'&&p.price>=0;}).sort(function(a,b){return a.price-b.price;});
+    var $list = $('rankList');
+    if (withPrice.length===0){ $list.innerHTML='<div style="color:var(--ink-secondary-light);padding:20px;text-align:center">No data</div>'; return; }
+    var best=withPrice[0].price;
+    var labels=['gold','silver','bronze'];
+    $list.innerHTML = withPrice.slice(0,10).map(function(p,i){
+      var cls=i<3?labels[i]:'';
+      var savings=i>0?((p.price-best)/best*100).toFixed(0):'0';
+      var diff=i>0?'<span style="font-size:11px;color:#e74c3c">+'+savings+'%</span>':'<span style="font-size:11px;color:var(--green)">best</span>';
+      var inner='<div class="rank-pos '+cls+'">'+(i+1)+'</div><div class="rank-name">'+p.name+'</div><div style="display:flex;align-items:center;gap:8px"><span class="rank-price">'+p.price.toFixed(2)+'</span>'+diff+'</div>';
+      if(p.hasRef) return '<a href="'+p.ref+'" target="_blank" rel="nofollow noopener" style="text-decoration:none;color:inherit;display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #EBEDF0;width:100%">'+inner+'</a>';
+      return '<div class="rank-item">'+inner+'</div>';
+    }).join('');
+  }
+
+  function renderCurves() {
+    if (!CHART_OK) return;
+    const platforms = data.platforms || [];
+    const scored = platforms.map(p => {
+      const prices = TERMS.map(t => { const v = p['65k_' + t + '_price']; return (typeof v === 'number' && v >= 0) ? v : null; });
+      return { platform: p, prices, validCount: prices.filter(v => v !== null).length };
+    }).filter(s => s.validCount > 0).sort((a, b) => b.validCount - a.validCount).slice(0, 5);
+
+    if (curveChart) { curveChart.destroy(); curveChart = null; }
+    const ctx = document.getElementById('curveChart').getContext('2d');
+    const colors = ['#2F6BFA', '#5936FA', '#7A36FA', '#0D9488', '#E5484D'];
+    const datasets = scored.map((s, i) => ({
+      label: s.platform.platform_name || s.platform.platform_id,
+      data: s.prices,
+      borderColor: colors[i % colors.length],
+      backgroundColor: colors[i % colors.length] + '15',
+      tension: 0.3, pointRadius: 4, pointHoverRadius: 6, spanGaps: true, fill: false,
+    }));
+
+    curveChart = new Chart(ctx, {
+      type: 'line', data: { labels: TERMS, datasets },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: 'rgba(0,0,0,.04)' }, ticks: { color: '#4E596B', font: { size: 11 } } },
+          y: { grid: { color: 'rgba(0,0,0,.04)' }, ticks: { color: '#4E596B', font: { size: 11 }, callback: v => v.toFixed(2) } }
+        },
+        interaction: { mode: 'index', intersect: false },
+      }
+    });
+  }
+
+  function renderPlatformGrid() {
+    const platforms = data.platforms || [];
+    const sorted = platforms.map(p => ({ name: p.platform_name || p.platform_id, price: p['65k_1h_price'] }))
+      .sort((a, b) => { if (typeof a.price !== 'number') return 1; if (typeof b.price !== 'number') return -1; return a.price - b.price; });
+    $('platformGrid').innerHTML = sorted.map(p => {
+      const isNum = typeof p.price === 'number';
+      return '<div class="platform-mini"><div class="pm-name">' + p.name + '</div>' + (isNum ? '<div class="pm-price">' + p.price.toFixed(4) + '</div><div class="pm-sub">TRX · 65k/1h</div>' : '<div class="pm-na">N/A</div>') + '</div>';
+    }).join('');
+  }
+
+  function renderInsights() {
+    const platforms = data.platforms || [];
+    const insights = [];
+    const vals65_1 = platforms.map(p => ({ name: p.platform_name, price: p['65k_1h_price'] })).filter(p => typeof p.price === 'number');
+    if (vals65_1.length > 0) {
+      const best = vals65_1.reduce((a, b) => a.price < b.price ? a : b);
+      const avg = vals65_1.reduce((a, b) => a + b.price, 0) / vals65_1.length;
+      insights.push({ icon: '☆', title: 'Best Value: ' + best.name, text: best.price.toFixed(4) + ' TRX — ' + ((avg-best.price)/avg*100).toFixed(0) + '% below avg (' + avg.toFixed(4) + ')' });
+    }
+    const vals65_10 = platforms.map(p => ({ price: p['65k_10d_price'] })).filter(p => typeof p.price === 'number');
+    if (vals65_1.length > 0 && vals65_10.length > 0) {
+      const shortAvg = vals65_1.reduce((a, b) => a + b.price, 0) / vals65_1.length;
+      const longAvg = vals65_10.reduce((a, b) => a + b.price, 0) / vals65_10.length;
+       insights.push({ icon: '↗', title: 'Long-term Savings', text: '10-day rate is ' + (longAvg/shortAvg).toFixed(1) + 'x the hourly — rent longer to save on per-day cost' });
+    }
+    const filled65 = platforms.filter(p => typeof p['65k_1h_price'] === 'number').length;
+    const filledAny = platforms.filter(p => { const keys = ['65k_1h_price','65k_1d_price','130k_1h_price']; return keys.some(k => typeof p[k] === 'number'); }).length;
+    insights.push({ icon: '◉', title: 'Data Coverage', text: filled65 + '/' + platforms.length + ' platforms report 65k/1h. ' + filledAny + '/' + platforms.length + ' have any price data.' });
+    $('insights').innerHTML = insights.map(function(ins) { return '<div class="insight-card"><div class="ic-icon">' + ins.icon + '</div><div class="ic-title">' + ins.title + '</div><div class="ic-text">' + ins.text + '</div></div>'; }).join('');
+  }
+
+  function renderFooter() {
+    const when = data.generated_at ? new Date(data.generated_at) : new Date();
+    $('dUpdated').textContent = 'Generated: ' + when.toISOString().slice(0, 19).replace('T', ' ');
+    $('dSources').textContent = 'Sources: ' + data.platforms.length + ' platforms';
+    const ages = data.platforms.map(p => p.ts ? (Date.now() - new Date(p.ts).getTime()) / 3600000 : Infinity).filter(a => isFinite(a));
+    if (ages.length > 0) { const minAge = Math.min(...ages); $('dDataAge').textContent = minAge < 24 ? 'Data: ' + (minAge < 1 ? 'today' : minAge+'h ago') : 'Data: ' + Math.round(minAge/24) + 'd ago'; }
+  }
+
+  function buildOldBaseline(histJson) {
+    // Takes history_7d.json and builds a prevData object:
+    // For each platform, find price closest to (but before) 24h ago
+    var cutoff = Date.now() - 86400000;
+    var sd = histJson.services_data || {};
+    var platforms = [];
+    var termsList = histJson.terms || TERMS;
+    var amounts = histJson.amounts || ['65k','130k'];
+
+    Object.keys(sd).forEach(function(pid) {
+      var pdata = sd[pid];
+      var platform = { platform_id: pid, ts: null };
+      var foundAny = false;
+
+      amounts.forEach(function(amount) {
+        // Map to our standard keys regardless of exact value (65000 or 131000)
+        var volKey;
+        if (amount >= 64000 && amount <= 66000) volKey = '65k';
+        else if (amount >= 130000 && amount <= 132000) volKey = '130k';
+        else volKey = String(amount);
+
+        termsList.forEach(function(term) {
+          var priceKey = volKey + '_' + term + '_price';
+          var series = pdata[priceKey];
+          if (!series || !series.length) return;
+
+          // Find the entry closest to but before the 24h cutoff
+          var bestVal = null;
+          for (var i = series.length-1; i >= 0; i--) {
+            var entry = series[i];
+            var ts = entry[0];
+            var val = entry[1];
+            if (val !== null && ts <= cutoff) {
+              bestVal = val;
+              if (!platform.ts || ts > new Date(platform.ts).getTime()) {
+                platform.ts = new Date(ts).toISOString();
+              }
+              break;
+            }
+          }
+          if (bestVal !== null) {
+            platform[priceKey] = bestVal;
+            foundAny = true;
+          }
+        });
+      });
+
+      if (foundAny) platforms.push(platform);
+    });
+
+    return { platforms: platforms, generated_at: new Date(cutoff).toISOString() };
+  }
+
+  function init(json) {
+    data = json;
+    if (!data.platforms) data.platforms = [];
+    renderStats(); renderHeatmap('65k'); renderRankings(); renderCurves();
+    renderPlatformGrid(); renderInsights(); renderFooter();
+
+    // Always try to load history_7d.json for >24h baseline
+    var dda = document.getElementById('dDataAge');
+    if (dda) dda.textContent = 'Loading history for comparison...';
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'history_7d.json', true);
+    xhr.onload = function() {
+      if (xhr.status !== 200) { if(dda) dda.textContent = 'History fetch failed: '+xhr.status; return; }
+      try {
+        var hist = JSON.parse(xhr.responseText);
+        if (hist && hist.services_data) {
+          prevData = buildOldBaseline(hist);
+          renderAnalytics(hist);
+          var n = prevData.platforms ? prevData.platforms.length : 0;
+          if (n > 0) {
+            if (dda) dda.textContent = 'Comparison: ' + n + ' platforms · ◼ sale = price dropped';
+            try { localStorage.setItem(PREV_KEY, JSON.stringify(prevData)); } catch(e2) {}
+            var activeTab = document.querySelector('#hmTabs .tab.active');
+            var vol = activeTab ? activeTab.dataset.vol : '65k';
+            renderHeatmap(vol);
+          } else {
+            if (dda) dda.textContent = 'No baseline data found (0 platforms matched)';
+          }
+        } else {
+          if (dda) dda.textContent = 'History loaded but no services_data';
+        }
+      } catch(e3) { if(dda) dda.textContent = 'Parse error: '+e3.message; }
+    };
+    xhr.onerror = function() { if(dda) dda.textContent = 'Network error loading history'; };
+    xhr.send();
+  }
+
+  document.querySelectorAll('#hmTabs .tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('#hmTabs .tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active'); renderHeatmap(tab.dataset.vol);
+    });
+  });
+  $('rankTerm').addEventListener('change', renderRankings);
+  $('rankVol').addEventListener('change', renderRankings);
+
+  document.addEventListener('mouseover', e => {
+    const cell = e.target.closest('.cell-price:not(.na)');
+    const $tip = $('tooltip');
+    if (!cell || !cell.dataset.price) { $tip.classList.remove('show'); return; }
+    $tip.innerHTML = '<div class="tt-price">' + cell.dataset.price + ' TRX</div>';
+    $tip.classList.add('show');
+  });
+  document.addEventListener('mousemove', e => {
+    const $tip = $('tooltip');
+    if (!$tip.classList.contains('show')) return;
+    $tip.style.left = (e.clientX + 14) + 'px'; $tip.style.top = (e.clientY - 10) + 'px';
+  });
+
+  // --- Historical Analytics Charts ---
+  var histJsonGlobal = null;
+  var medianChart = null, boxChart = null;
+
+  function buildDayBuckets(histJson) {
+    // Groups all platform prices by day, returns {dates: [...], medians: [...], mins: [...], maxs: [...], q1s: [...], q3s: [...]}
+    var sd = histJson.services_data || {};
+    var dayMap = {}; // {dayLabel: [all 65k_1h prices for that day]}
+    var cutoff = Date.now() - 8*86400000; // last 8 days only
+
+    Object.keys(sd).forEach(function(pid) {
+      var series = sd[pid]['65k_1h_price'];
+      if (!series || !series.length) return;
+      series.forEach(function(entry) {
+        var ts = entry[0], val = entry[1];
+        if (val === null || val === undefined || ts < cutoff) return;
+        var d = new Date(ts);
+        var dayKey = d.toISOString().slice(0,10); // YYYY-MM-DD
+        if (!dayMap[dayKey]) dayMap[dayKey] = [];
+        dayMap[dayKey].push(val);
+      });
+    });
+
+    var dates = Object.keys(dayMap).sort();
+    var medians=[], mins=[], maxs=[], q1s=[], q3s=[], counts=[];
+    dates.forEach(function(day) {
+      var vals = dayMap[day].slice().sort(function(a,b){return a-b;});
+      var n = vals.length;
+      counts.push(n);
+      mins.push(vals[0]);
+      maxs.push(vals[n-1]);
+      medians.push(n%2===1 ? vals[(n-1)/2] : (vals[n/2-1]+vals[n/2])/2);
+      var q1i = Math.floor(n*0.25), q3i = Math.floor(n*0.75);
+      q1s.push(vals[q1i]);
+      q3s.push(vals[q3i]);
+    });
+    return {dates:dates, medians:medians, mins:mins, maxs:maxs, q1s:q1s, q3s:q3s, counts:counts};
+  }
+
+  function renderAnalytics(histJson) {
+    if (!CHART_OK) return;
+    histJsonGlobal = histJson;
+    var buckets = buildDayBuckets(histJson);
+    if (buckets.dates.length < 2) return;
+
+    var dates = buckets.dates;
+    var ctx1 = document.getElementById('medianChart');
+    var ctx2 = document.getElementById('boxChart');
+    if (!ctx1 || !ctx2) return;
+
+    if (medianChart) medianChart.destroy();
+    if (boxChart) boxChart.destroy();
+
+    // Chart 1: Median line + min/max band
+    medianChart = new Chart(ctx1.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: dates,
+        datasets: [
+          {
+            label: 'Max', data: buckets.maxs, borderColor: 'rgba(220,38,38,.12)',
+            backgroundColor: 'rgba(220,38,38,.04)', fill:'+1', pointRadius:0, tension:0.2
+          },
+          {
+            label: 'Median', data: buckets.medians, borderColor: '#2F6BFA',
+            backgroundColor: 'transparent', fill:false, pointRadius:3, tension:0.2, borderWidth:2
+          },
+          {
+            label: 'Min', data: buckets.mins, borderColor: 'rgba(34,197,94,.12)',
+            backgroundColor: 'rgba(34,197,94,.04)', fill:'-1', pointRadius:0, tension:0.2
+          }
+        ]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false,
+        plugins:{legend:{display:false}},
+        scales:{
+          x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{color:'#4E596B',font:{size:10},maxRotation:0}},
+          y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{color:'#4E596B',font:{size:10},callback:function(v){return v.toFixed(2)}}}
+        }
+      }
+    });
+
+    // Chart 2: Box-style: min-max area + Q1-Q3 bar + median dot
+    boxChart = new Chart(ctx2.getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: dates,
+        datasets: [
+          {
+            label: 'Min-Max range', data: dates.map(function(_,i){return buckets.maxs[i]-buckets.mins[i];}),
+            backgroundColor: 'rgba(148,163,184,.15)', borderColor:'transparent', borderWidth:0,
+            barPercentage:0.6, base:buckets.mins
+          },
+          {
+            label: 'Q1-Q3 (middle 50%)', data: dates.map(function(_,i){return buckets.q3s[i]-buckets.q1s[i];}),
+            backgroundColor: 'rgba(47,107,250,.25)', borderColor:'transparent', borderWidth:0,
+            barPercentage:0.4, base:buckets.q1s
+          },
+          {
+            label: 'Median', type:'line', data:buckets.medians,
+            borderColor:'#1D4ED8', pointBackgroundColor:'#1D4ED8',
+            pointRadius:4, borderWidth:2, tension:0
+          }
+        ]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false,
+        plugins:{legend:{display:false}},
+        scales:{
+          x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{color:'#4E596B',font:{size:10},maxRotation:0}},
+          y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{color:'#4E596B',font:{size:10},callback:function(v){return v.toFixed(2)}}}
+        }
+      }
+    });
+
+    // Analytics insights
+    var insights = [];
+    if (buckets.medians.length >= 2) {
+      var firstM = buckets.medians[0], lastM = buckets.medians[buckets.medians.length-1];
+      var chg = ((lastM-firstM)/firstM*100);
+      var dir = chg>=0 ? 'risen' : 'dropped';
+      var emoji = chg>=0 ? '↗' : '↘';
+      insights.push({icon:emoji,title:'Market Direction',text:'Median 65k/1h has '+dir+' by '+Math.abs(chg).toFixed(1)+'% over the last '+buckets.dates.length+' days'});
+    }
+    if (buckets.mins.length >= 2 && buckets.maxs.length >= 2) {
+      var avgSpread = 0;
+      for(var i=0;i<buckets.maxs.length;i++){avgSpread += buckets.maxs[i]-buckets.mins[i];}
+      avgSpread /= buckets.maxs.length;
+      insights.push({icon:'↔',title:'Average Spread',text:'Daily price range between cheapest and most expensive: '+avgSpread.toFixed(2)+' TRX across '+buckets.counts.reduce(function(a,b){return a+b;},0)+' datapoints'});
+    }
+    insights.push({icon:'📊',title:'Platform Activity',text:'Last day had '+buckets.counts[buckets.counts.length-1]+' live price points from platforms reporting 65k/1h'});
+    document.getElementById('analyticsInsights').innerHTML = insights.map(function(ins){return '<div class="insight-card"><div class="ic-icon">'+ins.icon+'</div><div class="ic-title">'+ins.title+'</div><div class="ic-text">'+ins.text+'</div></div>';}).join('');
+  }
+
+  var DATA_LOADED = false;
+  function tryInit(json) {
+    if (DATA_LOADED) return;
+    DATA_LOADED = true;
+    init(json);
+  }
+  if (typeof DEMO_DATA !== 'undefined' && DEMO_DATA.platforms) {
+    tryInit(DEMO_DATA);
+  } else {
+    fetch('result.json', {cache: 'no-store'})
+      .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+      .then(tryInit)
+      .catch(function() {
+        fetch('sandbox/data/demo_result.json', {cache: 'no-store'})
+          .then(function(r) { return r.json(); })
+          .then(tryInit)
+          .catch(function() {
+            document.querySelector('.status').innerHTML += '<div style="color:#e74c3c;padding:20px">Failed to load data.</div>';
+          });
+      });
+  }
+})();
+</script>
+</body>
+</html>

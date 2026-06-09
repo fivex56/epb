@@ -1,0 +1,32 @@
+Post 1
+
+
+
+20 energy rental platforms. 20 live scrapers. All data flows through one pipeline: scrape → aggregate → best client choice ⚡️
+
+No manual updates. The board updates itself every hour🛠️
+
+@TronMaxIO
+ joined
+
+http://energypriceboard.tech 🚀
+
+
+Post 2
+
+USDT transfer costs 14 TRX vs 1.2 TRX when renting energy. That’s the difference between #EPB and doing nothing ⏱️.
+
+We built a page that shows this in 3s. No signup. No wallet connect. Just open and see who is cheapest right now 🎯.
+
+Energy calculator included ✨
+
+energypriceboard.tech 🔋
+
+Post 3
+
+Started in Aug 2025 with 3 scrapers and a messy table.
+
+Fixed 47 UI bugs this week. Main JS had a dangling + that broke rendering for 12h 🐛
+Building this is mostly fixing your own stupid mistakes. It works now ✅.
+
+energypriceboard.tech 🚀

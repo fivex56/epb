@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Energy Price Board — Market Explorer</title>
+<meta name="description" content="Compare TRON energy rental prices across 19+ platforms. Interactive price matrix with real-time data, search, and comparison tools."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://energypriceboard.tech/"/>
+<meta property="og:title" content="Energy Price Board — Market Explorer"/>
+<meta property="og:description" content="Interactive TRON energy price comparison matrix. Find the cheapest energy rental across all major platforms."/>
+<meta property="og:url" content="https://energypriceboard.tech/"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!-- Yandex.Metrika -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109720065','ym');
+ym(109720065,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109720065" style="position:absolute;left:-9999px" alt=""/></div></noscript>
+<!-- /Yandex.Metrika -->
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2WTT1T10"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CQ2WTT1T10');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg-dark:#0B0F19;
+  --bg-light:#F0F2F5;
+  --card-dark:#181E2C;
+  --ink-white:#FFFFFF;
+  --ink-secondary:#8A94A6;
+  --ink-primary-light:#131823;
+  --ink-secondary-light:#4E596B;
+  --blue:#2F6BFA;
+  --purple:#5936FA;
+  --violet:#7A36FA;
+  --green:#7CEE7C;
+  --line-dark:rgba(255,255,255,.08);
+  --line-light:#D1D5DB;
+  --radius-lg:32px;
+  --radius-card:20px;
+  --radius-btn:12px;
+  --radius-sm:8px;
+  --font:'Inter','Golos Text','SF Pro Display',-apple-system,sans-serif;
+}
+html{height:100%}
+body{
+  margin:0;min-height:100%;background:var(--bg-dark);color:var(--ink-white);
+  font:400 15px/1.5 var(--font);-webkit-font-smoothing:antialiased;
+}
+.container{max-width:1360px;margin:0 auto;padding:0 40px}
+@media(max-width:768px){.container{padding:0 20px}}
+
+/* ===== Typography ===== */
+h1,h2,h3{margin:0;letter-spacing:-0.01em}
+h1{font-size:40px;line-height:1.2;font-weight:800;letter-spacing:-0.02em}
+h2{font-size:28px;line-height:1.2;font-weight:700}
+@media(max-width:768px){h1{font-size:28px}h2{font-size:22px}}
+
+/* ===== Nav ===== */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 0;border-bottom:1px solid var(--line-dark);
+}
+.nav-brand{
+  font-size:21px;font-weight:800;letter-spacing:-.4px;
+  text-decoration:none;color:var(--ink-white);
+}
+.nav-brand em{font-style:normal;color:var(--blue)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{
+  text-decoration:none;color:var(--ink-secondary);padding:8px 16px;
+  border-radius:var(--radius-sm);font-size:14px;font-weight:500;transition:.2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--ink-white);background:rgba(255,255,255,.06)}
+@media(max-width:768px){
+  .nav{flex-direction:column;gap:12px;align-items:flex-start}
+  .nav-links{flex-wrap:wrap}
+}
+
+/* ===== Hero ===== */
+.hero{padding:48px 0 40px}
+.hero h1 span{background:linear-gradient(135deg,#FFFFFF 40%,var(--blue) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{margin:8px 0 0;font-size:16px;color:var(--ink-secondary);max-width:600px}
+.section-dark{padding:48px 0}
+.section-light{padding:60px 0;background:var(--bg-light);color:var(--ink-primary-light)}
+@media(max-width:768px){
+  .hero{padding:32px 0}
+  .section-light,.section-dark{padding:32px 0}
+}
+
+/* ===== Toolbar (light) ===== */
+.toolbar{
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  background:#FFFFFF;border:1px solid #DDE1E8;border-radius:var(--radius-card);
+  padding:14px 18px;margin-bottom:18px;
+  box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+.toolbar-group{display:flex;gap:6px;align-items:center}
+.toolbar-label{font-size:11px;font-weight:700;color:var(--ink-secondary-light);text-transform:uppercase;letter-spacing:.4px;margin-right:4px}
+.btn{
+  padding:6px 14px;border-radius:var(--radius-sm);border:1px solid #DDE1E8;
+  background:#FFFFFF;color:var(--ink-secondary-light);cursor:pointer;font-size:12px;font-weight:600;
+  transition:.15s;font-family:var(--font);
+}
+.btn:hover{border-color:#B0B5BD;color:var(--ink-primary-light)}
+.btn.active{border-color:var(--blue);color:var(--blue);background:rgba(47,107,250,.06)}
+.btn-sm{padding:4px 10px;font-size:11px}
+.search-box{
+  background:#EBEDF0;border:1px solid #DDE1E8;border-radius:var(--radius-sm);
+  color:var(--ink-primary-light);padding:6px 12px;font-size:13px;width:180px;font-family:var(--font);
+  transition:.15s;
+}
+.search-box:focus{outline:none;border-color:var(--blue);background:#FFFFFF}
+.search-box::placeholder{color:#B0B5BD}
+
+/* ===== Matrix (light) ===== */
+.layout{display:grid;grid-template-columns:1fr 340px;gap:18px}@media(max-width:960px){.layout{grid-template-columns:1fr}}
+.matrix-wrap{
+  overflow-x:auto;border-radius:var(--radius-card);
+  background:#FFFFFF;border:1px solid #DDE1E8;
+  box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+.matrix{min-width:560px;width:100%;border-collapse:collapse;font-size:13px}
+.matrix th{
+  padding:10px 14px;text-align:center;color:var(--ink-secondary-light);font-weight:700;font-size:11px;
+  text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #E5E8ED;
+  position:sticky;top:0;background:#FFFFFF;z-index:2;cursor:pointer;user-select:none;
+}
+.matrix th:first-child{text-align:left;min-width:130px}
+.matrix td{
+  padding:8px 6px;text-align:center;border-bottom:1px solid #EBEDF0;transition:.1s;font-variant-numeric:tabular-nums
+}
+.matrix td.label{text-align:left;padding:8px 14px;font-weight:600;font-size:13px;color:var(--ink-primary-light)}
+.matrix tr.selected td{background:rgba(47,107,250,.04)}
+.matrix tr.selected td.label{border-left:2px solid var(--blue);color:var(--blue)}
+.matrix tr:hover td{background:rgba(0,0,0,.015)}
+.matrix tr:hover td.label{color:var(--blue)}
+.cell-price{
+  display:inline-block;padding:5px 8px;border-radius:6px;font-weight:600;font-size:12px;
+  background:#EBEDF0;min-width:52px;font-variant-numeric:tabular-nums;
+}
+.cell-price.na{background:transparent;color:#B0B5BD;font-weight:400;font-size:11px}
+.cell-price.best{background:rgba(47,107,250,.1);color:var(--blue)}
+
+/* ===== Detail Panel (light) ===== */
+.detail-panel{
+  background:#FFFFFF;border:1px solid #DDE1E8;border-radius:var(--radius-card);
+  padding:20px;position:sticky;top:20px;max-height:calc(100vh - 80px);overflow-y:auto;
+  box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+.detail-panel:empty{display:flex;align-items:center;justify-content:center;min-height:200px}
+.detail-panel:empty::after{content:'Select a platform to see details';color:#B0B5BD;font-size:13px}
+.dp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.dp-name{font-size:20px;font-weight:800;color:var(--ink-primary-light)}
+.dp-url{font-size:13px;color:var(--blue);text-decoration:none;display:block;margin-top:2px}
+.dp-url:hover{text-decoration:underline}
+.dp-close{
+  border:none;background:#EBEDF0;color:var(--ink-secondary-light);
+  width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+}
+.dp-close:hover{background:#DDE1E8;color:var(--ink-primary-light)}
+.dp-section{margin-bottom:14px}
+.dp-section-title{font-size:11px;font-weight:700;color:var(--ink-secondary-light);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.dp-price-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #EBEDF0;font-size:13px}
+.dp-price-row:last-child{border:none}
+.dp-price-row .lbl{color:var(--ink-secondary-light)}
+.dp-price-row .val{font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink-primary-light)}
+.dp-badge{
+  display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;
+  font-size:11px;font-weight:600;margin-right:4px;margin-bottom:4px;
+}
+.dp-badge.limit{background:#EBEDF0;color:var(--ink-secondary-light)}
+.dp-badge.ref{background:rgba(47,107,250,.1);color:var(--blue)}
+.compare-bar{
+  display:none;align-items:center;gap:10px;
+  background:rgba(47,107,250,.06);border:1px solid rgba(47,107,250,.2);
+  border-radius:var(--radius-card);padding:12px 16px;margin-bottom:14px;
+}
+.compare-bar.show{display:flex;flex-wrap:wrap}
+.compare-bar .cb-label{font-size:12px;font-weight:700;color:var(--blue)}
+.compare-bar .cb-item{background:#FFFFFF;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px;border:1px solid #DDE1E8}
+
+/* ===== Footer (dark) ===== */
+.footer{
+  border-top:1px solid var(--line-dark);padding:48px 0 40px;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px;
+}
+.footer-brand{font-size:18px;font-weight:800;color:var(--ink-white);margin-bottom:8px}
+.footer-brand em{font-style:normal;color:var(--blue)}
+.footer-desc{font-size:13px;color:var(--ink-secondary);line-height:1.6;margin:0;max-width:280px}
+.footer-col h5{font-size:13px;font-weight:700;color:var(--ink-secondary);text-transform:uppercase;letter-spacing:.5px;margin:0 0 16px}
+.footer-col a{display:block;color:var(--ink-white);text-decoration:none;font-size:14px;padding:4px 0;transition:.2s}
+.footer-col a:hover{color:var(--blue)}
+.footer-newsletter{display:flex;margin-top:8px}
+.footer-newsletter input{
+  flex:1;background:var(--card-dark);border:1px solid var(--line-dark);
+  border-radius:10px 0 0 10px;padding:12px 16px;color:var(--ink-white);
+  font-family:var(--font);font-size:14px;outline:none;
+}
+.footer-newsletter input::placeholder{color:var(--ink-secondary)}
+.footer-newsletter button{
+  background:var(--blue);border:none;border-radius:0 10px 10px 0;
+  padding:12px 16px;color:var(--ink-white);cursor:pointer;font-size:16px;transition:.2s;
+}
+.footer-newsletter button:hover{background:#1a5ae6}
+.footer-bottom{
+  border-top:1px solid var(--line-dark);padding:20px 0;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:13px;color:var(--ink-secondary);flex-wrap:wrap;gap:12px;
+}
+@media(max-width:900px){.footer{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:600px){.footer{grid-template-columns:1fr}}
+
+/* Loading */
+.loading{text-align:center;padding:60px 20px;color:var(--ink-secondary-light);font-size:15px}
+.loading .spinner{
+  display:inline-block;width:28px;height:28px;
+  border:2px solid #DDE1E8;border-top-color:var(--blue);
+  border-radius:50%;animation:spin .8s linear infinite;margin-bottom:12px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- ==================== DARK HEADER ==================== -->
+<div style="background:var(--bg-dark)">
+  <div class="container">
+    <nav class="nav">
+      <a href="/" class="nav-brand">Energy<em>Board</em></a>
+      <div class="nav-links">
+        <a href="index.html">Board</a>
+        <a class="active">Explorer</a>
+        <a href="history.html">History</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </nav>
+    <div class="hero">
+      <h1><span>Market Explorer</span></h1>
+      <p>Interactive price matrix — compare energy rental costs across all platforms and terms.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LIGHT CONTENT ==================== -->
+<div class="section-light">
+  <div class="container">
+
+    <div class="compare-bar" id="compareBar">
+      <span class="cb-label">Compare:</span>
+      <div id="compareList"></div>
+      <button class="btn btn-sm" id="compareClear" style="margin-left:auto">Clear</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar-group">
+        <span class="toolbar-label">Volume</span>
+      </div>
+      <div class="toolbar-group" style="margin-left:8px">
+        <span class="toolbar-label">Sort</span>
+        <button class="btn active" data-sort="name">Name</button>
+        <button class="btn" data-sort="avg">Avg price</button>
+        <button class="btn" data-sort="coverage">Coverage</button>
+      </div>
+      <div class="toolbar-group" style="margin-left:auto">
+        <input class="search-box" id="searchBox" type="text" placeholder="Search..." spellcheck="false">
+        <button class="btn btn-sm" id="clearSearch">✕</button>
+      </div>
+    </div>
+
+    <div class="layout">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div style="font-size:13px;color:var(--ink-secondary-light)"><span id="matrixCount">0</span> platforms · click row for details</div>
+        </div>
+        <div class="matrix-wrap">
+          <table class="matrix" id="matrix"><tbody id="matrixBody"></tbody></table>
+        </div>
+      </div>
+      <div class="detail-panel" id="detailPanel"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== FOOTER (dark) ==================== -->
+<div style="background:var(--bg-dark)">
+  <div class="container">
+    <div class="footer">
+      <div>
+        <div class="footer-brand">Energy<em>Board</em></div>
+        <p class="footer-desc">Real-time TRON energy rental price comparison across 19+ platforms. Find the best deal, instantly.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Pages</h5>
+        <a href="index.html">Price Board</a>
+        <a href="explorer.html">Market Explorer</a>
+        <a href="history.html">Price History</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="terms.txt">Terms of Service</a>
+        <a href="privacy.txt">Privacy Policy</a>
+        <a href="disclaimer.txt">Disclaimer</a>
+      </div>
+      <div class="footer-col">
+        <h5>Stay updated</h5>
+        <div style="font-size:13px;color:var(--ink-secondary)" id="fUpdated">—</div>
+        <div style="font-size:13px;color:var(--ink-secondary);margin-top:4px" id="fCount">—</div>
+        <div class="footer-newsletter">
+          <input type="email" placeholder="your@email.com" aria-label="Email for updates">
+          <button aria-label="Subscribe">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Energy Price Board. Data may be delayed.</span>
+      <span>v2.0</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  let data = null;
+  let terms = ['15m','1h','1d','3d','10d'];
+  let volumes = {};
+  let currentVol = '65k';
+  let currentSort = 'name';
+  let searchQuery = '';
+  let selectedPlatformId = null;
+  let compareIds = [];
+
+  const $ = id => document.getElementById(id);
+
+  function fmt(n) {
+    if (n === null || n === undefined || n === 'N/A') return '—';
+    if (typeof n === 'number') return n.toFixed(2);
+    return n;
+  }
+
+  function getPrice(p, vol, term) {
+    const v = p[`${vol}_${term}_price`];
+    return (typeof v === 'number' && v >= 0) ? v : null;
+  }
+
+  function buildVolumeChips() {
+    const group = document.querySelector('.toolbar-group');
+    group.querySelectorAll('button').forEach(b => b.remove());
+    const volKeys = Object.keys(volumes);
+    if (volKeys.length === 0) volKeys.push('65k','130k');
+    if (!volKeys.includes(currentVol)) currentVol = volKeys[0];
+
+    volKeys.forEach(vk => {
+      const btn = document.createElement('button');
+      btn.className = 'btn' + (vk === currentVol ? ' active' : '');
+      btn.textContent = vk;
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('button').forEach(b => {b.classList.remove('active');});
+        btn.classList.add('active');
+        currentVol = vk;
+        renderMatrix();
+      });
+      group.appendChild(btn);
+    });
+  }
+
+  function renderMatrix() {
+    if (!data) return;
+    const platforms = data.platforms || [];
+
+    let filtered = platforms.map(p => {
+      const prices = terms.map(t => getPrice(p, currentVol, t));
+      const valid = prices.filter(v => v !== null);
+      const avg = valid.length > 0 ? valid.reduce((a,b) => a+b, 0) / valid.length : null;
+      return { platform: p, prices, avg, validCount: valid.length };
+    });
+
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(s =>
+        (s.platform.platform_name || '').toLowerCase().includes(q) ||
+        (s.platform.platform_id || '').toLowerCase().includes(q)
+      );
+    }
+
+    if (currentSort === 'avg') {
+      filtered.sort((a, b) => {
+        if (a.avg === null && b.avg === null) return 0;
+        if (a.avg === null) return 1;
+        if (b.avg === null) return -1;
+        return a.avg - b.avg;
+      });
+    } else if (currentSort === 'name') {
+      filtered.sort((a, b) => (a.platform.platform_name || '').localeCompare(b.platform.platform_name || ''));
+    } else if (currentSort === 'coverage') {
+      filtered.sort((a, b) => b.validCount - a.validCount || (a.avg || 999) - (b.avg || 999));
+    }
+
+    // Per-column minimums for ★ highlighting
+    const colMins = {};
+    for (let i = 0; i < terms.length; i++) {
+      const colVals = filtered.map(s => s.prices[i]).filter(v => v !== null);
+      colMins[i] = colVals.length > 0 ? Math.min(...colVals) : null;
+    }
+
+    const $body = $('matrixBody');
+    let h = '<tr><th>Platform</th>';
+    terms.forEach(t => { h += `<th>${t}</th>`; });
+    h += '<th>Avg</th></tr>';
+    $body.innerHTML = h;
+
+    filtered.forEach(s => {
+      const p = s.platform;
+      const pid = p.platform_id || '?';
+      const name = p.platform_name || pid;
+      const isSelected = pid === selectedPlatformId;
+
+      let html = `<tr class="${isSelected ? 'selected' : ''}" data-pid="${pid}">`;
+      html += `<td class="label">${name}</td>`;
+
+      s.prices.forEach((price, colIdx) => {
+        const isMin = price !== null && colMins[colIdx] !== null && price === colMins[colIdx];
+        if (price === null) {
+          html += '<td><span class="cell-price na">—</span></td>';
+        } else {
+          html += `<td><span class="cell-price ${isMin ? 'best' : ''}">${isMin ? '★ ' : ''}${fmt(price)}</span></td>`;
+        }
+      });
+
+      if (s.avg !== null) {
+        html += `<td><span class="cell-price best">${fmt(s.avg)}</span></td>`;
+      } else {
+        html += '<td><span class="cell-price na">—</span></td>';
+      }
+
+      html += '</tr>';
+      $body.insertAdjacentHTML('beforeend', html);
+    });
+
+    $('matrixCount').textContent = filtered.length;
+  }
+
+  function renderDetail(pid) {
+    if (!data) return;
+    const p = data.platforms.find(x => x.platform_id === pid);
+    const $panel = $('detailPanel');
+    if (!p) { $panel.innerHTML = ''; return; }
+
+    const name = p.platform_name || pid;
+    const url = p.url || '';
+    const host = (() => { try { return new URL(url).hostname } catch(e) { return '' } })();
+
+    let priceHtml = '';
+    terms.forEach(t => {
+      const v65 = getPrice(p, '65k', t);
+      const v130 = getPrice(p, '130k', t);
+      if (v65 !== null) {
+        priceHtml += `<div class="dp-price-row"><span class="lbl">65k · ${t}</span><span class="val">${fmt(v65)} TRX</span></div>`;
+      }
+      if (v130 !== null) {
+        priceHtml += `<div class="dp-price-row"><span class="lbl">130k · ${t}</span><span class="val">${fmt(v130)} TRX</span></div>`;
+      }
+    });
+
+    const bonusBtn = p.has_referral && p.referral_url
+      ? `<a class="btn" href="${p.referral_url}" target="_blank" rel="nofollow noopener" style="border-color:var(--blue);color:var(--blue);text-decoration:none;display:inline-block;margin-bottom:8px">Claim Bonus</a>`
+      : '';
+
+    $panel.innerHTML = `
+      <div class="dp-header">
+        <div>
+          <div class="dp-name">${name}</div>
+          ${host ? (p.has_referral && p.referral_url ? `<a class="dp-url" href="${p.referral_url}" target="_blank" rel="nofollow noopener">${host} (referral)</a>` : `<span style="font-size:12px;color:#94A3B8">${host}</span>`) : ''}
+        </div>
+        <button class="dp-close" onclick="closeDetail()">✕</button>
+      </div>
+      ${bonusBtn}
+      <div class="dp-section">
+        <div class="dp-section-title">Limits</div>
+        <div>
+          ${p.minimum_order_energy && p.minimum_order_energy !== 'N/A' ? `<span class="dp-badge limit">Min: ${p.minimum_order_energy}</span>` : ''}
+          ${p.maximum_order_energy && p.maximum_order_energy !== 'N/A' ? `<span class="dp-badge limit">Max: ${p.maximum_order_energy}</span>` : ''}
+          ${p.platform_max_energy && p.platform_max_energy !== 'N/A' ? `<span class="dp-badge limit">Cap: ${p.platform_max_energy}</span>` : ''}
+          ${p.available_energy && p.available_energy !== 'N/A' ? `<span class="dp-badge limit">Avail: ${p.available_energy}</span>` : ''}
+          ${p.has_referral ? '<span class="dp-badge ref">Has Bonus</span>' : ''}
+        </div>
+      </div>
+      <div class="dp-section">
+        <div class="dp-section-title">Prices</div>
+        ${priceHtml || '<div style="color:var(--ink-secondary-light);font-size:12px">No price data available</div>'}
+      </div>
+    `;
+  }
+
+  window.closeDetail = function() {
+    selectedPlatformId = null;
+    $('detailPanel').innerHTML = '';
+    renderMatrix();
+  };
+
+  function init(json) {
+    try {
+      data = json;
+      if (!data.platforms) data.platforms = [];
+      volumes = data.meta && data.meta.volumes ? data.meta.volumes : {'65k':65000,'130k':131000};
+      if (data.meta && data.meta.terms) terms = data.meta.terms;
+      buildVolumeChips();
+      renderMatrix();
+      var ts = data.generated_at;
+      $('fUpdated').textContent = (function(t){
+        if(!t) return 'Data: —';
+        var d=new Date(t);var now=new Date();var diff=now-d;var hrs=Math.floor(diff/3600000);
+        if(hrs<1)return 'Data: moments ago';if(hrs<24)return 'Data: '+hrs+'h ago';
+        var days=Math.floor(hrs/24);if(days===1)return 'Data: yesterday';if(days<=7)return 'Data: '+days+' days ago';
+        return 'Data: '+d.toISOString().slice(0,10);
+      })(ts);
+      $('fCount').textContent = data.platforms.length + ' platforms';
+    } catch (e) { console.error('Init error:', e); }
+  }
+
+  // Events
+  document.querySelectorAll('[data-sort]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-sort]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentSort = btn.dataset.sort;
+      renderMatrix();
+    });
+  });
+
+  document.addEventListener('click', e => {
+    const row = e.target.closest('.matrix tr[data-pid]');
+    if (row) {
+      selectedPlatformId = row.dataset.pid;
+      renderMatrix();
+      renderDetail(selectedPlatformId);
+    }
+  });
+
+  $('searchBox').addEventListener('input', () => {
+    searchQuery = $('searchBox').value;
+    renderMatrix();
+  });
+  $('clearSearch').addEventListener('click', () => {
+    $('searchBox').value = '';
+    searchQuery = '';
+    renderMatrix();
+  });
+  $('compareClear').addEventListener('click', () => {
+    compareIds = [];
+    $('compareBar').classList.remove('show');
+  });
+
+  // Load real data
+  fetch('result.json', {cache: 'no-store'})
+    .then(r => r.json())
+    .then(json => init(json))
+    .catch(err => {
+      console.error(err);
+      document.querySelector('.layout').innerHTML = '<div style="color:#e74c3c;padding:40px;text-align:center">Failed to load data. Please try again later.</div>';
+    });
+})();
+</script>
+</body>
+</html>

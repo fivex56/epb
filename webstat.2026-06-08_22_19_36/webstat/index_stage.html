@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnergyPriceBoard • Tron Energy Marketplace (stage)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root{
+      /* Chalkboard / EPB palette */
+      --bg:#0B0C0E; --panel:#111317; --tile:#121419; --ink:#EDEDED; --muted:#9AA0A6; --line:rgba(255,255,255,.12);
+      --chip:#151821; --chip-border:rgba(255,255,255,.20);
+      --cyan:#00BEFF; --green:#86FF86; --tile-hover:#171b21;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--ink);font:15.8px/1.55 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;letter-spacing:.2px;
+      background-image:repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 120px),
+                        repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 120px);
+    }
+    .wrap{max-width:1240px;margin:28px auto 48px;padding:0 20px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:5;background:rgba(11,12,14,.65);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+    .header-row{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px}
+    .brand{display:flex;align-items:center;gap:10px}
+    h1.logo{margin:0;font-size:22px;letter-spacing:.4px}
+    .beta{font-size:11px;color:var(--cyan);border:1px solid var(--cyan);border-radius:10px;padding:2px 6px}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{color:var(--muted);text-decoration:none;text-transform:uppercase;font-weight:700;font-size:12px;letter-spacing:.9px;position:relative}
+    nav a.active, nav a:hover{color:var(--ink)}
+    nav a.active:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--cyan);border-radius:2px}
+    .social{display:flex;gap:10px}
+    .social a{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:8px;background:#151A1F;text-decoration:none}
+
+    /* Hero */
+    .hero{max-width:900px;margin:18px auto 18px;text-align:center}
+    .hero h2{margin:0 0 10px;font-size:38px;line-height:1.15;font-weight:900;color:#b9f7ff}
+    .hero p{margin:0;color:var(--muted)}
+
+    /* Controls / chips */
+    .controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:20px 0 14px}
+    .group{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .label{color:var(--muted);font-size:14px;margin-right:4px}
+    .chip{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;padding:10px 14px;border-radius:12px;background:var(--chip);color:var(--ink);border:1px solid var(--chip-border);min-width:64px;font-weight:700}
+    .chip[data-active="true"]{box-shadow:0 0 0 2px rgba(0,190,255,.45);border-color:rgba(0,190,255,.65);background:#0F1A20}
+    .chip.volume[data-active="true"]{box-shadow:0 0 0 2px rgba(134,255,134,.45);border-color:rgba(134,255,134,.65);background:#112016}
+    .chip.toggle{color:var(--muted)}
+    .chip.toggle[data-active="true"]{color:var(--ink)}
+    .chip input{display:none}
+
+    /* Tabs */
+    .tabs{display:flex;gap:8px;margin:12px 0}
+    .tab{padding:10px 14px;border:1px solid var(--chip-border);border-radius:10px;background:var(--chip);cursor:pointer;user-select:none}
+    .tab.active{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,190,255,.35)}
+
+    /* Stats */
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:10px}
+    .stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+    .stat .val{font-size:18px;font-weight:900}
+    .stat .lab{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+
+    /* Views */
+    .view-toggle{display:flex;gap:8px;margin:12px 0}
+    .view-btn{width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--chip-border);border-radius:10px;background:var(--chip);cursor:pointer}
+    .view-btn.active{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,190,255,.35)}
+
+    .table{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left}
+    th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+    tr:last-child td{border-bottom:none}
+    tr:hover{background:rgba(255,255,255,.04)}
+    .logo{width:64px;height:64px;border-radius:16px;border:1px solid rgba(255,255,255,.28);background:#0F1013;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .name{font-weight:800}
+    .price{font-weight:900}
+    .best{position:relative;color:#00ff99}
+    .badge{position:absolute;top:-8px;right:-8px;border:1px solid var(--cyan);color:var(--cyan);background:rgba(0,190,255,.08);border-radius:999px;padding:4px 8px;font-size:11px;font-weight:900}
+    .spark{width:120px;height:40px}
+
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px}
+
+    /* Footer */
+    .site-footer{max-width:1240px;margin:28px auto 84px;padding:16px 20px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .legal{display:flex;gap:10px;align-items:center}
+    .legal a{color:var(--muted);text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.25)}
+
+    /* Responsive */
+    @media (max-width:820px){.stats{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.stats{grid-template-columns:1fr}.logo{width:56px;height:56px}.hero h2{font-size:30px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-row">
+      <div class="brand">
+        <h1 class="logo">EnergyPriceBoard</h1>
+        <span class="beta">BETA</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#dashboard" data-route="dashboard" class="active">Dashboard</a></li>
+          <li><a href="#analytics" data-route="analytics">Analytics</a></li>
+          <li><a href="#services" data-route="services">Services</a></li>
+          <li><a href="#history" data-route="history">History</a></li>
+          <li><a href="#faq" data-route="faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <div class="social">
+        <a href="https://x.com/energypricebrd" target="_blank" rel="noopener" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://t.me/energypriceboard" target="_blank" rel="noopener" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="hero">
+      <h2>Power Your Transactions</h2>
+      <p>Compare Tron energy rental prices from major providers. Find the best deals and track market history.</p>
+    </section>
+
+    <main id="views">
+      <!-- DASHBOARD -->
+      <section id="view-dashboard" class="view active">
+        <div class="controls">
+          <div class="group" id="volsGroup"><div class="label">Volume</div></div>
+          <div class="group" id="termsGroup"><div class="label">Duration</div></div>
+          <div class="group">
+            <label class="chip toggle" id="onlyChip" data-active="false"><input type="checkbox" id="onlyPrice"><span>only with price</span></label>
+          </div>
+        </div>
+
+        <div class="stats" id="stats">
+          <div class="stat"><div class="val" id="bestPrice">—</div><div class="lab">Best price</div></div>
+          <div class="stat"><div class="val" id="avgPrice">—</div><div class="lab">Average</div></div>
+          <div class="stat"><div class="val" id="providersCount">—</div><div class="lab">Providers</div></div>
+          <div class="stat"><div class="val" id="updatedAt">—</div><div class="lab">Last update</div></div>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Timespan">
+          <div class="tab active" data-span="live" role="tab" aria-selected="true">Live Prices</div>
+          <div class="tab" data-span="1d" role="tab">1D Chart</div>
+          <div class="tab" data-span="7d" role="tab">7D Chart</div>
+          <div class="tab" data-span="30d" role="tab">30D Chart</div>
+        </div>
+
+        <div class="view-toggle" id="viewToggle">
+          <button class="view-btn active" data-view="list" title="List"><i class="fas fa-list"></i></button>
+          <button class="view-btn" data-view="chart" title="Chart"><i class="fas fa-chart-line"></i></button>
+        </div>
+
+        <div class="table" id="listView">
+          <table>
+            <thead><tr><th>#</th><th>Service</th><th>Price (TRX)</th><th>Min/Max</th><th>Available</th><th>7D</th><th>Action</th></tr></thead>
+            <tbody id="providersTbody"></tbody>
+          </table>
+        </div>
+
+        <div class="card" id="chartView" style="display:none">
+          <canvas id="dashboardChart" height="140"></canvas>
+        </div>
+      </section>
+
+      <!-- ANALYTICS -->
+      <section id="view-analytics" class="view" hidden>
+        <div class="card"><h3 style="margin:0 0 10px">Market Spread (demo)</h3><canvas id="analyticsSpread" height="120"></canvas></div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="view-services" class="view" hidden>
+        <div class="card"><div id="servicesGrid" class="grid"></div></div>
+      </section>
+
+      <!-- HISTORY -->
+      <section id="view-history" class="view" hidden>
+        <div class="card"><h3 style="margin:0 0 10px">Aggregated vs Platform</h3><canvas id="historyChart" height="140"></canvas></div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="view-faq" class="view" hidden>
+        <div class="card">
+          <details open><summary><b>What is EnergyPriceBoard?</b></summary><p>EPB aggregates Tron energy rental offers and normalizes prices across terms and volumes.</p></details>
+          <details><summary><b>How often do prices update?</b></summary><p>Stage build reads local JSON history files. Production autpilot updates continuously.</p></details>
+          <details><summary><b>Do you charge fees?</b></summary><p>No. We link you to providers. Some partners may offer referral discounts.</p></details>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="social">
+      <a href="https://x.com/energypricebrd" target="_blank" rel="noopener" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://t.me/energypriceboard" target="_blank" rel="noopener" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+    </div>
+    <div class="legal"><a href="#">Disclaimer</a><span>•</span><a href="#">Privacy</a><span>•</span><a href="#">Terms</a></div>
+    <div>2025 © EnergyPriceBoard</div>
+  </footer>
+
+  <script>
+    // ===== Simple router for hash links
+    const routes={dashboard:'view-dashboard',analytics:'view-analytics',services:'view-services',history:'view-history',faq:'view-faq'};
+    function renderRoute(){
+      const hash=(location.hash||'#dashboard').slice(1); const id=routes[hash]||routes.dashboard;
+      document.querySelectorAll('main .view').forEach(v=>{v.hidden = v.id!==id; v.classList.toggle('active', v.id===id)});
+      document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('active', a.dataset.route===hash));
+      if(hash==='history') drawHistory();
+    }
+    window.addEventListener('hashchange', renderRoute);
+
+    // ===== Friendly names map for provider IDs
+    const NAME_MAP={
+      apitrx:'APITRX', catfee:'CatFee', energyfather:'EnergyFather', ergon:'Ergon', feee:'FEEE', feesaver:'FeeSaver', itrX:'iTRX', itrx:'iTRX',
+      justlend_dao:'JustLend DAO', mefree:'MeFree', netts:'NETTS', refee:'ReFee', renttron:'RentTron', tofee:'ToFee', tr_energy:'TR.Energy',
+      tronex:'TronEx', tronify:'Tronify', tronsave:'TronSave', tronzap:'TronZap'
+    };
+
+    // ===== State
+    let H7=null, H30=null; // history files
+    let term='1h';
+    let vol='65k';
+    let span='live'; // live | 1d | 7d | 30d
+    let sparkRefs={}; let mainChart=null; let historyChart=null; let analyticsChart=null;
+
+    // ===== Helpers
+    const priceKey=(v,t)=>`${v}_${t}_price`;
+    const fmt=(n)=> typeof n==='number'? n.toFixed(3): 'N/A';
+    const lastNonNull = (arr) => { if(!arr||!arr.length) return null; for(let i=arr.length-1;i>=0;--i){ const v=arr[i][1]; if(v!==null && v!==undefined) return v; } return null; };
+    const lastTs = (arr) => { if(!arr||!arr.length) return null; for(let i=arr.length-1;i>=0;--i){ if(arr[i][1]!==null && arr[i][1]!==undefined) return arr[i][0]; } return null; };
+
+    function uniqServices(){
+      const s1 = (H7?.services)||[]; const s2=(H30?.services)||[]; const set=new Set([...s1,...s2]); return [...set];
+    }
+
+    function seriesFor(serviceId, v, t, windowSpan){
+      const key = priceKey(v,t);
+      const src = (windowSpan==='30d') ? H30 : H7; // 1d/7d use 7d file, 30d uses 30d file, live derives from latest in 7d
+      const sdata = src?.services_data?.[serviceId]?.[key] || [];
+      if(windowSpan==='1d' && sdata.length){
+        const tmax = sdata[sdata.length-1]?.[0]; if(tmax){ const dayAgo=tmax - 24*60*60*1000; return sdata.filter(([ts,_])=> ts>=dayAgo); }
+      }
+      return sdata;
+    }
+
+    function computeCurrentRows(){
+      const ids = uniqServices();
+      const key = priceKey(vol, term);
+      const rows = ids.map((id)=>{
+        const s7 = H7?.services_data?.[id]?.[key] || [];
+        const price = lastNonNull(s7);
+        const ts = lastTs(s7);
+        return { id, name: NAME_MAP[id]||id, price, ts, minmax:'N/A', avail:'N/A' };
+      }).filter(r=> typeof r.price==='number');
+      rows.sort((a,b)=> a.price - b.price);
+      return rows;
+    }
+
+    function renderStats(rows){
+      const best = rows.length? rows[0].price : null;
+      const avg = rows.length? rows.reduce((a,b)=>a+b.price,0)/rows.length : null;
+      document.getElementById('bestPrice').textContent = best!=null? `${best.toFixed(3)} TRX` : '—';
+      document.getElementById('avgPrice').textContent = avg!=null? `${avg.toFixed(3)} TRX` : '—';
+      document.getElementById('providersCount').textContent = rows.length;
+      const lastTsAll = Math.max(...rows.map(r=>r.ts||0));
+      document.getElementById('updatedAt').textContent = lastTsAll? new Date(lastTsAll).toLocaleString() : '—';
+    }
+
+    function renderTable(){
+      const tbody = document.getElementById('providersTbody');
+      tbody.innerHTML='';
+      const rows = computeCurrentRows();
+      renderStats(rows);
+      // destroy old sparklines
+      Object.values(sparkRefs).forEach(ch=> ch?.destroy()); sparkRefs={};
+
+      rows.forEach((r,i)=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${i+1}</td>
+          <td>
+            <div style="display:flex;align-items:center;gap:12px">
+              <a class="logo" href="#" onclick="return false"><img src="logos/${r.id}.png" alt="${r.name}" onerror="this.src='logos/_default.png'"/></a>
+              <div class="name">${r.name}</div>
+            </div>
+          </td>
+          <td class="price ${i===0? 'best':''}">${r.price!=null? r.price.toFixed(3):'N/A'} ${i===0? '<span class="badge">BEST</span>':''}</td>
+          <td>${r.minmax}</td>
+          <td>${r.avail}</td>
+          <td><canvas class="spark" id="spark_${r.id}"></canvas></td>
+          <td><button class="chip" onclick="alert('Go to ${r.name}')">Rent</button></td>`;
+        tbody.appendChild(tr);
+        // build sparkline from selected span
+        const ctx = tr.querySelector(`#spark_${r.id}`);
+        const arr = seriesFor(r.id, vol, term, span==='live'?'7d':span); // use 7d file for live spark
+        const data = arr.map(a=>a[1]).filter(v=>typeof v==='number');
+        sparkRefs[r.id] = new Chart(ctx,{ type:'line', data:{ labels:data.map(()=>''), datasets:[{ data, borderWidth:2, pointRadius:0, tension:.35 }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false},tooltip:{enabled:false}}, scales:{x:{display:false}, y:{display:false}} });
+      });
+    }
+
+    function renderMainChart(){
+      const ctx = document.getElementById('dashboardChart');
+      if(mainChart) mainChart.destroy();
+      const ids = uniqServices();
+      // Aggregate median using provided aggregates if available
+      const src = (span==='30d')? H30 : H7;
+      const aggKey = priceKey(vol, term);
+      let labels=[], series=[];
+      const agg = src?.aggregates?.[aggKey];
+      if(agg && agg.median){ labels = agg.median.map(a=> new Date(a[0]).toLocaleDateString()); series = agg.median.map(a=> a[1]); }
+      else {
+        // fallback: average last values across providers per point count of 24
+        const points=24; const rows = ids.map(id=> seriesFor(id, vol, term, span==='live'?'7d':span).map(a=>a[1]));
+        series = Array.from({length:points}, (_,i)=>{
+          const vals = rows.map(r=> r[r.length-1-i]).filter(v=> typeof v==='number');
+          return vals.length? vals.reduce((a,b)=>a+b,0)/vals.length : null;
+        }).reverse().filter(v=>v!=null);
+        labels = series.map((_,i)=> i);
+      }
+      mainChart = new Chart(ctx,{ type:'line', data:{ labels, datasets:[{ label:`${vol.toUpperCase()} ${term}`, data:series, borderWidth:2, pointRadius:0, tension:.35 }] }, options:{ plugins:{legend:{display:false}} }});
+    }
+
+    // ===== UI wiring
+    function buildTermChips(terms){
+      const host = document.getElementById('termsGroup');
+      terms.forEach(code=>{
+        const btn = document.createElement('button'); btn.type='button'; btn.className='chip'; btn.dataset.code=code; btn.dataset.active=(code===term);
+        btn.textContent=code; btn.addEventListener('click', ()=>{ term=code; host.querySelectorAll('.chip').forEach(c=>c.dataset.active=false); btn.dataset.active=true; renderTable(); renderMainChart(); });
+        host.appendChild(btn);
+      });
+    }
+    function buildVolChips(amounts){
+      const host = document.getElementById('volsGroup');
+      amounts.forEach((amt,idx)=>{
+        const key = (amt===65000||String(amt).startsWith('65'))? '65k':'130k';
+        const btn = document.createElement('button'); btn.type='button'; btn.className='chip volume'; btn.dataset.code=key; btn.dataset.active=(idx===0);
+        if(idx===0) vol=key; btn.textContent = (amt).toLocaleString('en-US');
+        btn.addEventListener('click', ()=>{ vol=key; host.querySelectorAll('.chip').forEach(c=>c.dataset.active=false); btn.dataset.active=true; renderTable(); renderMainChart(); });
+        host.appendChild(btn);
+      });
+    }
+
+    function bindMisc(){
+      // list/chart toggle
+      const toggle = document.getElementById('viewToggle');
+      toggle.addEventListener('click', (e)=>{
+        const b = e.target.closest('.view-btn'); if(!b) return; toggle.querySelectorAll('.view-btn').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+        const v = b.dataset.view; document.getElementById('listView').style.display = (v==='list')?'block':'none'; document.getElementById('chartView').style.display = (v==='chart')?'block':'none';
+      });
+      // tabs (timespan). If chart is hidden, auto-show it so user sees change
+      document.querySelectorAll('.tab').forEach(t=>{
+        t.addEventListener('click', ()=>{
+          document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
+          span = t.dataset.span;
+          // auto open chart view to make change visible
+          const btnChart = document.querySelector('.view-btn[data-view="chart"]'); const btnList = document.querySelector('.view-btn[data-view="list"]');
+          btnList.classList.remove('active'); btnChart.classList.add('active'); document.getElementById('listView').style.display='none'; document.getElementById('chartView').style.display='block';
+          // re-render
+          renderTable(); // update sparklines with the chosen span
+          renderMainChart();
+        });
+      });
+
+      // only-with-price toggle
+      const only = document.getElementById('onlyPrice');
+      const onlyChip = document.getElementById('onlyChip');
+      onlyChip.addEventListener('click', ()=>{ only.checked = !only.checked; onlyChip.dataset.active = String(only.checked); renderTable(); });
+    }
+
+    // ===== HISTORY view
+    function drawHistory(){
+      const ctx = document.getElementById('historyChart');
+      if(historyChart) historyChart.destroy();
+      const src = H30 || H7; const aggKey = priceKey(vol, term);
+      const md = src?.aggregates?.[aggKey]?.median || [];
+      const labels = md.map(a=> new Date(a[0]).toLocaleDateString());
+      const data = md.map(a=> a[1]);
+      historyChart = new Chart(ctx,{ type:'line', data:{ labels, datasets:[{ label:`Market median • ${vol.toUpperCase()} ${term}`, data, borderWidth:2, pointRadius:0, tension:.35 }] }, options:{ plugins:{legend:{display:false}} }});
+    }
+
+    // ===== SERVICES view (simple)
+    function renderServices(){
+      const grid = document.getElementById('servicesGrid'); if(!grid) return; grid.innerHTML='';
+      uniqServices().forEach(id=>{
+        const card = document.createElement('div'); card.className='tile';
+        card.innerHTML = `<div class="tile-header"><div class="logo"><img src="logos/${id}.png" alt="${id}" onerror="this.src='logos/_default.png'"/></div><div class="name">${NAME_MAP[id]||id}</div></div>`;
+        grid.appendChild(card);
+      });
+    }
+
+    // ===== Boot
+    async function boot(){
+      const [h7,h30] = await Promise.all([
+        fetch('history_7d.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>null),
+        fetch('history_30d.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>null)
+      ]);
+      H7=h7; H30=h30;
+      // Build chips from files
+      const terms = (H7?.terms || H30?.terms || ['15m','1h','1d','3d','10d']).filter(Boolean);
+      buildTermChips(terms);
+      const amounts = (H7?.amounts || H30?.amounts || [65000,131000]);
+      buildVolChips(amounts);
+      bindMisc();
+      renderTable();
+      renderMainChart();
+      renderServices();
+      renderRoute();
+    }
+    document.addEventListener('DOMContentLoaded', boot);
+  </script>
+</body>
+</html>

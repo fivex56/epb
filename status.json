@@ -1,0 +1,112 @@
+{
+  "cycle_start": "2026-06-10T01:13:40.163081",
+  "cycle_end": "2026-06-10T01:56:21.429701",
+  "scrapers": [
+    {
+      "scraper": "TronZap_scraper.py",
+      "success": true,
+      "elapsed_sec": 10.0
+    },
+    {
+      "scraper": "apitrx_scraper.py",
+      "success": true,
+      "elapsed_sec": 5.0
+    },
+    {
+      "scraper": "brutus_scraper.py",
+      "success": true,
+      "elapsed_sec": 40.0
+    },
+    {
+      "scraper": "catfee_scraper.py",
+      "success": true,
+      "elapsed_sec": 5.0
+    },
+    {
+      "scraper": "energyfather_scraper.py",
+      "success": true,
+      "elapsed_sec": 5.0
+    },
+    {
+      "scraper": "ergon_scraper.py",
+      "success": true,
+      "elapsed_sec": 10.0
+    },
+    {
+      "scraper": "feee_scraper.py",
+      "success": true,
+      "elapsed_sec": 10.0
+    },
+    {
+      "scraper": "feesaver_scraper.py",
+      "success": true,
+      "elapsed_sec": 15.0
+    },
+    {
+      "scraper": "itrx_scraper.py",
+      "success": true,
+      "elapsed_sec": 5.0
+    },
+    {
+      "scraper": "justlend_dao_scraper.py",
+      "success": true,
+      "elapsed_sec": 5.0
+    },
+    {
+      "scraper": "mefree_scraper.py",
+      "success": true,
+      "elapsed_sec": 10.0
+    },
+    {
+      "scraper": "netts_scraper.py",
+      "success": true,
+      "elapsed_sec": 5.0
+    },
+    {
+      "scraper": "refee_scraper.py",
+      "success": true,
+      "elapsed_sec": 10.0
+    },
+    {
+      "scraper": "renttron_scraper.py",
+      "success": true,
+      "elapsed_sec": 10.0
+    },
+    {
+      "scraper": "tofee_scraper.py",
+      "success": true,
+      "elapsed_sec": 5.0
+    },
+    {
+      "scraper": "trenergy_scraper.py",
+      "success": true,
+      "elapsed_sec": 5.0
+    },
+    {
+      "scraper": "tronex_scraper.py",
+      "success": true,
+      "elapsed_sec": 10.0
+    },
+    {
+      "scraper": "tronify_scraper.py",
+      "success": true,
+      "elapsed_sec": 20.0
+    },
+    {
+      "scraper": "tronmax_scraper.py",
+      "success": true,
+      "elapsed_sec": 5.0
+    },
+    {
+      "scraper": "tronsave_scraper.py",
+      "success": true,
+      "elapsed_sec": 15.0
+    }
+  ],
+  "scrapers_ok": 20,
+  "scrapers_fail": 0,
+  "aggregate_ok": true,
+  "fill_ok": true,
+  "ingest_ok": true,
+  "upload_ok": true
+}

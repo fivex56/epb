@@ -1,0 +1,38 @@
+# === SECRETS — NEVER COMMIT ===
+.env
+*.db
+*.db-shm
+*.db-wal
+*.log
+*.pickle
+oauth*.json
+google_token*
+
+# FTP / deploy credentials
+upload*.winscp
+*winscp*.log
+
+# API keys hardcoded in scrapers — strip before commit
+# (manual review required: mefree_scraper.py, tronex_scraper.py, tronmax_scraper.py, feee_scraper.py)
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.spec
+build/
+dist/
+
+# Backup / export — may contain old API keys
+export/
+
+# User data
+referrals.json
+sandbox/
+temp/
+tmp/
+*.tmp
+
+# OS
+desktop.ini
+Thumbs.db

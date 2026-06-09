@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Energy Price Board — TRON Energy Rental Comparison</title>
+<meta name="description" content="Compare real-time TRON energy rental prices across all major platforms. Find the cheapest 65k and 130k energy for 1 hour instant rental."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://energypriceboard.tech/"/>
+<!-- Yandex.Metrika -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109720065','ym');
+ym(109720065,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109720065" style="position:absolute;left:-9999px" alt=""/></div></noscript>
+<!-- /Yandex.Metrika -->
+<meta property="og:title" content="Energy Price Board — TRON Energy Comparison"/>
+<meta property="og:description" content="Find the cheapest TRON energy rental. Real-time prices from 19+ platforms."/>
+<meta property="og:url" content="https://energypriceboard.tech/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Energy Price Board"/>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#13151A; --surface:#1E2128; --card:#262931; --card-hover:#2F333D;
+  --ink:#E8EBF0; --muted:#9BA0A8; --faint:#5A5E68;
+  --green:#7CEE7C; --green-bg:rgba(124,238,124,.1);
+  --line:rgba(255,255,255,.1); --line-hover:rgba(255,255,255,.18);
+  --radius:14px; --radius-sm:9px;
+  --font:'Inter','system-ui','Segoe UI',-apple-system,sans-serif;
+}
+html{height:100%}
+body{
+  margin:0;min-height:100%;background:var(--bg);color:var(--ink);
+  font:400 15px/1.6 var(--font);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(ellipse at 50% -10%, rgba(124,238,124,.04) 0%, transparent 50%);
+}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 24px 0}
+
+/* Nav */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0 20px;border-bottom:1px solid var(--line);margin-bottom:44px;
+}
+.nav-brand{font-size:19px;font-weight:800;letter-spacing:-.4px;text-decoration:none;color:var(--ink)}
+.nav-brand em{font-style:normal;color:var(--green)}
+.nav-links{display:flex;gap:2px}
+.nav-links a{
+  display:inline-flex;align-items:center;gap:5px;text-decoration:none;
+  color:var(--muted);padding:8px 14px;border-radius:var(--radius-sm);
+  font-size:13px;font-weight:600;transition:.15s;
+}
+.nav-links a:hover{color:var(--ink);background:var(--card-hover)}
+.nav-links a.active{color:var(--ink);background:var(--card)}
+@media(max-width:640px){
+  .nav{flex-direction:column;gap:12px;align-items:flex-start}
+  .nav-links{flex-wrap:wrap}
+}
+
+/* Hero */
+.hero{text-align:center;margin-bottom:48px}
+.hero h1{
+  margin:0;font-size:44px;font-weight:900;letter-spacing:-1px;line-height:1.1;
+  background:linear-gradient(135deg,#E8EBF0 30%,var(--green) 70%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero p{
+  margin:12px auto 0;max-width:580px;color:var(--muted);font-size:16px;line-height:1.6;
+}
+.hero .badge-row{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.hero .badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;
+  background:var(--card);border:1px solid var(--line);color:var(--muted);
+}
+.hero .badge b{color:var(--ink)}
+.hero .badge.live{background:var(--green-bg);border-color:rgba(124,238,124,.25);color:var(--green)}
+@media(max-width:640px){.hero h1{font-size:30px}.hero p{font-size:15px}}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:36px}
+.stat{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 22px;text-align:center;transition:.15s;
+}
+.stat:hover{background:var(--card-hover)}
+.stat .lbl{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.stat .val{font-size:26px;font-weight:800;letter-spacing:-.3px}
+.stat .sub{font-size:12px;color:var(--muted);margin-top:1px}
+.stat.green .val{color:var(--green)}
+.stat .topline{height:2px;background:linear-gradient(90deg,var(--green),transparent);margin:-18px -22px 12px;border-radius:var(--radius) var(--radius) 0 0}
+@media(max-width:640px){.stats{grid-template-columns:1fr}}
+
+/* Section */
+.section-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;flex-wrap:wrap;gap:10px;
+}
+.section-header h2{margin:0;font-size:19px;font-weight:700}
+.section-header .hint{font-size:13px;color:var(--muted)}
+
+/* Cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin-bottom:44px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;display:flex;flex-direction:column;gap:10px;
+  transition:.15s;position:relative;overflow:hidden;
+}
+.card:hover{background:var(--card-hover);border-color:var(--line-hover);transform:translateY(-1px)}
+.card.best{border-color:rgba(124,238,124,.3)}
+.card.best .top-glow{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent)}
+.card-top{display:flex;align-items:center;gap:12px}
+.card-logo{
+  width:40px;height:40px;border-radius:10px;background:var(--surface);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:15px;flex-shrink:0;
+  border:1px solid var(--line);color:var(--muted);
+}
+.card-info{flex:1;min-width:0}
+.card-name{
+  font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  text-decoration:none;color:var(--ink);transition:.12s;
+}
+.card-name:hover{color:var(--green)}
+.card-name.no-link{cursor:default}
+.card-name.no-link:hover{color:var(--ink)}
+.card-capacity{font-size:11px;color:var(--muted);margin-top:1px}
+
+.card-prices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:2px}
+.card-price{
+  background:var(--surface);border-radius:var(--radius-sm);padding:8px 10px;
+  display:flex;flex-direction:column;
+}
+.card-price .cp-lbl{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+.card-price .cp-val{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;margin-top:1px}
+.card-price .cp-val.na{color:var(--faint);font-weight:400;font-size:13px}
+.card-price.best .cp-val{color:var(--green)}
+
+.card-footer{margin-top:2px;display:flex;gap:6px}
+.card-footer .btn{
+  flex:1;display:inline-flex;align-items:center;justify-content:center;gap:5px;
+  padding:9px 14px;border-radius:var(--radius-sm);font-size:13px;font-weight:700;
+  text-decoration:none;cursor:pointer;transition:.12s;border:none;font-family:var(--font);
+}
+.btn-ghost{background:var(--surface);color:var(--muted);border:1px solid var(--line)}
+.btn-ghost:hover{color:var(--ink);border-color:var(--line-hover)}
+.btn-green{
+  background:var(--green-bg);color:var(--green);border:1px solid rgba(124,238,124,.25);
+}
+.btn-green:hover{background:rgba(124,238,124,.18);border-color:rgba(124,238,124,.4)}
+.card-na{color:var(--faint);font-size:12px;padding:9px;text-align:center;flex:1}
+
+/* Info blocks */
+.info-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:44px}
+.info-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px;transition:.15s;
+}
+.info-card:hover{background:var(--card-hover)}
+.info-card .ic-icon{font-size:20px;margin-bottom:5px;color:var(--green)}
+.info-card .ic-title{font-weight:700;font-size:14px;margin-bottom:2px}
+.info-card .ic-text{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* Stale */
+.card.stale{opacity:.35;filter:saturate(.1)}
+.card.stale:hover{opacity:.55}
+
+/* Footer */
+.footer{
+  border-top:1px solid var(--line);padding:28px 0 36px;margin-top:8px;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;
+}
+.footer-col{display:flex;flex-direction:column;gap:5px}
+.footer-title{font-size:11px;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+.footer a{color:var(--muted);text-decoration:none;font-size:13px;transition:.12s}
+.footer a:hover{color:var(--green)}
+.footer .copy{font-size:12px;color:var(--faint);margin-top:8px}
+
+/* Loading */
+.loading{text-align:center;padding:60px 20px;color:var(--muted);font-size:15px}
+.loading .spinner{display:inline-block;width:28px;height:28px;border:2px solid var(--line);border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="/" class="nav-brand">Energy<em>Board</em></a>
+    <div class="nav-links">
+      <a class="active">Board</a>
+      <a href="explorer.html">Explorer</a>
+      <a href="history.html">History</a>
+      <a href="blog.html">Blog</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Energy Price Board</h1>
+    <p>Compare TRON energy rental prices across all major platforms in real time. Find the best deal for 65k and 130k energy, instantly.</p>
+    <div class="badge-row">
+      <span class="badge"><b id="hPlatforms">—</b> platforms tracked</span>
+      <span class="badge"><b id="hLive">—</b> with live prices</span>
+      <span class="badge live" id="hUpdated">updated —</span>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats" id="statsRow">
+    <div class="stat green"><div class="topline"></div><div class="lbl">Cheapest 65k / 1h</div><div class="val" id="s65">—</div><div class="sub" id="s65name"></div></div>
+    <div class="stat green"><div class="topline"></div><div class="lbl">Cheapest 130k / 1h</div><div class="val" id="s130">—</div><div class="sub" id="s130name"></div></div>
+    <div class="stat"><div class="lbl">Price range 65k/1h</div><div class="val" id="sSpread">—</div><div class="sub" id="sSpreadSub"></div></div>
+  </div>
+
+  <!-- Platforms -->
+  <div class="section-header">
+    <h2>All Platforms · 65k &amp; 130k for 1 hour</h2>
+    <span class="hint">Sorted by 65k price · cheapest first</span>
+  </div>
+  <div class="grid" id="platformGrid"></div>
+
+  <!-- Info -->
+  <div class="info-row">
+    <div class="info-card"><div class="ic-icon">⚡</div><div class="ic-title">What is Energy Rental?</div><div class="ic-text">Rent TRON energy without staking TRX. Pay per kilosecond, use for transactions, release when done. Flexible and cheap.</div></div>
+    <div class="info-card"><div class="ic-icon">📊</div><div class="ic-title">Why Compare Prices?</div><div class="ic-text">Energy prices vary up to 5× across platforms for the same duration. We track 19+ providers so you always get the best rate.</div></div>
+    <div class="info-card"><div class="ic-icon">🔗</div><div class="ic-title">Referral Deals</div><div class="ic-text">Green highlighted platforms offer referral discounts. Click the name or button to claim a better rate on your first rental.</div></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-col">
+      <span class="footer-title">Pages</span>
+      <a href="/">Price Board</a>
+      <a href="explorer.html">Market Explorer</a>
+      <a href="history.html">Price History</a>
+      <a href="blog.html">Blog</a>
+    </div>
+    <div class="footer-col">
+      <span class="footer-title">Legal</span>
+      <a href="terms.txt">Terms of Service</a>
+      <a href="privacy.txt">Privacy Policy</a>
+      <a href="disclaimer.txt">Disclaimer</a>
+    </div>
+    <div class="footer-col">
+      <span class="footer-title">Data</span>
+      <span style="font-size:13px;color:var(--muted)" id="fUpdated">—</span>
+      <span style="font-size:13px;color:var(--muted)" id="fPlatforms">—</span>
+      <span style="font-size:12px;color:var(--faint)">© 2026 Energy Price Board. Data may be delayed.</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  const fmt = n => (typeof n === 'number' && isFinite(n)) ? (n < 10 ? n.toFixed(6) : n.toFixed(4)) : '—';
+  const $ = id => document.getElementById(id);
+
+  function relativeTime(iso) {
+    if (!iso) return 'unknown';
+    const diff = Date.now() - new Date(iso).getTime();
+    if (diff < 1000) return 'just now';
+    const sec = Math.floor(diff / 1000);
+    const min = Math.floor(sec / 60);
+    const hr = Math.floor(min / 60);
+    const day = Math.floor(hr / 24);
+    if (day > 0) return 'updated ' + day + 'd ' + (hr % 24) + 'h ago';
+    if (hr > 0) return 'updated ' + hr + 'h ' + (min % 60) + 'm ago';
+    return 'updated ' + min + 'm ago';
+  }
+
+  function trackRef(url) {
+    if (typeof ym !== 'undefined') {
+      ym(109720065, 'reachGoal', 'referral_click', {url: url});
+    }
+  }
+
+  function updater(ts) {
+    $('hUpdated').textContent = relativeTime(ts);
+    $('fUpdated').textContent = 'Generated: ' + (ts ? new Date(ts).toISOString().slice(0, 19).replace('T', ' ') : '—');
+  }
+
+  function render(data) {
+    const platforms = data.platforms || [];
+
+    const with65 = platforms.map(p => ({ name: p.platform_name || p.platform_id, price: p['65k_1h_price'], id: p.platform_id })).filter(p => typeof p.price === 'number');
+    const with130 = platforms.map(p => ({ name: p.platform_name || p.platform_id, price: p['130k_1h_price'], id: p.platform_id })).filter(p => typeof p.price === 'number');
+
+    if (with65.length) {
+      const best65 = with65.reduce((a, b) => a.price < b.price ? a : b);
+      const best130 = with130.length ? with130.reduce((a, b) => a.price < b.price ? a : b) : null;
+      const prices = with65.map(p => p.price);
+      const min = Math.min(...prices);
+      const max = Math.max(...prices);
+      const spread = max - min;
+
+      $('s65').textContent = fmt(best65.price) + ' TRX';
+      $('s65name').textContent = best65.name;
+      $('s130').textContent = best130 ? fmt(best130.price) + ' TRX' : '—';
+      $('s130name').textContent = best130 ? best130.name : '';
+      $('sSpread').textContent = fmt(spread) + ' TRX';
+      $('sSpreadSub').textContent = 'from ' + with65.length + ' platforms';
+    }
+
+    $('hPlatforms').textContent = platforms.length;
+    $('hLive').textContent = with65.length;
+    updater(data.generated_at);
+
+    const sorted = platforms.map(p => ({
+      id: p.platform_id,
+      name: p.platform_name || p.platform_id,
+      p65: p['65k_1h_price'],
+      p130: p['130k_1h_price'],
+      ref: p.referral_url || '',
+      hasRef: p.has_referral || false,
+      ts: p.ts,
+      capacity: p.platform_max_energy,
+      min: p.minimum_order_energy,
+      url: p.url || '',
+    })).sort((a, b) => {
+      if (a.p65 === null || a.p65 === undefined || a.p65 === 'N/A') return 1;
+      if (b.p65 === null || b.p65 === undefined || b.p65 === 'N/A') return -1;
+      return a.p65 - b.p65;
+    });
+
+    const $grid = $('platformGrid');
+    $grid.innerHTML = '';
+
+    const min65 = sorted.find(p => typeof p.p65 === 'number' && !isNaN(p.p65))?.p65 ?? null;
+
+    sorted.forEach(p => {
+      const card = document.createElement('div');
+      const stale = !p.ts || (Date.now() - new Date(p.ts).getTime()) > 86400000;
+      const isBest = min65 !== null && p.p65 === min65;
+      card.className = 'card' + (isBest ? ' best' : '') + (stale ? ' stale' : '');
+
+      const abbr = (p.name || '?')[0].toUpperCase();
+      const p65ok = typeof p.p65 === 'number' && !isNaN(p.p65);
+      const p130ok = typeof p.p130 === 'number' && !isNaN(p.p130);
+
+      let capHtml = '';
+      if (p.capacity && p.capacity !== 'N/A') capHtml = 'Capacity: ' + (p.capacity >= 1000000 ? (p.capacity/1000000).toFixed(0) + 'M' : (p.capacity/1000).toFixed(0) + 'k');
+      else if (p.min && p.min !== 'N/A') capHtml = 'Min order: ' + (p.min >= 1000 ? (p.min/1000).toFixed(0) + 'k' : p.min);
+
+      // Name: link if referral, plain text if not
+      const nameHtml = p.hasRef && p.ref
+        ? `<a class="card-name" href="${p.ref}" target="_blank" rel="nofollow noopener" onclick="ym(109720065,'reachGoal','referral_click',{url:'${p.ref.replace(/'/g, "\\'")}'})">${p.name}</a>`
+        : `<span class="card-name no-link">${p.name}</span>`;
+
+      // Footer
+      const footerHtml = p.hasRef && p.ref
+        ? `<a class="btn btn-green" href="${p.ref}" target="_blank" rel="nofollow noopener" onclick="ym(109720065,'reachGoal','referral_click',{url:'${p.ref.replace(/'/g, "\\'")}'})">Get Energy</a>`
+        : '<span class="card-na">No referral</span>';
+
+      card.innerHTML = (isBest ? '<div class="top-glow"></div>' : '') + `
+        <div class="card-top">
+          <div class="card-logo">${abbr}</div>
+          <div class="card-info">
+            ${nameHtml}
+            ${capHtml ? '<div class="card-capacity">' + capHtml + '</div>' : ''}
+          </div>
+        </div>
+        <div class="card-prices">
+          <div class="card-price ${isBest ? 'best' : ''}">
+            <div class="cp-lbl">65k · 1h</div>
+            <div class="cp-val ${p65ok ? '' : 'na'}">${p65ok ? fmt(p.p65) + ' TRX' : 'N/A'}</div>
+          </div>
+          <div class="card-price">
+            <div class="cp-lbl">130k · 1h</div>
+            <div class="cp-val ${p130ok ? '' : 'na'}">${p130ok ? fmt(p.p130) + ' TRX' : 'N/A'}</div>
+          </div>
+        </div>
+        <div class="card-footer">${footerHtml}</div>
+      `;
+      $grid.appendChild(card);
+    });
+
+    $('fPlatforms').textContent = platforms.length + ' platforms · ' + with65.length + ' with prices';
+  }
+
+  let lastTs = null;
+  function tick() { if (lastTs) updater(lastTs); }
+
+  $('platformGrid').innerHTML = '<div class="loading"><div class="spinner"></div>Loading prices...</div>';
+
+  fetch('result.json', { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then(d => { lastTs = d.generated_at; render(d); setInterval(tick, 30000); })
+    .catch(() => {
+      fetch('sandbox/data/demo_result.json', { cache: 'no-store' })
+        .then(r => r.json())
+        .then(d => { lastTs = d.generated_at; render(d); setInterval(tick, 30000); })
+        .catch(() => { $('platformGrid').innerHTML = '<div class="loading" style="color:var(--red)">Failed to load data.</div>'; });
+    });
+})();
+</script>
+</body>
+</html>

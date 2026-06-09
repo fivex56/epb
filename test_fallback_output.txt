@@ -1,0 +1,11 @@
+
+=== catfee (https://catfee.io/en/) ===
+  Found 16 TRX prices: [1.2, 1.69, 2.321, 2.34, 2.34, 2.34, 2.34, 2.34]
+
+=== tronzap (https://tronzap.com/) ===
+  Found 4 TRX prices: [3.0, 3.0, 5.5, 100.0]
+
+=== netts (https://netts.io/) ===
+  Found 18 TRX prices: [1.1, 1.10001, 1.495, 1.495, 1.56, 1.56, 1.56, 1.56]
+
+Done.
