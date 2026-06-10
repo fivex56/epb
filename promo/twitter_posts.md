@@ -5,161 +5,117 @@
 
 ## @catfeeio — CatFee
 
-**Пост 1 (фича day-night):**
-@catfeeio вы единственные кто делает day-night pricing на энергию. это реально крутая фича, уважаю ✊
-вопрос — планируете API сделать? щас без API сложно ботам вас рекомендовать
+**Post 1 (day-night feature):**
+@catfeeio you're the only ones doing day-night pricing on TRON energy. that's a really cool feature, mad respect ✊
+question — any plans for an API? without one it's hard to recommend you to bot devs
 energypriceboard.tech
 
-**Пост 2 (цены):**
-@catfeeio кстати по 65k/1h у вас сейчас одна из лучших цен на рынке. 2.3 TRX vs 14 TRX burn — это 84% экономии
-расскажите че там по планам на этот год? ждете ли рост спроса?
+**Post 2 (prices):**
+@catfeeio btw your 65k/1h is one of the best prices on the market right now. 2.3 TRX vs 14 TRX burn — that's 84% savings
+what's the plan for other volumes and bandwidth? expecting demand to grow?
 
-**Пост 3 (подъеб):**
-@catfeeio ваш саппорт ответил мне через 3 дня. THREE. DAYS.
-цены огонь, но ребята... наймите кого-то в саппорт 😭
+**Post 3 (teasing):**
+@catfeeio also your logo is sick, respect ✊
 
 ---
 
 ## @Feeeio — Feee.io
 
-**Пост 1 (API):**
-@Feeeio у вас один из самых стабильных API на рынке TRON энергии. пользуюсь, респект 👏
-вот бы еще цены на 15 минут добавили — не у всех же боты по часу работают
+**Post 1 (API):**
+@Feeeio you've got one of the most stable APIs in the TRON energy market. using it, respect 👏
+would be great if you added 15-minute prices though — not everyone's payments run on hourly cycles
 
-**Пост 2 (сравнение):**
-@Feeeio интересно что у вас 130k/1h = 9.56 TRX, а у FeeSaver 5.46 TRX
-это осознанная позиция «премиум» или просто рынок так сложился? без подъеба, реально интересна бизнес-логика
-
-**Пост 3 (комьюнити):**
-@Feeeio а вы думали сделать свою реферальную программу более заметной? у вас есть канал t.me/tronenergymarkets но про него мало кто знает
-давайте я про вас расскажу в следующем обзоре на energypriceboard.tech
+**Post 2 (community):**
+@Feeeio have you thought about making your referral program more visible?
+let me feature you in the next review on energypriceboard.tech
 
 ---
 
 ## @feesaver_com — FeeSaver
 
-**Пост 1 (smart-per-tx):**
-@feesaver_com ваш smart-per-tx режим — это гениально. почему никто больше так не делает?
-реально, 9 из 10 платформ заставляют вручную выбирать количество энергии. вы красавчики
+**Post 1 (smart-per-tx):**
+@feesaver_com your smart-per-tx mode is genius. why does no one else do this?
+seriously, 9 out of 10 platforms make you manually pick the energy amount. you guys rock
 
-**Пост 2 (цены):**
-@feesaver_com стабильно в топ-3 по ценам на 65k/1h. 2.73 TRX — это очень достойно
-расскажите как вы держите SUN rate таким низким при текущем спросе?
-
-**Пост 3 (документация):**
-@feesaver_com ребят а есть норм документация по вашему API? щас инфа размазана по боту и сайту
-хочу включить вас в сравнение API-методов на energypriceboard.tech/compare.html
+**Post 2 (prices):**
+@feesaver_com consistently top-3 for 65k/1h prices. 2.73 TRX is really solid
+how do you keep your SUN rate that low with current demand?
 
 ---
 
 ## @DeFi_JUST — JustLend DAO
 
-**Пост 1 (энергия):**
-@DeFi_JUST ваш energy rental на JustLend — самый недооцененный способ аренды энергии
-почему вы его не продвигаете отдельно? он реально мощный, но про него никто не знает
+**Post 1 (energy):**
+@DeFi_JUST your energy rental on JustLend is the most underrated way to rent energy
+why don't you promote it separately? it's actually powerful but nobody knows about it. btw I don't list you because you have no referral program. stingy.
 
-**Пост 2 (вопрос):**
-@DeFi_JUST на JustLend минимальный заказ 100k энергии. это отсекает кучу юзеров которым надо 65k
-планируете снизить порог? рынок мелких аренд большой
+**Post 2 (question):**
+@DeFi_JUST the 100k minimum on JustLend energy rental cuts out tons of users who only need 65k
+any plans to lower the threshold? the small rental market is huge. though I guess that's chump change for you 😄
 
-**Пост 3 (DAO):**
-@DeFi_JUST как DAO управляет ставками на энергию? голосованием или алгоритмом?
-если голосованием — дайте знать, придем проголосуем за снижение 😄
+**Post 3 (DAO):**
+@DeFi_JUST how does the DAO manage energy rates? voting or algorithmic?
+if it's voting — let us know, we'll come vote for a discount 😄
 
 ---
 
 ## @NettsIO — NETTS
 
-**Пост 1 (стабильность):**
-@NettsIO вы как скала — цены не меняются неделями. 2.34 TRX за 65k, предсказуемо как швейцарские часы
-это фича или баг? 😄
+**Post 1 (stability):**
+@NettsIO you're like a rock — prices haven't moved in weeks. 2.34 TRX for 65k, predictable as Swiss watches
 
-**Пост 2 (сравнение):**
-@NettsIO интересно что у вас и CatFee цены почти одинаковые. это совпадение или рынок так диктует?
-в любом случае — стабильность это плюс, многие боты на вас завязаны
+**Post 2 (comparison):**
+@NettsIO interesting that your prices and CatFee's are nearly identical. coincidence or just the market dictating?
+either way — stability is a plus, plenty of bots rely on you
 
-**Пост 3 (фичи):**
-@NettsIO добавьте API и авто-топап — и вы станете машиной
-без API сложно рекомендовать вас разработчикам, а жаль. все остальное на уровне
-
----
-
-## @trenergy — TR Energy
-
-**Пост 1 (iOS):**
-@trenergy вы единственные с iOS приложением для аренды энергии. это жирный плюс
-но почему цены на 15 минут такие же как на час? 2.8 TRX за 15m и за 1h — где логика?
-
-**Пост 2 (регион):**
-@trenergy прикольно что вы из UAE. наверное поэтому комиссии такие стабильные
-как у вас с регулированием крипты в Эмиратах? можно ли вам доверять большие объемы?
-
-**Пост 3 (реферал):**
-@trenergy видел вашу рефералку — bonuse? серьезно? 😄
-дайте норм промо-код для моего комьюнити, я про вас расскажу на energypriceboard.tech
+**Post 3 (features):**
+@NettsIO add an API and auto-topup and you'll become a beast
+without API it's hard to recommend you to devs, which is a shame. everything else is on point
 
 ---
 
 ## @TronMaxIo — TronMax
 
-**Пост 1 (marketplace):**
-@TronMaxIo ваш marketplace реально крутая тема. bid/ask на энергию — это будущее
-почему больше никто не делает order book для аренды? патент? 😄
-
-**Пост 2 (API):**
-@TronMaxIo ваш REST API (Setting/UI) работает отлично, но документация...
-вы когда-нибудь пробовали читать её глазами нового разработчика? 😭
-
-**Пост 3 (цифры):**
-@TronMaxIo слышал вы перевалили за 500k суммарно делегированной энергии в мае
-это пруф что рынок растет. какие цифры сейчас?
+**Post 1 (marketplace):**
+@TronMaxIo your marketplace is seriously cool. bid/ask on energy — that's the future
+why doesn't anyone else do an order book for rentals? patent? 😄
 
 ---
 
 ## @Tronsave_io — TronSave
 
-**Пост 1 (стейкинг):**
-@Tronsave_io стейкинг + аренда энергии — интересная комбинация
-но минималка 100k энергии... почему так высоко? рынок мелких аренд не интересен?
-
-**Пост 2 (бот):**
-@Tronsave_io ваш Telegram бот реально удобный. UI/UX лучше чем у многих конкурентов
-кто делал дизайн? дайте им премию
-
-**Пост 3 (сравнение):**
-@Tronsave_io как у вас со спросом после халвинга TRON? многие платформы жалуются что объемы упали
-поделитесь инсайтом — рынок мертвый или просто перетекает в другое место?
+**Post 1 (staking):**
+@Tronsave_io why is Asia blocked on your platform? specifically Vietnam — why can't people buy from there? what's the deal?
 
 ---
 
 ## @tronzap_com — TronZap
 
-**Пост 1 (bandwidth):**
-@tronzap_com вы одни из немногих кто торгует bandwidth вместе с энергией
-честно — bandwidth реально покупают или это так, для галочки в меню?
+**Post 1 (bandwidth):**
+@tronzap_com you're one of the few that trades bandwidth alongside energy
+honestly — do people actually buy bandwidth or is it just there as a menu item?
 
-**Пост 2 (UI):**
-@tronzap_com ваш интерфейс выглядит... винтажно. как из 2018
-цены норм, но дизайн бы обновить. могу дизайнера посоветовать 😄
+**Post 2 (UI):**
+@tronzap_com your interface looks... vintage. like 2018 vibes
+prices are fine, but the design could use a refresh. I can recommend a designer 😄
 
-**Пост 3 (реферал):**
-@tronzap_com ваша рефералка /r/1488 — это реальный ID или шутка?
-в любом случае — скиньте норм код, добавлю вас в избранное на energypriceboard.tech
+**Post 3 (referral):**
+@tronzap_com my referral code on your service is /r/1488 — is that a real ID or a joke? since I randomly got it, might as well grow the ref link
 
 ---
 
-## Общие посты (без тегов)
+## General posts (no tags)
 
-**Пост 1:**
-собрал 20 платформ TRON энергии в одной таблице с ценами и фичами
-разброс цен — в 5 раз между дешевым и дорогим. не переплачивайте
+**Post 1:**
+built a board with 20 TRON energy platforms — live prices, feature filters, comparison charts
+price spread is 5x between cheapest and most expensive. don't overpay
 https://energypriceboard.tech
 
-**Пост 2:**
-интересный факт: только 9 из 20 платформ имеют твиттер. остальные сидят в телеграме
-TRON energy market еще дикий, но это и возможность
+**Post 2:**
+fun fact: only 9 out of 20 TRON energy platforms have Twitter. the rest are on Telegram lol
+the market is still wild, but that's where opportunity lives
 https://energypriceboard.tech
 
-**Пост 3:**
-вопрос к тем кто арендует энергию: что важнее — цена или надежность?
-я за надежность, но когда разница 2.3 TRX vs 9.5 TRX за одну транзакцию... ну вы поняли
+**Post 3:**
+question for energy renters: what matters more — price or reliability?
+I'm team reliability, but when the difference is 2.3 TRX vs 9.5 TRX per transaction... you get it
