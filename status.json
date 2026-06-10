@@ -1,11 +1,11 @@
 {
-  "cycle_start": "2026-06-10T16:12:46.442978",
-  "cycle_end": "2026-06-10T16:55:36.670019",
+  "cycle_start": "2026-06-10T18:28:30.669389",
+  "cycle_end": "2026-06-10T19:11:30.533093",
   "scrapers": [
     {
       "scraper": "TronZap_scraper.py",
       "success": true,
-      "elapsed_sec": 5.0
+      "elapsed_sec": 10.0
     },
     {
       "scraper": "apitrx_scraper.py",
@@ -50,17 +50,17 @@
     {
       "scraper": "justlend_dao_scraper.py",
       "success": true,
-      "elapsed_sec": 10.0
+      "elapsed_sec": 5.0
     },
     {
       "scraper": "mefree_scraper.py",
       "success": true,
-      "elapsed_sec": 10.0
+      "elapsed_sec": 15.0
     },
     {
       "scraper": "netts_scraper.py",
       "success": true,
-      "elapsed_sec": 10.0
+      "elapsed_sec": 5.0
     },
     {
       "scraper": "refee_scraper.py",

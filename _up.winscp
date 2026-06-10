@@ -1,0 +1,4 @@
+put -resume=off "favicon.ico" "favicon.ico"
+put -resume=off "favicon.svg" "favicon.svg"
+put -resume=off "404.html" "404.html"
+exit

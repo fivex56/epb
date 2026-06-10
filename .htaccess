@@ -1,4 +1,5 @@
 # Energy Price Board — Cache & Performance
+ErrorDocument 404 /404.html
 <IfModule mod_expires.c>
   ExpiresActive On
 
