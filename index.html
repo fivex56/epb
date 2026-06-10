@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>TRON Energy Rental Prices — Compare 20+ Platforms Live | Energy Price Board</title>
-<meta name="description" content="Compare real-time TRON energy rental prices across 20 platforms. Find cheapest 65k and 130k energy from 1.20 TRX/hour. CatFee, FeeSaver, NETTS, Tronify, and more. Updated hourly."/>
+<title>TRON Energy Rental — Cheapest Prices from 2.3 TRX | Compare 20 Platforms</title>
+<meta name="description" content="Find the cheapest TRON energy rental in real time. Compare 65k and 130k energy prices across 20 platforms — from 2.3 TRX. Save 80-90% vs burning TRX. Instant comparison, hourly updates."/>
+<meta name="keywords" content="TRON energy rental, cheap TRON energy, rent energy TRX, 65k energy price, 130k energy, USDT transfer fee, SUN rate, TRC20 energy, Tronify, FeeSaver, NETTS, iTRX, CatFee, TronMax"/>
 <meta name="robots" content="index,follow"/>
 <link rel="canonical" href="https://energypriceboard.tech/"/>
 <!-- Yandex.Metrika -->
@@ -17,11 +18,90 @@ ym(109720065,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2WTT1T10"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CQ2WTT1T10');</script>
-<meta property="og:title" content="TRON Energy Rental Prices — Compare 20+ Platforms Live | Energy Price Board"/>
-<meta property="og:description" content="Compare real-time TRON energy rental prices across 20 platforms. Cheapest 65k energy from 1.20 TRX/hour. Instant comparison for 65k and 130k energy."/>
+<meta property="og:title" content="TRON Energy Rental — Cheapest Prices from 2.3 TRX | Compare 20 Platforms"/>
+<meta property="og:description" content="Find the cheapest TRON energy rental. Compare 65k and 130k prices across 20 platforms. Save 80-90% vs burning TRX. Updated hourly."/>
 <meta property="og:url" content="https://energypriceboard.tech/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Energy Price Board"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Energy Price Board",
+  "url": "https://energypriceboard.tech",
+  "logo": "https://energypriceboard.tech/logos/epb_preview.webp",
+  "description": "Real-time TRON energy rental price comparison across 20 platforms.",
+  "email": "team@energypriceboard.tech",
+  "sameAs": [
+    "https://t.me/epbfish",
+    "https://x.com/epbfish"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Energy Price Board",
+  "url": "https://energypriceboard.tech",
+  "description": "Compare TRON energy rental prices from 20+ platforms in real time. Find the cheapest 65k and 130k energy deals.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://energypriceboard.tech/compare.html?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is TRON energy rental and how does it work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TRON energy is a network resource consumed by smart contracts and USDT transfers. Instead of burning 14+ TRX per transaction, you can rent energy from specialized platforms for as little as 1.2 TRX. Energy delegating reduces your transaction fees by up to 90%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to find the cheapest TRON energy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Energy Price Board scans 20+ platforms every cycle — reading SUN rates, API prices, and on-page TRX quotes. The board sorts platforms by 65k energy for 1 hour and highlights the best deals. Use the energy calculator to check different amounts and durations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a USDT transfer cost with rented energy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard USDT TRC20 transfer requires about 65,000 energy. Without renting, the TRON network burns about 14 TRX. With rented energy, you pay approximately 1–3 TRX — saving 80–90%. At 130k energy, expect 2–6 TRX."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do energy rental prices differ between platforms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each platform sets its own SUN rate based on energy pool size, demand, and operating costs. Marketplaces like TronMax use bid/ask order books. Fixed-rate services like FeeSaver and NETTS have stable rates. API-based platforms like Feee.io and iTRX offer tiered pricing. Competition creates price spreads of 3–5× between cheapest and most expensive."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" id="ld-product-list">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "TRON Energy Rental Platforms",
+  "description": "Real-time 65k and 130k energy prices for 1-hour rental across all platforms.",
+  "numberOfItems": 20,
+  "itemListElement": []
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://mc.yandex.ru">
@@ -915,6 +995,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
 
     window.__ebData = data;
     buildFeatBar();
+    updateProductSchema(data);
     if (window.__ebCalcRefresh) window.__ebCalcRefresh();
   }
 
@@ -984,6 +1065,64 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
           '<span class="dash-bar-label">'+day+'</span></div>';
       }).join('');
     }
+  }
+
+  /* ===== Schema.org Product List ===== */
+  function updateProductSchema(data) {
+    var ldScript = document.getElementById('ld-product-list');
+    if (!ldScript) return;
+    var platforms = (data.platforms || []).slice();
+    // Sort by 65k/1h price
+    platforms.sort(function(a,b){
+      var ap = typeof a['65k_1h_price'] === 'number' ? a['65k_1h_price'] : 999;
+      var bp = typeof b['65k_1h_price'] === 'number' ? b['65k_1h_price'] : 999;
+      return ap - bp;
+    });
+    var items = platforms.slice(0, 15).map(function(p, i){
+      var name = p.platform_name || p.platform_id || '?';
+      var price65 = typeof p['65k_1h_price'] === 'number' ? p['65k_1h_price'] : null;
+      var price130 = typeof p['130k_1h_price'] === 'number' ? p['130k_1h_price'] : null;
+      var url = p.referral_url || p.url || 'https://energypriceboard.tech';
+      var offers = [];
+      if (price65) {
+        offers.push({
+          '@type': 'Offer',
+          'name': '65k Energy — 1 Hour',
+          'price': price65.toFixed(2),
+          'priceCurrency': 'TRX',
+          'availability': 'https://schema.org/InStock',
+          'description': '65,000 energy for 1 hour rental'
+        });
+      }
+      if (price130) {
+        offers.push({
+          '@type': 'Offer',
+          'name': '130k Energy — 1 Hour',
+          'price': price130.toFixed(2),
+          'priceCurrency': 'TRX',
+          'availability': 'https://schema.org/InStock',
+          'description': '130,000 energy for 1 hour rental'
+        });
+      }
+      return {
+        '@type': 'Product',
+        'position': i + 1,
+        'name': name + ' — TRON Energy Rental',
+        'description': 'Rent ' + (price65 ? price65.toFixed(2) + ' TRX' : 'N/A') + ' for 65k energy / 1 hour on ' + name,
+        'url': url,
+        'offers': offers.length === 1 ? offers[0] : { '@type': 'AggregateOffer', 'lowPrice': offers[0].price, 'highPrice': offers[offers.length-1].price, 'priceCurrency': 'TRX', 'offerCount': offers.length, 'offers': offers }
+      };
+    });
+
+    var schema = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      'name': 'TRON Energy Rental Platforms — Live Prices',
+      'description': 'Compare real-time 65k and 130k energy prices from ' + platforms.length + ' platforms. Cheapest from ' + (items[0] && items[0].offers ? (items[0].offers.price || items[0].offers.lowPrice) + ' TRX' : 'N/A') + '.',
+      'numberOfItems': items.length,
+      'itemListElement': items
+    };
+    ldScript.textContent = JSON.stringify(schema);
   }
 
   /* ===== Energy Calculator ===== */
