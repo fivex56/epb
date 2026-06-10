@@ -93,6 +93,15 @@ ym(109720065,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Energy Price Board", "item": "https://energypriceboard.tech/"}
+  ]
+}
+</script>
 <script type="application/ld+json" id="ld-product-list">
 {
   "@context": "https://schema.org",
@@ -720,6 +729,60 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
           </button>
           <div class="accordion-content">
             Each platform sets its own SUN rate (the internal price unit) based on energy pool size, demand, and operating costs. Marketplaces like TronMax use bid/ask order books. Fixed-rate services like FeeSaver and NETTS have stable SUN rates that change less frequently. API-based platforms like Feee.io and iTRX offer tiered pricing with quantity discounts. This natural competition creates price spreads of 3–5× between the cheapest and most expensive option — exactly why comparison exists.</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" data-index="4">
+            How long does energy rental last? Can I rent for minutes or months?
+            <span class="chevron">∨</span>
+          </button>
+          <div class="accordion-content">
+            Rental durations vary by platform. The shortest is 15 minutes (TronMax, TR Energy, TronFee offer this), the longest is 30 days (iTRX). Most users rent for 1 hour — enough for a single transaction — or 1 day for automated trading. Multi-day rentals (3d, 10d) offer volume discounts: a 10-day rental typically costs 10-15x the hourly rate, not 240x. If you're running a bot doing 50+ transfers per day, 1-day or 3-day options are almost always the best value per transaction.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" data-index="5">
+            What is a SUN and how does it affect the price I pay?
+            <span class="chevron">∨</span>
+          </button>
+          <div class="accordion-content">
+            SUN is the internal pricing unit used by the TRON network — 1 TRX = 1,000,000 SUN. Energy platforms set their rates in SUN per energy unit. The formula is: Price in TRX = (Energy Amount × SUN Rate) / 1,000,000. So if a platform charges 36 SUN for 65,000 energy: 65,000 × 36 / 1,000,000 = 2.34 TRX. When you see prices change hour to hour, it's the SUN rate moving based on pool utilization and market conditions.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" data-index="6">
+            Can I use rented energy for any TRON transaction?
+            <span class="chevron">∨</span>
+          </button>
+          <div class="accordion-content">
+            Yes — delegated energy works for any smart contract interaction on TRON: USDT TRC20 transfers, DEX trades, NFT minting, staking, governance votes, and dApp interactions. The only limitation: energy is consumed per-transaction based on contract complexity. A simple USDT transfer needs ~65,000 energy. Complex contracts like JustSwap or SunSwap may need 130,000–200,000 energy. If your transaction runs out of energy mid-execution, it fails and you lose the gas — always slightly over-estimate.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" data-index="7">
+            Which platforms offer API access for automated energy rental?
+            <span class="chevron">∨</span>
+          </button>
+          <div class="accordion-content">
+            8 platforms provide REST APIs for programmatic energy rental: iTRX (HMAC-SHA256 auth), Tronex Energy (API key), MeFree (HMAC auth), Feee.io (API key), Tronify (REST with tiered pricing), APITRX (smart per-tx mode), EnergyFather, and TronMax (Setting/UI endpoint). FeeSaver and NETTS operate through Telegram bots which can be automated but aren't proper APIs. Use our feature filters on the Compare page to find exactly which platforms match your needs.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" data-index="8">
+            How often are prices updated on Energy Price Board?
+            <span class="chevron">∨</span>
+          </button>
+          <div class="accordion-content">
+            We run scrapers against all 20 platforms every 2 minutes in a continuous cycle. Each platform is scraped sequentially with a 2-minute pause to avoid rate limiting. The pipeline: scrape → aggregate → fill gaps (cross-platform price estimation) → upload. All prices on the site are at most 30-60 minutes old. The generated_at timestamp and per-platform timestamps are shown in the footer and on each platform card so you know exactly how fresh the data is.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" data-index="9">
+            Is energy rental safe? What happens if the platform disappears?
+            <span class="chevron">∨</span>
+          </button>
+          <div class="accordion-content">
+            Energy delegation in TRON is non-custodial — the platform delegates energy to your wallet, and you pay TRX. The energy is assigned to your account on-chain; the platform cannot take it back during the rental period. Your funds never leave your wallet except the TRX payment. If a platform disappears mid-rental, your already-paid energy remains delegated until it expires. No staking, no lockup, no smart contract approval needed. Always verify reputation and start with small amounts.
+          </div>
         </div>
       </div>
     </div>

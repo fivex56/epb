@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Energy Price Board — TRON Energy Rental Blog</title>
+  <link>https://energypriceboard.tech/blog.html</link>
+  <description>Latest guides, news and analysis about TRON energy rental. Platform reviews, price trends, and tips to minimize transaction costs.</description>
+  <language>en</language>
+  <lastBuildDate>2026-06-10T00:00:00+00:00</lastBuildDate>
+  <atom:link href="https://energypriceboard.tech/rss.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>How SUN Rates Work: The Hidden Engine of TRON Energy Pricing</title>
+    <link>https://energypriceboard.tech/blog/how-sun-rates-work.html</link>
+    <guid>https://energypriceboard.tech/blog/how-sun-rates-work.html</guid>
+    <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+    <description>Every energy rental platform quotes prices in SUN — not TRX. But what is a SUN, how is it set, and why does a 65k energy rental cost 3 TRX on one site and 9 on another? We trace a rental order from browser click to on-chain delegation.</description>
+  </item>
+
+  <item>
+    <title>Burning TRX Is Dead: Rent Energy and Keep Your Money</title>
+    <link>https://energypriceboard.tech/blog/burning-trx-is-dead.html</link>
+    <guid>https://energypriceboard.tech/blog/burning-trx-is-dead.html</guid>
+    <pubDate>Sun, 07 Jun 2026 00:00:00 +0000</pubDate>
+    <description>Burning 14 TRX every time you send USDT is boomer behavior. With energy rental you pay 1.2-3 TRX for the same transaction and keep the rest. This guide breaks down exactly how much you save per transfer.</description>
+  </item>
+
+  <item>
+    <title>Build Your Own Energy Bot: API Comparison Across 5 Platforms</title>
+    <link>https://energypriceboard.tech/blog/build-energy-bot-api.html</link>
+    <guid>https://energypriceboard.tech/blog/build-energy-bot-api.html</guid>
+    <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
+    <description>Five platforms have proper REST APIs for energy rental — iTRX, Tronex Energy, MeFree, Feee.io, and Tronify. Each does auth differently. We show the curl commands, gotchas, and a Python wrapper that picks the cheapest option.</description>
+  </item>
+
+  <item>
+    <title>65k vs 130k vs 200k: Which Energy Amount Actually Saves You Money?</title>
+    <link>https://energypriceboard.tech/blog/65k-vs-130k-vs-200k.html</link>
+    <guid>https://energypriceboard.tech/blog/65k-vs-130k-vs-200k.html</guid>
+    <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+    <description>The conventional wisdom says: 65k energy for a simple USDT transfer, 130k if the receiving wallet doesn't have USDT. But we tested 500 transactions and found the real numbers are messier. Some platforms give 15-minute bursts cheaper than hourly.</description>
+  </item>
+</channel>
+</rss>
