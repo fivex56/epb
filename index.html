@@ -24,7 +24,12 @@ ym(109720065,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
 <meta property="og:site_name" content="Energy Price Board"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://mc.yandex.ru">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <style>
 /* ===== Reset & Variables ===== */
 *,*::before,*::after{box-sizing:border-box}
@@ -34,8 +39,8 @@ ym(109720065,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   --card-dark:#181E2C;
   --ink-white:#FFFFFF;
   --ink-secondary:#8A94A6;
-  --ink-primary-light:#131823;
-  --ink-secondary-light:#4E596B;
+  --ink-primary-light:#0F172A;
+  --ink-secondary-light:#374151;
   --blue:#2F6BFA;
   --purple:#5936FA;
   --violet:#7A36FA;
@@ -292,7 +297,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
 
 /* ===== Energy Calculator Wheels (light) ===== */
 .calc-wheel-group{display:flex;flex-direction:column;align-items:center;gap:14px}
-.calc-wheel-label{font-size:12px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.5px}
+.calc-wheel-label{font-size:12px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.5px}
 .calc-wheel{
   width:160px;height:160px;border-radius:50%;
   background:linear-gradient(145deg,#FFFFFF,#F1F3F7);
@@ -306,11 +311,11 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
   0%{transform:rotate(0deg)}30%{transform:rotate(15deg)}60%{transform:rotate(-8deg)}100%{transform:rotate(0deg)}
 }
 .calc-wheel-value{font-size:28px;font-weight:900;color:#0F172A;text-align:center;line-height:1.2}
-.calc-wheel-value small{display:block;font-size:11px;color:#64748B;font-weight:500;margin-top:2px}
+.calc-wheel-value small{display:block;font-size:11px;color:#475569;font-weight:500;margin-top:2px}
 .calc-chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:220px}
 .calc-chip{
   padding:7px 15px;border-radius:100px;font-size:12px;font-weight:700;
-  background:#FFFFFF;border:1px solid #E2E8F0;color:#64748B;
+  background:#FFFFFF;border:1px solid #E2E8F0;color:#475569;
   cursor:pointer;transition:all .2s;font-family:var(--font);user-select:none;
 }
 .calc-chip:hover{border-color:#2F6BFA;color:#2F6BFA}
@@ -319,14 +324,14 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
 /* Feature filter chips (light) */
 .feat-chip{
   padding:7px 15px;border-radius:100px;font-size:12px;font-weight:700;
-  background:#FFFFFF;border:1px solid #E2E8F0;color:#64748B;
+  background:#FFFFFF;border:1px solid #E2E8F0;color:#475569;
   cursor:pointer;transition:all .2s;font-family:var(--font);user-select:none;
   display:inline-flex;align-items:center;gap:5px;
 }
 .feat-chip:hover{border-color:#2F6BFA;color:#2F6BFA}
 .feat-chip.on{background:#2F6BFA;color:#fff;border-color:#2F6BFA;box-shadow:0 0 0 6px rgba(47,107,250,.12)}
 .feat-chip .fc-count{font-size:10px;opacity:.7}
-#featMatchCount{font-size:13px;color:#64748B;margin-left:4px;font-weight:500}
+#featMatchCount{font-size:13px;color:#475569;margin-left:4px;font-weight:500}
 
 /* Calc result cards (light) */
 .cr-card{
@@ -338,10 +343,10 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
 .cr-card:hover{background:#FAFBFC;border-color:#2F6BFA;box-shadow:0 4px 12px rgba(47,107,250,.08)}
 .cr-rank{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0}
 .cr-rank.r1{background:rgba(47,107,250,.12);color:#2F6BFA}
-.cr-rank.r2,.cr-rank.r3{background:#F1F3F7;color:#64748B}
+.cr-rank.r2,.cr-rank.r3{background:#F1F3F7;color:#475569}
 .cr-info{flex:1;min-width:0}
 .cr-name{font-weight:800;font-size:14px;color:#0F172A}
-.cr-meta{font-size:11px;color:#64748B;margin-top:1px}
+.cr-meta{font-size:11px;color:#475569;margin-top:1px}
 .cr-price-val{font-size:20px;font-weight:900;color:#2F6BFA}
 
 /* ===== Platform Cards ===== */
@@ -376,15 +381,15 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
 }
 .plat-card .plat-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:10px}
 .plat-card .plat-name{font-weight:700;font-size:15px;color:#0F172A}
-.plat-card .plat-meta{font-size:11px;color:#64748B;margin-top:1px}
+.plat-card .plat-meta{font-size:11px;color:#475569;margin-top:1px}
 .plat-card .plat-prices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .plat-card .plat-price{
   background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px;
   display:flex;flex-direction:column;gap:3px;
 }
-.plat-card .plat-price .pl{font-size:10px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:.4px}
+.plat-card .plat-price .pl{font-size:10px;font-weight:600;color:#475569;text-transform:uppercase;letter-spacing:.4px}
 .plat-card .plat-price .pv{font-size:17px;font-weight:800;color:#0F172A;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.plat-card .plat-price .pv.na{color:#94A3B8;font-weight:500;font-size:13px}
+.plat-card .plat-price .pv.na{color:#5E6777;font-weight:500;font-size:13px}
 .plat-card .plat-best{background:rgba(47,107,250,.06);border-color:rgba(47,107,250,.2)}
 .plat-card .plat-best .pv{color:#2F6BFA}
 .plat-card .plat-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -403,7 +408,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
   display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#2F6BFA;
 }
 .plat-card .plat-ref::before{content:'';width:5px;height:5px;border-radius:50%;background:#2F6BFA;box-shadow:0 0 6px rgba(47,107,250,.3)}
-.plat-card .plat-noref{font-size:11px;color:#94A3B8}
+.plat-card .plat-noref{font-size:11px;color:#5E6777}
 .plat-card .plat-best-badge{
   font-size:11px;font-weight:800;color:#2F6BFA;letter-spacing:.3px;
   display:flex;align-items:center;gap:4px;
@@ -514,10 +519,11 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
 </head>
 <body>
 
+<main>
 <!-- ==================== HERO (dark) ==================== -->
 <div style="background:var(--bg-dark)">
   <div class="container">
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
       <a href="/" class="nav-brand">Energy<em>Board</em></a>
       <div class="nav-links">
         <a class="active">Board</a>
@@ -575,7 +581,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
     <!-- Energy Calculator -->
     <div id="calc" style="background:#F8FAFC;border-radius:20px;padding:36px 40px;margin-bottom:32px;border:1px solid #E2E8F0">
       <h3 style="font-size:22px;font-weight:800;color:#0F172A;text-align:center;margin:0 0 6px">Find your best deal</h3>
-      <p style="text-align:center;color:#64748B;font-size:14px;margin:0 0 28px">Select energy amount &amp; duration — we'll show the top vendors</p>
+      <p style="text-align:center;color:#475569;font-size:14px;margin:0 0 28px">Select energy amount &amp; duration — we'll show the top vendors</p>
       <div style="display:flex;gap:40px;justify-content:center;align-items:flex-start;flex-wrap:wrap" id="calcRoot"></div>
       <div id="calcResults" style="margin-top:32px;display:none">
         <h4 style="text-align:center;font-size:15px;font-weight:700;color:#0F172A;margin-bottom:16px">Top deals for your selection</h4>
@@ -675,10 +681,11 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
   </div>
 </div>
 
+</main>
 <!-- ==================== FOOTER (dark) ==================== -->
 <div style="background:var(--bg-dark)">
   <div class="container">
-    <div class="footer">
+    <footer class="footer">
       <div>
         <div class="footer-brand">Energy<em>Board</em></div>
         <p class="footer-desc">Real-time TRON energy rental price comparison across 19+ platforms. Find the best deal, instantly.</p>
@@ -705,7 +712,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
           <button aria-label="Subscribe">→</button>
         </div>
       </div>
-    </div>
+    </footer>
     <div class="footer-bottom">
       <span>© 2026 Energy Price Board. Data may be delayed.</span>
       <span>v2.0</span>
@@ -793,7 +800,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
   function buildFeatBar(){
     var bar = $('featBar');
     if (!bar || !bar.innerHTML) return; // already built or missing
-    var html = '<span style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.5px;margin-right:4px">Features</span>';
+    var html = '<span style="font-size:11px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.5px;margin-right:4px">Features</span>';
     FEATURES.forEach(function(f){
       html += '<span class="feat-chip'+(activeFeats[f.id]?' on':'')+'" data-feat="'+f.id+'">'+f.icon+' '+f.label+'</span>';
     });
@@ -880,7 +887,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
 
       var bestLine=isBest?'<span class="plat-best-badge">BEST PRICE</span>':'';
       var logo=logoFile
-        ?'<span class="plat-avatar" style="background:'+bg+'"><img src="'+logoFile+'" alt="" onerror="this.remove()"/>'+name[0].toUpperCase()+'</span>'
+        ?'<span class="plat-avatar" style="background:'+bg+'"><img src="'+logoFile+'" alt="" loading="lazy" decoding="async" width="40" height="40" onerror="this.remove()"/>'+name[0].toUpperCase()+'</span>'
         :'<span class="plat-avatar" style="background:'+bg+'">'+name[0].toUpperCase()+'</span>';
 
       var inner=
@@ -1024,7 +1031,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
       var hash=Array.from(m.name).reduce(function(s,c){return s+c.charCodeAt(0);},0);
       var bg=GRADS[hash%10]; var logoFile=LOGO_MAP[m.id]; var letter=m.name[0].toUpperCase();
       var logo=logoFile
-        ?'<span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9px;overflow:hidden;flex-shrink:0;position:relative;background:'+bg+'"><img src="'+logoFile+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.remove()"/>'+letter+'</span>'
+        ?'<span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9px;overflow:hidden;flex-shrink:0;position:relative;background:'+bg+'"><img src="'+logoFile+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy" decoding="async" width="36" height="36" onerror="this.remove()"/>'+letter+'</span>'
         :'<span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9px;font-weight:900;font-size:15px;color:#fff;flex-shrink:0;background:'+bg+'">'+letter+'</span>';
       var attrs=m.hasRef&&m.ref?' href="'+m.ref+'" target="_blank" rel="nofollow noopener"':'';
       var tag=m.hasRef&&m.ref?'a':'div';

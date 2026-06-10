@@ -18,16 +18,21 @@
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2WTT1T10"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CQ2WTT1T10');</script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://mc.yandex.ru">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box}
 :root{
   --bg-dark:#0B0F19;--bg-light:#F0F2F5;--card-dark:#181E2C;
   --ink-white:#FFFFFF;--ink-secondary:#8A94A6;
-  --ink-primary-light:#131823;--ink-secondary-light:#4E596B;
+  --ink-primary-light:#0F172A;--ink-secondary-light:#374151;
   --blue:#2F6BFA;--purple:#5936FA;--green:#16a34a;--red:#dc2626;
   --line-dark:rgba(255,255,255,.08);--line-light:#D1D5DB;
   --radius-card:16px;--radius-btn:10px;--radius-sm:8px;
@@ -147,8 +152,9 @@ h1 span{background:linear-gradient(135deg,#FFFFFF 40%,var(--blue) 90%);-webkit-b
 <body>
 
 <!-- ==================== DARK CONTENT ==================== -->
+<main>
 <div class="container">
-  <nav class="nav">
+  <nav class="nav" aria-label="Main navigation">
     <a href="/" class="nav-brand">Energy<em>Board</em></a>
     <div class="nav-links">
       <a href="index.html">Board</a>
@@ -248,14 +254,15 @@ h1 span{background:linear-gradient(135deg,#FFFFFF 40%,var(--blue) 90%);-webkit-b
 </div>
 
 <!-- ==================== FOOTER ==================== -->
-<div style="background:var(--bg-dark);border-top:1px solid var(--line-dark);margin-top:40px;padding:40px 0">
+</main>
+<footer style="background:var(--bg-dark);border-top:1px solid var(--line-dark);margin-top:40px;padding:40px 0">
   <div class="container">
     <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink-secondary);flex-wrap:wrap;gap:12px">
       <span>© 2026 Energy Price Board. Data may be delayed.</span>
       <span>v3.0 · <a href="terms.txt" style="color:var(--ink-secondary)">Terms</a> · <a href="privacy.txt" style="color:var(--ink-secondary)">Privacy</a></span>
     </div>
   </div>
-</div>
+</footer>
 
 <script>
 (()=>{

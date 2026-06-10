@@ -22,11 +22,16 @@ ym(109720065,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2WTT1T10"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CQ2WTT1T10');</script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-<script src="sandbox/data/demo_data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+<script src="sandbox/data/demo_data.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://mc.yandex.ru">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box}
 :root{
@@ -35,8 +40,8 @@ ym(109720065,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   --card-dark:#181E2C;
   --ink-white:#FFFFFF;
   --ink-secondary:#8A94A6;
-  --ink-primary-light:#131823;
-  --ink-secondary-light:#4E596B;
+  --ink-primary-light:#0F172A;
+  --ink-secondary-light:#374151;
   --blue:#2F6BFA;
   --purple:#5936FA;
   --violet:#7A36FA;
@@ -227,9 +232,10 @@ h2{font-size:28px;line-height:1.2;font-weight:700}
 <div class="tooltip" id="tooltip"></div>
 
 <!-- ==================== DARK HEADER ==================== -->
+<main>
 <div style="background:var(--bg-dark)">
   <div class="container">
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
       <a href="/" class="nav-brand">Energy<em>Board</em></a>
       <div class="nav-links">
         <a href="index.html">Board</a>
@@ -325,10 +331,11 @@ h2{font-size:28px;line-height:1.2;font-weight:700}
   </div>
 </div>
 
+</main>
 <!-- ==================== FOOTER (dark) ==================== -->
 <div style="background:var(--bg-dark)">
   <div class="container">
-    <div class="footer">
+    <footer class="footer">
       <div>
         <div class="footer-brand">Energy<em>Board</em></div>
         <p class="footer-desc">Real-time TRON energy rental price comparison across 19+ platforms. Find the best deal, instantly.</p>
@@ -355,7 +362,7 @@ h2{font-size:28px;line-height:1.2;font-weight:700}
           <button aria-label="Subscribe">→</button>
         </div>
       </div>
-    </div>
+    </footer>
     <div class="footer-bottom">
       <span>© 2026 Energy Price Board. Data may be delayed.</span>
       <span>v2.0</span>
