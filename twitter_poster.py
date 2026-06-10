@@ -13,7 +13,6 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 import requests
-from requests_oauthlib import OAuth1
 
 # === CONFIG ===
 BASE_DIR = Path(__file__).parent
@@ -41,18 +40,41 @@ def load_dotenv():
                         os.environ[key] = val
 
 
-def get_auth():
-    keys = ["TWITTER_API_KEY", "TWITTER_API_SECRET",
-            "TWITTER_ACCESS_TOKEN", "TWITTER_ACCESS_SECRET"]
-    missing = [k for k in keys if not os.environ.get(k)]
-    if missing:
-        raise ValueError(f"Missing env vars: {', '.join(missing)}")
-    return OAuth1(
-        os.environ["TWITTER_API_KEY"],
-        os.environ["TWITTER_API_SECRET"],
-        os.environ["TWITTER_ACCESS_TOKEN"],
-        os.environ["TWITTER_ACCESS_SECRET"],
+def refresh_access_token():
+    """Use refresh token to get a new OAuth 2.0 access token."""
+    client_id = os.environ.get("TWITTER_CLIENT_ID", "")
+    refresh_token = os.environ.get("TWITTER_REFRESH_TOKEN", "")
+    if not client_id or not refresh_token:
+        raise ValueError("Missing TWITTER_CLIENT_ID or TWITTER_REFRESH_TOKEN")
+
+    resp = requests.post(
+        "https://api.twitter.com/2/oauth2/token",
+        data={
+            "grant_type": "refresh_token",
+            "refresh_token": refresh_token,
+            "client_id": client_id,
+        },
+        headers={"Content-Type": "application/x-www-form-urlencoded"},
+        timeout=30,
     )
+    if resp.status_code == 200:
+        data = resp.json()
+        new_token = data["access_token"]
+        new_refresh = data.get("refresh_token", refresh_token)
+        os.environ["TWITTER_ACCESS_TOKEN"] = new_token
+        os.environ["TWITTER_REFRESH_TOKEN"] = new_refresh
+        print("[auth] Token refreshed")
+        return new_token
+    else:
+        raise ValueError(f"Token refresh failed: {resp.status_code} {resp.text}")
+
+
+def get_auth():
+    """OAuth 2.0 Bearer token auth."""
+    token = os.environ.get("TWITTER_ACCESS_TOKEN", "")
+    if not token:
+        raise ValueError("Missing TWITTER_ACCESS_TOKEN")
+    return {"Authorization": f"Bearer {token}"}
 
 
 def parse_posts():
@@ -159,15 +181,30 @@ def pick_next_post(posts, tracker):
 
 
 def post_tweet(text: str) -> dict:
-    auth = get_auth()
-    resp = requests.post(API_URL, json={"text": text}, auth=auth, timeout=30)
+    headers = {"Authorization": f"Bearer {os.environ.get('TWITTER_ACCESS_TOKEN', '')}",
+               "Content-Type": "application/json"}
+    resp = requests.post(API_URL, json={"text": text}, headers=headers, timeout=30)
 
     if resp.status_code == 201:
         data = resp.json()
         tid = data["data"]["id"]
         print(f"[OK] Posted! ID: {tid}")
-        print(f"     {text[:120]}...")
+        safe = text[:120].encode('ascii', errors='replace').decode()
+        print(f"     {safe}...")
         return {"id": tid, "status": "posted"}
+    elif resp.status_code == 401:
+        # Token expired — refresh and retry once
+        print("[auth] Token expired, refreshing...")
+        refresh_access_token()
+        headers["Authorization"] = f"Bearer {os.environ['TWITTER_ACCESS_TOKEN']}"
+        resp = requests.post(API_URL, json={"text": text}, headers=headers, timeout=30)
+        if resp.status_code == 201:
+            data = resp.json()
+            print(f"[OK] Posted! ID: {data['data']['id']}")
+            return {"id": data["data"]["id"], "status": "posted"}
+        else:
+            print(f"[FAIL] HTTP {resp.status_code}: {resp.text[:300]}")
+            return {"id": None, "status": "failed", "error": resp.text}
     else:
         print(f"[FAIL] HTTP {resp.status_code}: {resp.text[:300]}")
         return {"id": None, "status": "failed", "error": resp.text}
@@ -209,7 +246,8 @@ def main():
     chosen = pick_next_post(posts, tracker)
     tag = f"@{chosen['handle']}" if chosen.get("handle") else "(general)"
     print(f"[>] [{chosen['platform']}] {tag}")
-    print(f"    {chosen['text'][:140]}")
+    safe_text = chosen['text'][:140].encode('ascii', errors='replace').decode()
+    print(f"    {safe_text}")
 
     if DRY_RUN:
         print("[dry] Not posting")
