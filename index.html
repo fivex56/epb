@@ -316,6 +316,18 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
 .calc-chip:hover{border-color:#2F6BFA;color:#2F6BFA}
 .calc-chip.active{background:#2F6BFA;color:#fff;border-color:#2F6BFA;box-shadow:0 0 0 6px rgba(47,107,250,.15)}
 
+/* Feature filter chips (light) */
+.feat-chip{
+  padding:7px 15px;border-radius:100px;font-size:12px;font-weight:700;
+  background:#FFFFFF;border:1px solid #E2E8F0;color:#64748B;
+  cursor:pointer;transition:all .2s;font-family:var(--font);user-select:none;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.feat-chip:hover{border-color:#2F6BFA;color:#2F6BFA}
+.feat-chip.on{background:#2F6BFA;color:#fff;border-color:#2F6BFA;box-shadow:0 0 0 6px rgba(47,107,250,.12)}
+.feat-chip .fc-count{font-size:10px;opacity:.7}
+#featMatchCount{font-size:13px;color:#64748B;margin-left:4px;font-weight:500}
+
 /* Calc result cards (light) */
 .cr-card{
   background:#FFFFFF;border:1px solid #E2E8F0;
@@ -509,7 +521,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
       <a href="/" class="nav-brand">Energy<em>Board</em></a>
       <div class="nav-links">
         <a class="active">Board</a>
-        <a href="explorer.html">Explorer</a>
+        <a href="compare.html">Compare</a>
         <a href="history.html">History</a>
         <a href="blog.html">Blog</a>
       </div>
@@ -522,7 +534,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
         <a href="#calc" class="btn btn-primary" style="background:linear-gradient(135deg,#2F6BFA,#5936FA);padding:18px 36px;font-size:17px">⚡ Find Best Energy Deal Now</a>
         <div style="display:flex;gap:12px;justify-content:center">
           <a href="#platforms" class="btn btn-outline">View All Platforms</a>
-          <a href="explorer.html" class="btn btn-outline">Market Explorer</a>
+          <a href="compare.html" class="btn btn-outline">Compare Platforms</a>
         </div>
       </div>
       <div class="hero-badges">
@@ -538,12 +550,10 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
         <div class="stat-card">
           <div class="stat-num blue" id="s65">—</div>
           <div class="stat-label">Cheapest 65k — 1 hour</div>
-          <div class="stat-sub" id="s65name"></div>
         </div>
         <div class="stat-card">
           <div class="stat-num purple" id="s130">—</div>
           <div class="stat-label">Cheapest 130k — 1 hour</div>
-          <div class="stat-sub" id="s130name"></div>
         </div>
         <div class="stat-card">
           <div class="stat-num" id="sSpread" style="color:var(--ink-white)">—</div>
@@ -555,145 +565,12 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
   </div>
 </div>
 
-<!-- ==================== FEATURES (light) ==================== -->
-<div class="section-light">
-  <div class="container">
-    <div style="text-align:center">
-      <span class="feature-tag">Why Energy Board</span>
-      <h2>Everything you need to<br>find the best energy deal</h2>
-    </div>
-    <div class="feature-split">
-      <!-- Dashboard Preview (слева) -->
-      <div class="dash-preview">
-        <div class="dash-header">
-          <span class="dash-dot green"></span>
-          <span class="dash-dot"></span>
-          <span class="dash-dot"></span>
-          <span class="dash-header-label">dashboard · live</span>
-        </div>
-
-        <!-- ===== A. Real-time price comparison (default) ===== -->
-        <div class="dash-body">
-          <div class="dash-pane active" data-pane="0">
-            <div class="dash-topline">
-              <span class="dash-live">Live</span>
-              <span class="dash-muted">· 19 platforms · 65k/1h</span>
-            </div>
-            <div class="dash-table" id="dashTable">
-              <div class="dash-tr">
-                <span class="dt-name">FeeSaver</span>
-                <span class="dt-price" style="color:#7CEE7C">63.2k TRX</span>
-                <span class="dt-badge cheapest">Cheapest</span>
-              </div>
-              <div class="dash-tr">
-                <span class="dt-name">Tronify</span>
-                <span class="dt-price" style="color:#fff">74.8k TRX</span>
-                <span class="dt-badge std">Standard</span>
-              </div>
-              <div class="dash-tr">
-                <span class="dt-name">iTRX</span>
-                <span class="dt-price" style="color:#fff">76.1k TRX</span>
-                <span class="dt-badge std">Standard</span>
-              </div>
-              <div class="dash-tr">
-                <span class="dt-name">EnergyFather</span>
-                <span class="dt-price" style="color:#fff">78.4k TRX</span>
-                <span class="dt-badge std">Standard</span>
-              </div>
-              <div class="dash-tr">
-                <span class="dt-name">TronSave</span>
-                <span class="dt-price" style="color:#fff">81.2k TRX</span>
-                <span class="dt-badge std">Standard</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== B. Market explorer & trends ===== -->
-          <div class="dash-pane" data-pane="1">
-            <div class="dash-topline">
-              <span class="dash-live">TRX/Energy</span>
-              <span class="dash-muted">· 7d trend</span>
-            </div>
-            <div class="dash-chart-wrap">
-              <svg viewBox="0 0 280 120" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="lg" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#2F6BFA" stop-opacity=".4"/>
-                    <stop offset="100%" stop-color="#2F6BFA" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <path d="M0,100 Q35,90 55,70 T110,50 T165,55 T220,30 T280,20"
-                      fill="none" stroke="#2F6BFA" stroke-width="2" stroke-linecap="round"/>
-                <path d="M0,100 Q35,90 55,70 T110,50 T165,55 T220,30 T280,20 L280,120 L0,120 Z"
-                      fill="url(#lg)" opacity=".5"/>
-                <circle cx="280" cy="20" r="3" fill="#2F6BFA"/>
-              </svg>
-            </div>
-            <div class="dash-indicators">
-              <div class="dash-ind"><span class="di-lbl">24h Volume</span><span class="di-val" style="color:var(--blue)">$4.2M</span></div>
-              <div class="dash-ind"><span class="di-lbl">Trend</span><span class="di-val" style="color:#7CEE7C">+5.4%</span></div>
-              <div class="dash-ind"><span class="di-lbl">Avg Price</span><span class="di-val">73.6k TRX</span></div>
-              <div class="dash-ind"><span class="di-lbl">Platforms</span><span class="di-val">19</span></div>
-            </div>
-          </div>
-
-          <!-- ===== C. Price history & analysis ===== -->
-          <div class="dash-pane" data-pane="2">
-            <div class="dash-analysis" style="margin-bottom:4px">
-              <div class="dash-anal-item"><span class="ai-lbl">Avg Price 7d</span><span class="ai-val">65,100 TRX</span></div>
-              <div class="dash-anal-item"><span class="ai-lbl">Volatility</span><span class="ai-val" style="color:#7CEE7C">Low</span></div>
-            </div>
-            <div class="dash-bars">
-              <div class="dash-bar-group"><div class="dash-bar b1"></div><span class="dash-bar-label">Mon</span></div>
-              <div class="dash-bar-group"><div class="dash-bar b2"></div><span class="dash-bar-label">Tue</span></div>
-              <div class="dash-bar-group"><div class="dash-bar b3"></div><span class="dash-bar-label">Wed</span></div>
-              <div class="dash-bar-group"><div class="dash-bar b4"></div><span class="dash-bar-label">Thu</span></div>
-              <div class="dash-bar-group"><div class="dash-bar b5"></div><span class="dash-bar-label">Fri</span></div>
-              <div class="dash-bar-group"><div class="dash-bar b6"></div><span class="dash-bar-label">Sat</span></div>
-              <div class="dash-bar-group"><div class="dash-bar b7"></div><span class="dash-bar-label">Sun</span></div>
-            </div>
-          </div>
-
-          <!-- ===== D. Contact us ===== -->
-          <div class="dash-pane" data-pane="3">
-            <div style="text-align:center;color:var(--ink-secondary);font-size:14px;line-height:1.8">
-              <p style="font-size:16px;font-weight:700;color:var(--ink-white);margin:0 0 12px">Write to us</p>
-              <p style="margin:0 0 8px">📧 <b style="color:var(--ink-white)">team@energypriceboard.tech</b></p>
-              <p style="margin:0 0 8px">💬 Telegram: <a href="https://t.me/epbfish" style="color:var(--blue);text-decoration:none">@epbfish</a></p>
-              <p style="margin:0 0 8px">🐦 X: <a href="https://x.com/epbfish" style="color:var(--blue);text-decoration:none">@epbfish</a></p>
-              <p style="margin:16px 0 0;font-size:11px;color:var(--ink-secondary)">We reply within 24h · No spam</p>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature Tabs (справа) -->
-      <div class="feature-list">
-        <div class="feature-item active" data-tab="0">
-          <span class="fi-label">Real-time price comparison</span>
-          <span class="fi-arrow">↗</span>
-        </div>
-        <div class="feature-item" data-tab="1">
-          <span class="fi-label">Market explorer &amp; trends</span>
-          <span class="fi-arrow">↗</span>
-        </div>
-        <div class="feature-item" data-tab="2">
-          <span class="fi-label">Price history &amp; analysis</span>
-          <span class="fi-arrow">↗</span>
-        </div>
-        <div class="feature-item" data-tab="3">
-          <span class="fi-label">Contact us</span>
-          <span class="fi-arrow">↗</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- ==================== PLATFORMS ==================== -->
 <div id="platforms">
   <div class="container">
+
+    <!-- Feature Filters -->
+    <div id="featBar" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center"></div>
 
     <!-- Energy Calculator -->
     <div id="calc" style="background:#F8FAFC;border-radius:20px;padding:36px 40px;margin-bottom:32px;border:1px solid #E2E8F0">
@@ -770,12 +647,12 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
       <h2>Explore more</h2>
     </div>
     <div class="read-grid">
-      <a class="read-card" href="explorer.html">
+      <a class="read-card" href="compare.html">
         <div class="read-card-img">📊</div>
         <div class="read-card-body">
-          <h4>Market Explorer</h4>
-          <p>Dive deep into energy market trends, compare historical data, and discover price patterns across all platforms.</p>
-          <div class="read-card-meta">Interactive charts · Real-time</div>
+          <h4>Compare Platforms</h4>
+          <p>Price matrix, history charts, and feature filters. Compare platforms side by side to find your perfect match.</p>
+          <div class="read-card-meta">Matrix · Charts · Feature filters</div>
         </div>
       </a>
       <a class="read-card" href="history.html">
@@ -809,8 +686,8 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
       <div class="footer-col">
         <h5>Pages</h5>
         <a href="/">Price Board</a>
-        <a href="explorer.html">Market Explorer</a>
-        <a href="history.html">Price History</a>
+        <a href="compare.html">Compare</a>
+        <a href="history.html">History</a>
         <a href="blog.html">Blog</a>
       </div>
       <div class="footer-col">
@@ -883,6 +760,69 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
 
   var GRADS = ['#2F6BFA','#5936FA','#7A36FA','#1A8FE5','#E5484D','#0D9488','#D97706','#7C3AED','#DB2777','#4B5563'];
 
+  /* Feature filter data */
+  var FEATURES = [
+    {id:'api',label:'API',icon:'🔌'},
+    {id:'telegram',label:'Telegram',icon:'💬'},
+    {id:'marketplace',label:'Marketplace',icon:'📊'},
+    {id:'autotopup',label:'Auto-topup',icon:'🔄'},
+    {id:'usdt_trx',label:'USDT↔TRX',icon:'💱'},
+    {id:'dapp',label:'dApp',icon:'🔗'},
+    {id:'referral',label:'Referral',icon:'🎁'},
+    {id:'staking',label:'Staking',icon:'🏦'},
+    {id:'bandwidth',label:'Bandwidth',icon:'📡'}
+  ];
+  var PLATFORM_FEATURES = {
+    apitrx:['api','autotopup'], brutus:['marketplace','dapp'], catfee:['autotopup'],
+    energyfather:['api','referral'], ergon:['dapp','staking'], feee:['api','referral','usdt_trx'],
+    feesaver:['telegram','referral','autotopup'], itrx:['api','referral'], justlend_dao:['dapp','staking'],
+    mefree:['api'], netts:[], refee:['telegram','referral'], renttron:[],
+    tofee:['dapp'], tr_energy:['referral'], tronex:['api','telegram','referral'],
+    tronify:['api','referral'], tronmax:['marketplace','api','referral'], tronsave:['staking'], tronzap:['referral']
+  };
+  var activeFeats = {};
+  FEATURES.forEach(function(f){ activeFeats[f.id] = false; });
+
+  function platformMatchesFeats(pid){
+    var pf = PLATFORM_FEATURES[pid] || [];
+    var active = Object.keys(activeFeats).filter(function(k){ return activeFeats[k]; });
+    if (active.length === 0) return true;
+    return active.every(function(fid){ return pf.indexOf(fid) !== -1; });
+  }
+
+  function buildFeatBar(){
+    var bar = $('featBar');
+    if (!bar || !bar.innerHTML) return; // already built or missing
+    var html = '<span style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.5px;margin-right:4px">Features</span>';
+    FEATURES.forEach(function(f){
+      html += '<span class="feat-chip'+(activeFeats[f.id]?' on':'')+'" data-feat="'+f.id+'">'+f.icon+' '+f.label+'</span>';
+    });
+    html += '<span id="featMatchCount"></span>';
+    bar.innerHTML = html;
+
+    bar.querySelectorAll('.feat-chip').forEach(function(chip){
+      chip.addEventListener('click',function(){
+        var fid = chip.dataset.feat;
+        activeFeats[fid] = !activeFeats[fid];
+        chip.classList.toggle('on', activeFeats[fid]);
+        updateFeatCounts();
+        if (window.__ebData) renderCards(window.__ebData);
+        if (window.__ebCalcRefresh) window.__ebCalcRefresh();
+      });
+    });
+  }
+
+  function updateFeatCounts(){
+    var mc = document.getElementById('featMatchCount');
+    if (!mc) return;
+    var active = Object.keys(activeFeats).filter(function(k){ return activeFeats[k]; });
+    if (active.length === 0) { mc.textContent = ''; return; }
+    var data = window.__ebData;
+    if (!data || !data.platforms) return;
+    var matching = data.platforms.filter(function(p){ return platformMatchesFeats(p.platform_id); });
+    mc.textContent = matching.length + ' of ' + data.platforms.length;
+  }
+
   function render(data) {
     var platforms = data.platforms || [];
 
@@ -897,9 +837,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
       var minP = Math.min.apply(null,prices), maxP = Math.max.apply(null,prices);
 
       $('s65').textContent = fmt(best65['65k_1h_price']) + ' TRX';
-      $('s65name').textContent = best65.platform_name || best65.platform_id;
       $('s130').textContent = best130 ? fmt(best130['130k_1h_price']) + ' TRX' : '—';
-      $('s130name').textContent = best130 ? best130.platform_name || best130.platform_id : '';
       $('sSpread').textContent = fmt(maxP-minP) + ' TRX';
       $('sSpreadSub').textContent = 'from ' + with65.length + ' platforms';
     }
@@ -923,7 +861,10 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
     var bestPrice = null;
     for(var i=0;i<sorted.length;i++){if(typeof sorted[i]['65k_1h_price']==='number'){bestPrice=sorted[i]['65k_1h_price'];break;}}
 
-    sorted.forEach(function(p){
+    // Apply feature filters
+    var filtered = sorted.filter(function(p){ return platformMatchesFeats(p.platform_id); });
+
+    filtered.forEach(function(p){
       var stale=!p.ts||(Date.now()-new Date(p.ts).getTime())>86400000;
       var p65=p['65k_1h_price'], p130=p['130k_1h_price'];
       var p65ok=typeof p65==='number', p130ok=typeof p130==='number';
@@ -966,7 +907,7 @@ h3{font-size:22px;line-height:1.3;font-weight:700}
     });
 
     window.__ebData = data;
-    fillDashboard(data);
+    buildFeatBar();
     if (window.__ebCalcRefresh) window.__ebCalcRefresh();
   }
 

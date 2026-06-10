@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Compare TRON Energy Platforms — Matrix & Charts | Energy Price Board</title>
+<meta name="description" content="Compare 20 TRON energy rental platforms side by side. Interactive price matrix, history charts, feature filters. Find the best platform for your needs."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://energypriceboard.tech/compare.html"/>
+<meta property="og:title" content="Compare Platforms — Energy Price Board"/>
+<meta property="og:description" content="Interactive comparison of 20+ TRON energy rental platforms with price matrix and history charts."/>
+<meta property="og:url" content="https://energypriceboard.tech/compare.html"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!-- Yandex.Metrika -->
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109720065','ym');ym(109720065,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109720065" style="position:absolute;left:-9999px" alt=""/></div></noscript>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2WTT1T10"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CQ2WTT1T10');</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg-dark:#0B0F19;--bg-light:#F0F2F5;--card-dark:#181E2C;
+  --ink-white:#FFFFFF;--ink-secondary:#8A94A6;
+  --ink-primary-light:#131823;--ink-secondary-light:#4E596B;
+  --blue:#2F6BFA;--purple:#5936FA;--green:#16a34a;--red:#dc2626;
+  --line-dark:rgba(255,255,255,.08);--line-light:#D1D5DB;
+  --radius-card:16px;--radius-btn:10px;--radius-sm:8px;
+  --font:'Inter','Golos Text','SF Pro Display',-apple-system,sans-serif;
+}
+html{height:100%}
+body{margin:0;min-height:100%;background:var(--bg-dark);color:var(--ink-white);font:400 14px/1.5 var(--font);-webkit-font-smoothing:antialiased}
+.container{max-width:1440px;margin:0 auto;padding:0 32px}
+@media(max-width:768px){.container{padding:0 16px}}
+
+/* Nav */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line-dark);margin-bottom:24px}
+.nav-brand{font-size:19px;font-weight:800;letter-spacing:-.4px;text-decoration:none;color:var(--ink-white)}
+.nav-brand em{font-style:normal;color:var(--blue)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{text-decoration:none;color:var(--ink-secondary);padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500;transition:.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink-white);background:rgba(255,255,255,.06)}
+@media(max-width:768px){.nav{flex-direction:column;gap:12px;align-items:flex-start}.nav-links{flex-wrap:wrap}}
+
+h1{font-size:36px;font-weight:900;letter-spacing:-0.02em;margin:0 0 4px}
+h1 span{background:linear-gradient(135deg,#FFFFFF 40%,var(--blue) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:var(--ink-secondary);font-size:14px;margin-bottom:20px}
+
+/* Tabs */
+.tab-bar{display:flex;gap:4px;background:rgba(255,255,255,.04);padding:4px;border-radius:var(--radius-btn);margin-bottom:18px;width:fit-content}
+.tab-btn{padding:10px 24px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700;color:var(--ink-secondary);transition:.15s;border:none;background:transparent;font-family:var(--font)}
+.tab-btn:hover{color:var(--ink-white)}
+.tab-btn.active{background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(47,107,250,.3)}
+
+/* Feature filter chips */
+.feat-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
+.feat-bar .feat-label{font-size:10px;font-weight:700;color:var(--ink-secondary);text-transform:uppercase;letter-spacing:.5px;margin-right:4px}
+.feat-chip{padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;user-select:none;font-family:var(--font);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--ink-secondary);display:inline-flex;align-items:center;gap:5px}
+.feat-chip:hover{border-color:rgba(255,255,255,.25);color:var(--ink-white)}
+.feat-chip.on{background:rgba(47,107,250,.15);border-color:rgba(47,107,250,.35);color:var(--blue)}
+.feat-chip .fc-count{font-size:10px;opacity:.7}
+
+/* Matrix tab */
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+.mtx-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.mtx-toolbar-group{display:flex;gap:6px;align-items:center}
+.mtx-label{font-size:10px;font-weight:700;color:var(--ink-secondary);text-transform:uppercase;letter-spacing:.5px;margin-right:2px}
+.chip{padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--ink-secondary);cursor:pointer;transition:all .15s;user-select:none;font-family:var(--font)}
+.chip:hover{border-color:rgba(255,255,255,.25);color:var(--ink-white)}
+.chip.active{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 2px 8px rgba(47,107,250,.3)}
+.search-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);color:var(--ink-white);padding:7px 12px;font-size:13px;width:180px;font-family:var(--font);transition:.15s}
+.search-box:focus{outline:none;border-color:var(--blue);background:rgba(255,255,255,.06)}
+.search-box::placeholder{color:var(--ink-secondary)}
+
+.mtx-layout{display:grid;grid-template-columns:1fr 340px;gap:16px}
+@media(max-width:1000px){.mtx-layout{grid-template-columns:1fr}}
+
+.mtx-wrap{overflow-x:auto;border-radius:var(--radius-card);background:var(--card-dark);border:1px solid var(--line-dark)}
+.mtx-table{min-width:560px;width:100%;border-collapse:collapse;font-size:13px}
+.mtx-table th{padding:10px 12px;text-align:center;color:var(--ink-secondary);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--line-dark);position:sticky;top:0;background:var(--card-dark);z-index:2;cursor:pointer;user-select:none}
+.mtx-table th:first-child{text-align:left;min-width:130px}
+.mtx-table td{padding:7px 5px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);transition:.1s;font-variant-numeric:tabular-nums}
+.mtx-table td.label{text-align:left;padding:7px 12px;font-weight:600;font-size:13px;color:var(--ink-white)}
+.mtx-table tr:hover td{background:rgba(255,255,255,.02)}
+.mtx-table tr:hover td.label{color:var(--blue)}
+.mtx-table tr.selected td{background:rgba(47,107,250,.06)}
+.mtx-table tr.selected td.label{border-left:2px solid var(--blue);color:var(--blue)}
+
+.cell-price{display:inline-block;padding:4px 7px;border-radius:5px;font-weight:600;font-size:12px;background:rgba(255,255,255,.05);min-width:50px;font-variant-numeric:tabular-nums;color:var(--ink-white)}
+.cell-price.na{background:transparent;color:rgba(138,148,166,.4);font-weight:400;font-size:11px}
+.cell-price.best{background:rgba(47,107,250,.15);color:var(--blue)}
+
+/* Detail panel */
+.detail-panel{background:var(--card-dark);border:1px solid var(--line-dark);border-radius:var(--radius-card);padding:20px;position:sticky;top:20px;max-height:calc(100vh - 80px);overflow-y:auto}
+.detail-panel:empty{display:flex;align-items:center;justify-content:center;min-height:200px}
+.detail-panel:empty::after{content:'← Click a platform row to see details';color:var(--ink-secondary);font-size:13px}
+.dp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.dp-name{font-size:19px;font-weight:800;color:var(--ink-white)}
+.dp-url{font-size:12px;color:var(--blue);text-decoration:none;display:block;margin-top:2px}
+.dp-url:hover{text-decoration:underline}
+.dp-close{border:none;background:rgba(255,255,255,.06);color:var(--ink-secondary);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;font-family:var(--font)}
+.dp-close:hover{background:rgba(255,255,255,.12);color:var(--ink-white)}
+.dp-section{margin-bottom:14px}
+.dp-section-title{font-size:10px;font-weight:700;color:var(--ink-secondary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.dp-price-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
+.dp-price-row:last-child{border:none}
+.dp-price-row .lbl{color:var(--ink-secondary)}
+.dp-price-row .val{font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink-white)}
+.dp-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;margin-right:4px;margin-bottom:4px}
+.dp-badge.limit{background:rgba(255,255,255,.05);color:var(--ink-secondary)}
+.dp-badge.ref{background:rgba(47,107,250,.15);color:var(--blue)}
+.dp-features{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.dp-feat-tag{padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;background:rgba(255,255,255,.06);color:var(--ink-secondary);display:inline-flex;align-items:center;gap:4px}
+.dp-feat-tag.has{background:rgba(34,197,94,.1);color:var(--green)}
+
+/* Chart tab */
+.chart-toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
+.stat-card{padding:14px 16px;border-radius:12px;background:var(--card-dark);border:1px solid var(--line-dark)}
+.stat-card .sl{font-size:9px;font-weight:700;color:var(--ink-secondary);text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+.stat-card .sv{font-size:20px;font-weight:800;color:var(--ink-white);letter-spacing:-.01em}
+.stat-card .sb{font-size:10px;color:var(--ink-secondary);margin-top:2px}
+
+.service-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.svc-tag{padding:4px 10px;border-radius:100px;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;user-select:none;font-family:var(--font)}
+.svc-tag.on{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);color:var(--green)}
+.svc-tag.off{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:var(--ink-secondary);opacity:.4}
+
+.chart-card{background:var(--card-dark);border:1px solid var(--line-dark);border-radius:var(--radius-card);padding:20px;margin-bottom:20px}
+.chart-card h3{font-size:15px;font-weight:700;margin:0 0 4px}
+.chart-card .chart-hint{font-size:11px;color:var(--ink-secondary);margin-bottom:14px}
+.chart-wrap{position:relative;height:400px}
+.chart-wrap canvas{width:100%!important}
+
+.feat-match-badge{font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px;background:rgba(47,107,250,.12);color:var(--blue);margin-left:4px}
+
+@media(max-width:768px){h1{font-size:26px}.chart-wrap{height:280px}.mtx-layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ==================== DARK CONTENT ==================== -->
+<div class="container">
+  <nav class="nav">
+    <a href="/" class="nav-brand">Energy<em>Board</em></a>
+    <div class="nav-links">
+      <a href="index.html">Board</a>
+      <a class="active">Compare</a>
+      <a href="history.html">History</a>
+      <a href="blog.html">Blog</a>
+    </div>
+  </nav>
+
+  <h1><span>Comparison Tool</span></h1>
+  <p class="subtitle">Interactive price matrix & history charts — filter by features, compare platforms.</p>
+
+  <!-- ===== Feature Filters ===== -->
+  <div class="feat-bar" id="featBar">
+    <span class="feat-label">Features</span>
+  </div>
+
+  <!-- ===== Tab Switcher ===== -->
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="matrix">📊 Matrix</button>
+    <button class="tab-btn" data-tab="chart">📈 History Chart</button>
+  </div>
+
+  <!-- ===== TAB: Matrix ===== -->
+  <div class="tab-content active" id="tab-matrix">
+    <div class="mtx-toolbar">
+      <div class="mtx-toolbar-group">
+        <span class="mtx-label">Volume</span>
+      </div>
+      <div class="mtx-toolbar-group" style="margin-left:12px">
+        <span class="mtx-label">Sort</span>
+        <button class="chip active" data-sort="price">Price</button>
+        <button class="chip" data-sort="name">Name</button>
+        <button class="chip" data-sort="coverage">Coverage</button>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
+        <input class="search-box" id="mtxSearch" type="text" placeholder="Search platform..." spellcheck="false">
+        <button class="chip" id="mtxClear" style="padding:4px 10px;font-size:11px">✕</button>
+      </div>
+    </div>
+
+    <div class="mtx-layout">
+      <div>
+        <div style="font-size:12px;color:var(--ink-secondary);margin-bottom:8px" id="mtxCount">0 platforms</div>
+        <div class="mtx-wrap">
+          <table class="mtx-table" id="mtxTable"><tbody id="mtxBody"></tbody></table>
+        </div>
+      </div>
+      <div class="detail-panel" id="detailPanel"></div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: Chart ===== -->
+  <div class="tab-content" id="tab-chart">
+    <div class="chart-toolbar">
+      <div class="mtx-toolbar-group">
+        <span class="mtx-label">Size</span>
+        <span class="chip active" data-csize="65k">65k</span>
+        <span class="chip" data-csize="130k">130k</span>
+      </div>
+      <div class="mtx-toolbar-group">
+        <span class="mtx-label">Term</span>
+        <span class="chip" data-cterm="15m">15m</span>
+        <span class="chip active" data-cterm="1h">1h</span>
+        <span class="chip" data-cterm="1d">1d</span>
+        <span class="chip" data-cterm="3d">3d</span>
+      </div>
+      <div class="mtx-toolbar-group">
+        <span class="mtx-label">Range</span>
+        <span class="chip active" data-crange="7d">7d</span>
+        <span class="chip" data-crange="30d">30d</span>
+      </div>
+      <div class="mtx-toolbar-group">
+        <span class="mtx-label">View</span>
+        <span class="chip" data-cmetric="median">Median</span>
+        <span class="chip active" data-cmetric="all">All</span>
+        <span class="chip" data-cmetric="min">Min</span>
+        <span class="chip" data-cmetric="max">Max</span>
+      </div>
+    </div>
+
+    <div class="stat-row" id="cStatRow">
+      <div class="stat-card"><div class="sl">Current Median</div><div class="sv" id="cstMedian">—</div><div class="sb">middle of market</div></div>
+      <div class="stat-card"><div class="sl">Cheapest</div><div class="sv" id="cstMin" style="color:var(--green)">—</div><div class="sb" id="cstMinName">—</div></div>
+      <div class="stat-card"><div class="sl">Most Expensive</div><div class="sv" id="cstMax" style="color:var(--red)">—</div><div class="sb" id="cstMaxName">—</div></div>
+      <div class="stat-card"><div class="sl">Platforms Tracked</div><div class="sv" id="cstCount">—</div><div class="sb" id="cstCountSub">—</div></div>
+    </div>
+
+    <div class="service-tags" id="cSvcTags"></div>
+
+    <div class="chart-card">
+      <h3 id="cChartTitle">Price comparison</h3>
+      <div class="chart-hint" id="cChartHint"></div>
+      <div class="chart-wrap"><canvas id="cMainChart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div style="background:var(--bg-dark);border-top:1px solid var(--line-dark);margin-top:40px;padding:40px 0">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink-secondary);flex-wrap:wrap;gap:12px">
+      <span>© 2026 Energy Price Board. Data may be delayed.</span>
+      <span>v3.0 · <a href="terms.txt" style="color:var(--ink-secondary)">Terms</a> · <a href="privacy.txt" style="color:var(--ink-secondary)">Privacy</a></span>
+    </div>
+  </div>
+</div>
+
+<script>
+(()=>{
+'use strict';
+
+/* ================================================================
+   DATA
+   ================================================================ */
+
+var FEATURES = [
+  {id:'api',       label:'API',        icon:'🔌', desc:'REST API for programmatic energy rental'},
+  {id:'telegram',  label:'Telegram',   icon:'💬', desc:'Telegram bot for energy orders'},
+  {id:'marketplace',label:'Marketplace',icon:'📊',desc:'Bid/ask order book pricing model'},
+  {id:'autotopup', label:'Auto-topup', icon:'🔄', desc:'Automatic energy refill when balance is low'},
+  {id:'usdt_trx',  label:'USDT↔TRX',  icon:'💱', desc:'Accepts USDT payments or auto-converts'},
+  {id:'dapp',      label:'dApp',       icon:'🔗', desc:'Direct TRON dApp / browser interaction'},
+  {id:'referral',  label:'Referral',   icon:'🎁', desc:'Referral program with bonuses for sharing'},
+  {id:'staking',   label:'Staking',    icon:'🏦', desc:'Staking rewards or energy staking pools'},
+  {id:'bandwidth', label:'Bandwidth',  icon:'📡', desc:'Also sells bandwidth points for TRON transactions'}
+];
+
+var PLATFORM_FEATURES = {
+  apitrx:       ['api','autotopup'],
+  brutus:       ['marketplace','dapp'],
+  catfee:       ['autotopup'],
+  energyfather: ['api','referral'],
+  ergon:        ['dapp','staking'],
+  feee:         ['api','referral','usdt_trx'],
+  feesaver:     ['telegram','referral','autotopup'],
+  itrx:         ['api','referral'],
+  justlend_dao: ['dapp','staking'],
+  mefree:       ['api'],
+  netts:        [],
+  refee:        ['telegram','referral'],
+  renttron:     [],
+  tofee:        ['dapp'],
+  tr_energy:    ['referral'],
+  tronex:       ['api','telegram','referral'],
+  tronify:      ['api','referral'],
+  tronmax:      ['marketplace','api','referral'],
+  tronsave:     ['staking'],
+  tronzap:      ['referral']
+};
+
+var COLORS = ['#2F6BFA','#5936FA','#7A36FA','#1A8FE5','#E5484D','#0D9488','#D97706','#7C3AED','#DB2777','#4B5563',
+  '#1A8FE5','#E5484D','#0D9488','#D97706','#7C3AED','#DB2777','#4B5563','#2F6BFA','#5936FA','#7A36FA'];
+
+var $ = function(id){ return document.getElementById(id); };
+var fmt = function(n){ return (typeof n==='number'&&isFinite(n))?n.toFixed(2):'—'; };
+
+var data = null;
+var allPlatforms = [];
+var terms = ['15m','1h','1d','3d','10d'];
+var volumes = ['65k','130k'];
+
+// Feature filter state
+var activeFeats = {}; // {featId: true|false} — true = filter ON (show only platforms WITH this feature)
+FEATURES.forEach(function(f){ activeFeats[f.id] = false; });
+
+// Matrix state
+var mtxVol = '65k';
+var mtxSort = 'price';
+var mtxSearch = '';
+var mtxSelected = null;
+
+// Chart state
+var cSize='65k', cTerm='1h', cRange='7d', cMetric='all';
+var cServices = {}; // {pid: true|false}
+var history7d=null, history30d=null;
+var chart = null;
+var CHART_OK = typeof Chart !== 'undefined';
+
+/* ================================================================
+   FEATURE FILTERS (shared)
+   ================================================================ */
+
+function buildFeatBar(){
+  var bar = $('featBar');
+  var html = '<span class="feat-label">Features</span>';
+  FEATURES.forEach(function(f){
+    html += '<span class="feat-chip'+(activeFeats[f.id]?' on':'')+'" data-feat="'+f.id+'" title="'+f.desc+'">'+f.icon+' '+f.label+'</span>';
+  });
+  bar.innerHTML = html + '<span style="font-size:10px;color:var(--ink-secondary);margin-left:4px" id="featMatchCount"></span>';
+
+  bar.querySelectorAll('.feat-chip').forEach(function(chip){
+    chip.addEventListener('click',function(){
+      var fid = chip.dataset.feat;
+      activeFeats[fid] = !activeFeats[fid];
+      chip.classList.toggle('on', activeFeats[fid]);
+      updateFeatCounts();
+      refreshActiveTab();
+    });
+  });
+  updateFeatCounts();
+}
+
+function updateFeatCounts(){
+  var activeList = Object.keys(activeFeats).filter(function(k){ return activeFeats[k]; });
+  if (activeList.length === 0) { $('featMatchCount').textContent = ''; return; }
+  var matching = allPlatforms.filter(function(p){ return platformMatchesFeats(p.platform_id); });
+  $('featMatchCount').textContent = matching.length + ' of ' + allPlatforms.length;
+}
+
+function platformMatchesFeats(pid){
+  var pfeats = PLATFORM_FEATURES[pid] || [];
+  var activeList = Object.keys(activeFeats).filter(function(k){ return activeFeats[k]; });
+  if (activeList.length === 0) return true;
+  return activeList.every(function(fid){ return pfeats.indexOf(fid) !== -1; });
+}
+
+function getFilteredPlatforms(){
+  return allPlatforms.filter(function(p){ return platformMatchesFeats(p.platform_id); });
+}
+
+/* ================================================================
+   TAB SWITCHING
+   ================================================================ */
+
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(function(tc){ tc.classList.remove('active'); });
+    $('tab-'+btn.dataset.tab).classList.add('active');
+    if (btn.dataset.tab === 'chart') refreshChart();
+  });
+});
+
+function refreshActiveTab(){
+  var activeTab = document.querySelector('.tab-btn.active');
+  if (!activeTab) return;
+  if (activeTab.dataset.tab === 'matrix') renderMatrix();
+  else refreshChart();
+}
+
+/* ================================================================
+   MATRIX TAB
+   ================================================================ */
+
+function getPrice(p, vol, term){
+  var v = p[vol+'_'+term+'_price'];
+  return (typeof v==='number'&&v>=0)?v:null;
+}
+
+function buildVolumeChips(){
+  var group = document.querySelector('#tab-matrix .mtx-toolbar-group');
+  // Remove existing vol chips
+  var chips = group.querySelectorAll('.chip[data-vol]');
+  chips.forEach(function(c){ c.remove(); });
+  // Get unique volumes from data
+  var vols = volumes;
+  if (data && data.meta && data.meta.volumes) vols = Object.keys(data.meta.volumes);
+  if (!vols.includes(mtxVol)) mtxVol = vols[0];
+
+  vols.forEach(function(vk){
+    var btn = document.createElement('span');
+    btn.className = 'chip' + (vk===mtxVol?' active':'');
+    btn.dataset.vol = vk;
+    btn.textContent = vk;
+    btn.addEventListener('click',function(){
+      group.querySelectorAll('.chip[data-vol]').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      mtxVol = vk;
+      renderMatrix();
+    });
+    group.appendChild(btn);
+  });
+}
+
+function renderMatrix(){
+  if (!data) return;
+  var filtered = getFilteredPlatforms().map(function(p){
+    var prices = terms.map(function(t){ return getPrice(p, mtxVol, t); });
+    var valid = prices.filter(function(v){ return v!==null; });
+    var avg = valid.length>0 ? valid.reduce(function(a,b){return a+b;},0)/valid.length : null;
+    return {platform:p, prices:prices, avg:avg, validCount:valid.length};
+  });
+
+  if (mtxSearch){
+    var q = mtxSearch.toLowerCase();
+    filtered = filtered.filter(function(s){
+      return (s.platform.platform_name||'').toLowerCase().indexOf(q)!==-1 ||
+             (s.platform.platform_id||'').toLowerCase().indexOf(q)!==-1;
+    });
+  }
+
+  if (mtxSort==='price'){
+    filtered.sort(function(a,b){
+      if (a.avg===null&&b.avg===null) return 0;
+      if (a.avg===null) return 1; if (b.avg===null) return -1;
+      return a.avg-b.avg;
+    });
+  } else if (mtxSort==='name'){
+    filtered.sort(function(a,b){ return (a.platform.platform_name||'').localeCompare(b.platform.platform_name||''); });
+  } else {
+    filtered.sort(function(a,b){ return b.validCount-a.validCount || (a.avg||999)-(b.avg||999); });
+  }
+
+  // Per-column minimums
+  var colMins = {};
+  for (var i=0;i<terms.length;i++){
+    var vals = filtered.map(function(s){return s.prices[i];}).filter(function(v){return v!==null;});
+    colMins[i] = vals.length>0 ? Math.min.apply(null,vals) : null;
+  }
+
+  var body = $('mtxBody');
+  var h = '<tr><th>Platform</th>';
+  terms.forEach(function(t){ h += '<th>'+t+'</th>'; });
+  h += '<th>Avg</th></tr>';
+  body.innerHTML = h;
+
+  filtered.forEach(function(s){
+    var p = s.platform;
+    var pid = p.platform_id||'?';
+    var name = p.platform_name||pid;
+    var isSel = pid===mtxSelected;
+
+    var html = '<tr class="'+(isSel?'selected':'')+'" data-pid="'+pid+'">';
+    html += '<td class="label">'+name+'</td>';
+
+    s.prices.forEach(function(price,ci){
+      var isMin = price!==null && colMins[ci]!==null && price===colMins[ci];
+      if (price===null){
+        html += '<td><span class="cell-price na">—</span></td>';
+      } else {
+        html += '<td><span class="cell-price'+(isMin?' best':'')+'">'+(isMin?'★ ':'')+fmt(price)+'</span></td>';
+      }
+    });
+
+    if (s.avg!==null){
+      html += '<td><span class="cell-price best">'+fmt(s.avg)+'</span></td>';
+    } else {
+      html += '<td><span class="cell-price na">—</span></td>';
+    }
+    html += '</tr>';
+    body.insertAdjacentHTML('beforeend', html);
+  });
+
+  $('mtxCount').textContent = filtered.length + ' platforms';
+}
+
+function renderDetail(pid){
+  if (!data) return;
+  var p = data.platforms.find(function(x){return x.platform_id===pid;});
+  var panel = $('detailPanel');
+  if (!p){ panel.innerHTML=''; return; }
+
+  var name = p.platform_name||pid;
+  var url = p.url||'';
+  var host = ''; try{ host = new URL(url).hostname; }catch(e){}
+
+  var priceHtml = '';
+  terms.forEach(function(t){
+    var v65 = getPrice(p,'65k',t);
+    var v130 = getPrice(p,'130k',t);
+    if (v65!==null) priceHtml += '<div class="dp-price-row"><span class="lbl">65k · '+t+'</span><span class="val">'+fmt(v65)+' TRX</span></div>';
+    if (v130!==null) priceHtml += '<div class="dp-price-row"><span class="lbl">130k · '+t+'</span><span class="val">'+fmt(v130)+' TRX</span></div>';
+  });
+
+  var refBtn = p.has_referral && p.referral_url
+    ? '<a class="chip active" href="'+p.referral_url+'" target="_blank" rel="nofollow noopener" style="text-decoration:none;display:inline-block;margin-bottom:8px;font-size:12px">🎁 Claim Bonus</a>'
+    : '';
+
+  // Feature badges
+  var pfeats = PLATFORM_FEATURES[pid] || [];
+  var featHtml = '';
+  FEATURES.forEach(function(f){
+    var has = pfeats.indexOf(f.id)!==-1;
+    featHtml += '<span class="dp-feat-tag'+(has?' has':'')+'">'+f.icon+' '+f.label+'</span>';
+  });
+
+  panel.innerHTML =
+    '<div class="dp-header"><div><div class="dp-name">'+name+'</div>'+
+    (host? (p.has_referral&&p.referral_url?'<a class="dp-url" href="'+p.referral_url+'" target="_blank" rel="nofollow noopener">'+host+' (referral)</a>':'<span style="font-size:11px;color:var(--ink-secondary)">'+host+'</span>'):'')+
+    '</div><button class="dp-close" onclick="window._closeDetail()">✕</button></div>'+
+    refBtn+
+    '<div class="dp-section"><div class="dp-section-title">Limits</div><div>'+
+    (p.minimum_order_energy&&p.minimum_order_energy!=='N/A'?'<span class="dp-badge limit">Min: '+p.minimum_order_energy+'</span>':'')+
+    (p.maximum_order_energy&&p.maximum_order_energy!=='N/A'?'<span class="dp-badge limit">Max: '+p.maximum_order_energy+'</span>':'')+
+    (p.platform_max_energy&&p.platform_max_energy!=='N/A'?'<span class="dp-badge limit">Cap: '+p.platform_max_energy+'</span>':'')+
+    (p.available_energy&&p.available_energy!=='N/A'?'<span class="dp-badge limit">Avail: '+p.available_energy+'</span>':'')+
+    (p.has_referral?'<span class="dp-badge ref">🎁 Bonus</span>':'')+
+    '</div></div>'+
+    '<div class="dp-section"><div class="dp-section-title">Features</div><div class="dp-features">'+featHtml+'</div></div>'+
+    '<div class="dp-section"><div class="dp-section-title">Prices</div>'+(priceHtml||'<div style="color:var(--ink-secondary);font-size:12px">No price data</div>')+'</div>';
+}
+
+window._closeDetail = function(){
+  mtxSelected = null;
+  $('detailPanel').innerHTML = '';
+  renderMatrix();
+};
+
+document.addEventListener('click',function(e){
+  var row = e.target.closest('.mtx-table tr[data-pid]');
+  if (row){
+    mtxSelected = row.dataset.pid;
+    renderMatrix();
+    renderDetail(mtxSelected);
+  }
+});
+
+/* ================================================================
+   CHART TAB
+   ================================================================ */
+
+function renderChartStats(){
+  if (!data) return;
+  var filtered = getFilteredPlatforms();
+  var key = cSize+'_'+cTerm+'_price';
+  var vals = filtered.map(function(p){return p[key];}).filter(function(v){return typeof v==='number';});
+  if (vals.length){
+    vals.sort(function(a,b){return a-b;});
+    var min=vals[0], max=vals[vals.length-1];
+    var mid = Math.floor(vals.length/2);
+    var median = vals.length%2 ? vals[mid] : (vals[mid-1]+vals[mid])/2;
+    var minP = filtered.find(function(p){return p[key]===min;});
+    var maxP = filtered.find(function(p){return p[key]===max;});
+    $('cstMedian').textContent = fmt(median)+' TRX';
+    $('cstMin').textContent = fmt(min)+' TRX';
+    $('cstMinName').textContent = minP ? (minP.platform_name||minP.platform_id) : '';
+    $('cstMax').textContent = fmt(max)+' TRX';
+    $('cstMaxName').textContent = maxP ? (maxP.platform_name||maxP.platform_id) : '';
+    $('cstCount').textContent = vals.length;
+    $('cstCountSub').textContent = 'of '+filtered.length+' filtered';
+  }
+}
+
+function renderServiceTags(){
+  var filtered = getFilteredPlatforms();
+  var el = $('cSvcTags');
+  // Init cServices for new platforms
+  filtered.forEach(function(p){
+    if (!(p.platform_id in cServices)) cServices[p.platform_id] = true;
+  });
+  el.innerHTML = filtered.map(function(p){
+    var pid = p.platform_id;
+    var name = (p.platform_name||pid).substring(0,20);
+    var on = cServices[pid] !== false;
+    return '<span class="svc-tag '+(on?'on':'off')+'" data-pid="'+pid+'">'+name+'</span>';
+  }).join('');
+  el.querySelectorAll('.svc-tag').forEach(function(tag){
+    tag.addEventListener('click',function(){
+      var pid = tag.dataset.pid;
+      cServices[pid] = cServices[pid]===false?true:false;
+      tag.classList.toggle('on', cServices[pid]!==false);
+      tag.classList.toggle('off', cServices[pid]===false);
+      renderChartVis();
+    });
+  });
+}
+
+function renderChartVis(){
+  var hist = cRange==='30d'?history30d:history7d;
+  if (!hist) return;
+  var sd = hist.services_data||{};
+  var key = cSize+'_'+cTerm+'_price';
+  var cutoff = Date.now() - (cRange==='30d'?30:7)*86400000;
+  var filtered = getFilteredPlatforms();
+
+  var datasets = [];
+  var allTs = new Set();
+  var pi = 0;
+
+  filtered.forEach(function(p){
+    var pid = p.platform_id;
+    var series = sd[pid] ? sd[pid][key] : null;
+    if (!series || !series.length) return;
+    var points = [];
+    series.forEach(function(entry){
+      var ts=entry[0], val=entry[1];
+      if (val!==null&&val!==undefined&&ts>=cutoff){
+        allTs.add(ts);
+        points.push({x:ts,y:val});
+      }
+    });
+    if (points.length<2) return;
+    var color = COLORS[pi%COLORS.length];
+    var name = p.platform_name||pid;
+    var on = cServices[pid]!==false;
+    datasets.push({label:name,data:points,borderColor:color,backgroundColor:color+'20',
+      tension:0.2,pointRadius:0,borderWidth:on?2:0,hidden:!on,spanGaps:true});
+    pi++;
+  });
+
+  // Aggregates
+  if (cMetric!=='all'){
+    var timeMap = {};
+    Object.keys(sd).forEach(function(pid){
+      var series = sd[pid][key];
+      if (!series) return;
+      series.forEach(function(entry){
+        var ts=entry[0], val=entry[1];
+        if (val===null||val===undefined||ts<cutoff) return;
+        if (!timeMap[ts]) timeMap[ts]=[];
+        timeMap[ts].push(val);
+      });
+    });
+    var aggPts = Object.keys(timeMap).sort().map(function(ts){
+      var vs = timeMap[ts].sort(function(a,b){return a-b;});
+      var n = vs.length;
+      return {x:Number(ts), median: n%2?vs[(n-1)/2]:(vs[n/2-1]+vs[n/2])/2, min:vs[0], max:vs[n-1]};
+    });
+    if (cMetric==='median'){
+      datasets.unshift({label:'Market Median',data:aggPts.map(function(p){return{x:p.x,y:p.median};}),
+        borderColor:'#FFFFFF',pointRadius:0,borderWidth:3,tension:0.2,spanGaps:true});
+    } else if (cMetric==='min'){
+      datasets.unshift({label:'Market Min',data:aggPts.map(function(p){return{x:p.x,y:p.min};}),
+        borderColor:'#16a34a',pointRadius:0,borderWidth:2,tension:0.1,borderDash:[4,3],spanGaps:true});
+    } else if (cMetric==='max'){
+      datasets.unshift({label:'Market Max',data:aggPts.map(function(p){return{x:p.x,y:p.max};}),
+        borderColor:'#dc2626',pointRadius:0,borderWidth:2,tension:0.1,borderDash:[4,3],spanGaps:true});
+    }
+  }
+
+  var sortedTs = Array.from(allTs).sort();
+  var labels = sortedTs.map(function(ts,i){
+    var d = new Date(ts);
+    if (i===0||i===sortedTs.length-1||i%Math.ceil(sortedTs.length/10)===0) return d.toISOString().slice(5,10);
+    return '';
+  });
+
+  var lineDs = datasets.map(function(ds){
+    var dm = {};
+    ds.data.forEach(function(p){dm[p.x]=p.y;});
+    return {label:ds.label, data:sortedTs.map(function(ts){return dm[ts]||null;}),
+      borderColor:ds.borderColor,pointRadius:0,borderWidth:ds.borderWidth||1,
+      tension:0.2,spanGaps:true,hidden:ds.hidden};
+  });
+
+  $('cChartTitle').textContent = cSize+' · '+cTerm+' — '+(cRange==='30d'?'30 Days':'7 Days');
+  $('cChartHint').textContent = lineDs.length+' series · '+(cMetric==='all'?'individual platforms':cMetric);
+
+  if (chart) chart.destroy();
+  var ctx = $('cMainChart').getContext('2d');
+  chart = new Chart(ctx,{type:'line',data:{labels:labels,datasets:lineDs},options:{
+    responsive:true,maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{legend:{position:'bottom',labels:{color:'#8A94A6',font:{size:10},boxWidth:12,padding:12,usePointStyle:true}}},
+    scales:{
+      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#8A94A6',font:{size:9},maxTicksLimit:14,autoSkip:true}},
+      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#8A94A6',font:{size:10},callback:function(v){return v.toFixed(2)}}}
+    }
+  }});
+}
+
+function refreshChart(){
+  if (!data) return;
+  renderChartStats();
+  renderServiceTags();
+  var hist = cRange==='30d'?history30d:history7d;
+  if (hist) renderChartVis();
+  else loadHistory(cRange==='30d'?30:7);
+}
+
+function loadHistory(days){
+  var url = days<=7 ? 'history_7d.json' : 'history_30d.json';
+  fetch(url,{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(h){
+    if (!h||!h.services_data) return;
+    if (days<=7) history7d=h; else history30d=h;
+    if (cRange===String(days)+'d' || (cRange==='30d'&&days===30)) renderChartVis();
+  });
+}
+
+/* ================================================================
+   CHART EVENT BINDINGS
+   ================================================================ */
+
+document.querySelectorAll('.chip[data-csize]').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.chip[data-csize]').forEach(function(x){x.classList.remove('active');});
+    c.classList.add('active'); cSize=c.dataset.csize;
+    refreshChart();
+  });
+});
+document.querySelectorAll('.chip[data-cterm]').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.chip[data-cterm]').forEach(function(x){x.classList.remove('active');});
+    c.classList.add('active'); cTerm=c.dataset.cterm;
+    refreshChart();
+  });
+});
+document.querySelectorAll('.chip[data-crange]').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.chip[data-crange]').forEach(function(x){x.classList.remove('active');});
+    c.classList.add('active'); cRange=c.dataset.crange;
+    loadHistory(cRange==='30d'?30:7);
+  });
+});
+document.querySelectorAll('.chip[data-cmetric]').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.chip[data-cmetric]').forEach(function(x){x.classList.remove('active');});
+    c.classList.add('active'); cMetric=c.dataset.cmetric;
+    if ((cRange==='30d'?history30d:history7d)) renderChartVis();
+  });
+});
+
+/* ================================================================
+   MATRIX EVENT BINDINGS
+   ================================================================ */
+
+document.querySelectorAll('.chip[data-sort]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.chip[data-sort]').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    mtxSort = btn.dataset.sort;
+    renderMatrix();
+  });
+});
+
+$('mtxSearch').addEventListener('input',function(){
+  mtxSearch = $('mtxSearch').value;
+  renderMatrix();
+});
+$('mtxClear').addEventListener('click',function(){
+  $('mtxSearch').value = '';
+  mtxSearch = '';
+  renderMatrix();
+});
+
+/* ================================================================
+   INIT
+   ================================================================ */
+
+function init(json){
+  data = json;
+  if (!data.platforms) data.platforms = [];
+  allPlatforms = data.platforms.slice();
+
+  // Init cServices
+  allPlatforms.forEach(function(p){ cServices[p.platform_id] = true; });
+
+  // Build UI
+  buildFeatBar();
+  buildVolumeChips();
+  renderMatrix();
+  renderChartStats();
+  renderServiceTags();
+  loadHistory(7);
+}
+
+fetch('result.json',{cache:'no-store'})
+  .then(function(r){ return r.json(); })
+  .then(init)
+  .catch(function(err){
+    console.error(err);
+    $('mtxBody').innerHTML = '<tr><td colspan="8" style="padding:40px;text-align:center;color:var(--red)">Failed to load data. Please try again.</td></tr>';
+  });
+
+})();
+</script>
+</body>
+</html>

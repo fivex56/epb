@@ -1,6 +1,6 @@
 {
-  "cycle_start": "2026-06-10T01:13:40.163081",
-  "cycle_end": "2026-06-10T01:56:21.429701",
+  "cycle_start": "2026-06-10T10:14:59.084023",
+  "cycle_end": "2026-06-10T10:57:36.453972",
   "scrapers": [
     {
       "scraper": "TronZap_scraper.py",
@@ -44,7 +44,7 @@
     },
     {
       "scraper": "itrx_scraper.py",
-      "success": true,
+      "success": false,
       "elapsed_sec": 5.0
     },
     {
@@ -100,11 +100,11 @@
     {
       "scraper": "tronsave_scraper.py",
       "success": true,
-      "elapsed_sec": 15.0
+      "elapsed_sec": 10.0
     }
   ],
-  "scrapers_ok": 20,
-  "scrapers_fail": 0,
+  "scrapers_ok": 19,
+  "scrapers_fail": 1,
   "aggregate_ok": true,
   "fill_ok": true,
   "ingest_ok": true,

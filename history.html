@@ -234,7 +234,7 @@ h2{font-size:28px;line-height:1.2;font-weight:700}
       <div class="nav-links">
         <a href="index.html">Board</a>
         <a class="active">History</a>
-        <a href="explorer.html">Explorer</a>
+        <a href="compare.html">Compare</a>
         <a href="blog.html">Blog</a>
       </div>
     </nav>
@@ -311,13 +311,6 @@ h2{font-size:28px;line-height:1.2;font-weight:700}
     </div>
 
     <div class="section">
-      <div class="section-header">
-        <h2>All Platforms — 65k/1h <span class="hint">sorted by price</span></h2>
-      </div>
-      <div class="platform-mini-grid" id="platformGrid"></div>
-    </div>
-
-    <div class="section">
       <div class="section-header"><h2>Market Insights</h2></div>
       <div class="insights" id="insights"></div>
     </div>
@@ -343,8 +336,8 @@ h2{font-size:28px;line-height:1.2;font-weight:700}
       <div class="footer-col">
         <h5>Pages</h5>
         <a href="index.html">Price Board</a>
-        <a href="explorer.html">Market Explorer</a>
-        <a href="history.html">Price History</a>
+        <a href="compare.html">Compare</a>
+        <a href="history.html">History</a>
         <a href="blog.html">Blog</a>
       </div>
       <div class="footer-col">
@@ -532,16 +525,6 @@ h2{font-size:28px;line-height:1.2;font-weight:700}
     });
   }
 
-  function renderPlatformGrid() {
-    const platforms = data.platforms || [];
-    const sorted = platforms.map(p => ({ name: p.platform_name || p.platform_id, price: p['65k_1h_price'] }))
-      .sort((a, b) => { if (typeof a.price !== 'number') return 1; if (typeof b.price !== 'number') return -1; return a.price - b.price; });
-    $('platformGrid').innerHTML = sorted.map(p => {
-      const isNum = typeof p.price === 'number';
-      return '<div class="platform-mini"><div class="pm-name">' + p.name + '</div>' + (isNum ? '<div class="pm-price">' + p.price.toFixed(4) + '</div><div class="pm-sub">TRX · 65k/1h</div>' : '<div class="pm-na">N/A</div>') + '</div>';
-    }).join('');
-  }
-
   function renderInsights() {
     const platforms = data.platforms || [];
     const insights = [];
@@ -628,7 +611,7 @@ h2{font-size:28px;line-height:1.2;font-weight:700}
     data = json;
     if (!data.platforms) data.platforms = [];
     renderStats(); renderHeatmap('65k'); renderRankings(); renderCurves();
-    renderPlatformGrid(); renderInsights(); renderFooter();
+    renderInsights(); renderFooter();
 
     // Always try to load history_7d.json for >24h baseline
     var dda = document.getElementById('dDataAge');
