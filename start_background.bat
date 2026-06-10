@@ -1,7 +1,7 @@
 @echo off
 REM ============================================
 REM Energy Price Board — Background Runner
-REM Запускает бесконечный цикл сбора цен
+REM Запускает сбор цен + Twitter авто-постинг
 REM ============================================
 setlocal
 cd /d "%~dp0"
@@ -22,11 +22,21 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-REM Запускаем runner в непрерывном режиме
-REM --timeout 5 = таймаут на скрапер 5 мин
-REM --wait 2   = пауза между скраперами 2 мин
-python epb_runner.py --continuous --timeout 5 --wait 2
+REM 1. Запускаем сборщик цен в непрерывном режиме
+echo [1/2] Starting price scraper...
+start "EPB Scraper" /MIN python epb_runner.py --continuous --timeout 5 --wait 2
+
+REM 2. Запускаем Twitter постер (1 пост/день в случайное время)
+echo [2/2] Starting Twitter poster...
+start "EPB Twitter" /MIN python twitter_poster.py --loop
 
 echo.
-echo Runner stopped at %date% %time%
+echo Both services started. Close this window to keep them running.
+echo Press any key to stop ALL services...
+pause >nul
+
+REM Убиваем оба процесса при выходе
+taskkill /FI "WINDOWTITLE eq EPB Scraper*" /F >nul 2>&1
+taskkill /FI "WINDOWTITLE eq EPB Twitter*" /F >nul 2>&1
+echo All services stopped at %date% %time%
 pause
