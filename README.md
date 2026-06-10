@@ -107,4 +107,4 @@ MIT — do whatever you want. Energy should be cheap for everyone.
 
 ---
 
-Built by [@epbfish](https://x.com/epbfish) with Claude Code & DeepSeek, June 2026.
+Built by Energy Price Board team · [Telegram](https://t.me/energypriceboard) · [X/Twitter](https://x.com/epbfish) · [team@energypriceboard.tech](mailto:team@energypriceboard.tech)
