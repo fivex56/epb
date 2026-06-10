@@ -14,6 +14,15 @@ echo  Working dir: %cd%
 echo ============================================
 echo.
 
+REM Убиваем старые процессы чтобы не дублировались
+echo Killing old processes...
+taskkill /FI "WINDOWTITLE eq EPB Scraper*" /F >nul 2>&1
+taskkill /FI "WINDOWTITLE eq EPB Twitter*" /F >nul 2>&1
+REM Ждём секунду чтобы окна закрылись
+timeout /t 1 /nobreak >nul
+echo Done.
+echo.
+
 REM Проверяем Python
 python --version >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
